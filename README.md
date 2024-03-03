@@ -12,11 +12,11 @@ Node.js 版本建議為：18.17.1 以上
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
 ## 專案說明
-以販售藝術微噴為主題的電商網站。
-製作者：Ann Chou
-設計師：Ann Chou
-文案來源：chatGPT
-圖片來源：[unsplash](https://unsplash.com/)
+以販售藝術微噴為主題的電商網站，分為前台客戶使用，以及後台管理者使用。
+- 製作者：Ann Chou
+- 設計師：Ann Chou
+- 文案來源：chatGPT
+- 圖片來源：[unsplash](https://unsplash.com/)
 
 ## 安裝與使用
 
