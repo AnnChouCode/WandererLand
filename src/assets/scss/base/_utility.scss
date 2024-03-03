@@ -1,0 +1,119 @@
+//Generate utilites for Font Size
+$utilities: map-merge(
+  $utilities,
+  (
+    'font-size':
+      map-merge(
+        map-get($utilities, 'font-size'),
+        (
+          responsive: true
+        )
+      )
+  )
+);
+
+//Generate utilites for Width
+$utilities: map-merge(
+  $utilities,
+  (
+    'width':
+      map-merge(
+        map-get($utilities, 'width'),
+        (
+          responsive: true
+        )
+      )
+  )
+);
+
+// 暗色 navlink
+.theme-dark-navlink {
+  transition: background-color 0.3s;
+
+  &:hover {
+    color: white;
+    background-color: gray;
+  }
+}
+
+.theme-dark-navlink-active {
+  color: black !important ;
+  font-weight: bold;
+  background-color: white;
+}
+
+// 比例
+.ratio-1x1 {
+  aspect-ratio: 1 / 1;
+}
+
+// 背景圖片
+.bg-img-contain {
+  background-size: contain;
+}
+
+.bg-img-cover {
+  background-size: cover;
+}
+
+.bg-img-center {
+  background-position: center;
+}
+
+.bg-img-norepeat {
+  background-repeat: no-repeat;
+}
+
+// 連結互動
+.link-hover-decoration:hover {
+  text-decoration: underline;
+}
+
+// 文字
+//文字單行省略
+.single-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+//文字雙行省略
+.doubleline-ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+// 白色標題 shadow
+.title-shadow {
+  text-shadow: 2px 2px 4px rgba(51, 51, 51, 0.7);
+}
+
+// 標題字距
+.title-letter-spacing{
+  letter-spacing: 2px;
+}
+
+// product image hover 效果
+.product-img {
+  &-up {
+    opacity: 1;
+    transition: opacity 0.3s ease; /* 添加透明度漸變效果 */
+  }
+
+  &-down {
+    transform: scale(1);
+    transition: transform 0.3s ease; /* 添加尺寸漸變效果 */
+  }
+
+  &:hover {
+    .product-img-up {
+      opacity: 0; /* hover 時透明度變為 0 */
+    }
+
+    .product-img-down {
+      transform: scale(1.1); /* hover 時放大 10% */
+    }
+  }
+}

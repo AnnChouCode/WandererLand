@@ -1,0 +1,40 @@
+// 首頁文章
+.home-article {
+    > .home-article-img:first-child > div:first-child {
+      height: 208px;
+  
+      @include media-breakpoint-up(sm) {
+        height: 350px;
+      }
+  
+      @include media-breakpoint-up(xl) {
+        height: 822px;
+      }
+    }
+  
+    > .home-article-img:nth-child(n+3) > div:first-child {
+      aspect-ratio: 3/4;
+  
+      @include media-breakpoint-up(md) {
+        aspect-ratio: 1/1;
+      }
+    }
+  
+    &-mask {
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(94, 94, 94, 0) 63%,
+        rgba(0, 0, 0, 0.6) 100%
+      );
+    }  
+  }
+  
+  // 優惠券
+  .home-coupon{
+    height: 302px;
+  
+      @include media-breakpoint-up(md) {
+        height: 311px;
+      }
+  }

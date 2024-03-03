@@ -1,0 +1,28 @@
+// *,
+// *::before,
+// *::after {
+//   outline: 1px solid orange;
+// }
+
+html,
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  color: $default;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// 隱藏 y 軸
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-y-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-y-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

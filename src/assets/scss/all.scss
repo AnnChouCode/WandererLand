@@ -1,0 +1,28 @@
+// bootstrap
+@import "bootstrap/scss/functions";
+@import './utils/variables'; 
+@import "bootstrap/scss/bootstrap";
+@import "./utils/_reboot.scss";
+
+// bootstrap icon
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+// CUSTOM Utility
+@import './base/utility';
+
+// BOOTSTRAP utilities api，for font-size RWD
+@import "bootstrap/scss/utilities/api";
+
+// CUSTOM
+@import './base/base';
+@import './utils/custom'; 
+
+// COMPONENTS
+@import './components/btn-sweetalert'; 
+@import './components/form-check'; 
+@import './components/editor-block'; 
+@import './components/swiperProductComponent'; 
+
+// PAGES
+@import './pages/home-view'; 
+@import "vue-loading-overlay/dist/css/index.css";
