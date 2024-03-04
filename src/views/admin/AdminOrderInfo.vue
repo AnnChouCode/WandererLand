@@ -181,13 +181,13 @@
 </template>
 
 <script>
-import { useAllAdminOrderStore } from '@/stores/allAdminOrderStore'
+import { useAdminOrderStore } from '@/stores/adminOrderStore'
 import { mapStores } from 'pinia'
 import toastComponent from '@/components/toastComponent.vue'
 import { useLoading } from 'vue-loading-overlay'
 
 const $loading = useLoading()
-const ordersStore = useAllAdminOrderStore()
+const ordersStore = useAdminOrderStore()
 const { VITE_API, VITE_PATH } = import.meta.env
 
 export default {
@@ -285,7 +285,7 @@ export default {
     }
   },
   computed: {
-    ...mapStores(useAllAdminOrderStore)
+    ...mapStores(useAdminOrderStore)
   },
   components: {
     toastComponent

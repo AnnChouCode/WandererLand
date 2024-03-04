@@ -6,7 +6,7 @@ import { useLoading } from 'vue-loading-overlay'
 const $loading = useLoading()
 const { VITE_API, VITE_PATH } = import.meta.env
 
-export const useAllAdminOrderStore = defineStore('adminOrders', {
+export const useAdminOrderStore = defineStore('adminOrders', {
   state: () => ({
     // 所有訂單
     allOrderList: [],

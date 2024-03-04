@@ -54,9 +54,9 @@
 
 <script>
 import paginationComponent from '@/components/paginationComponent.vue'
-import { useAllAdminOrderStore } from '@/stores/allAdminOrderStore.js'
+import { useAdminOrderStore } from '@/stores/adminOrderStore.js'
 import { mapStores } from 'pinia'
-const ordersStore = useAllAdminOrderStore()
+const ordersStore = useAdminOrderStore()
 const { VITE_API, VITE_PATH } = import.meta.env
 
 export default {
@@ -138,7 +138,7 @@ export default {
     }
   },
   computed: {
-    ...mapStores(useAllAdminOrderStore)
+    ...mapStores(useAdminOrderStore)
   },
   components: {
     paginationComponent

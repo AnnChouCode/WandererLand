@@ -32,12 +32,12 @@
 </template>
 
 <script>
-import { useAllAdminOrderStore } from '@/stores/allAdminOrderStore'
-import { useAllAdminProductsStore } from '@/stores/allAdminProductStore'
+import { useAdminOrderStore } from '@/stores/adminOrderStore'
+import { useAdminProductsStore } from '@/stores/adminProductStore'
 import { mapStores } from 'pinia'
 
-const orderStore = useAllAdminOrderStore()
-const productStore = useAllAdminProductsStore()
+const orderStore = useAdminOrderStore()
+const productStore = useAdminProductsStore()
 
 export default {
   data () {
@@ -55,8 +55,8 @@ export default {
     }
   },
   computed: {
-    ...mapStores(useAllAdminProductsStore),
-    ...mapStores(useAllAdminOrderStore)
+    ...mapStores(useAdminProductsStore),
+    ...mapStores(useAdminOrderStore)
   },
   methods: {
     handleOrderData () {

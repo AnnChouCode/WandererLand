@@ -4,7 +4,7 @@ import swal from 'sweetalert2'
 
 const { VITE_API, VITE_PATH } = import.meta.env
 
-export const useAllAdminProductsStore = defineStore('adminProducts', {
+export const useAdminProductsStore = defineStore('adminProducts', {
   state: () => ({
     // 所有產品
     allProducts: [],
