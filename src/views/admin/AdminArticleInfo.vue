@@ -221,12 +221,12 @@
 </template>
 
 <script>
-import { useAllAdminProductsStore } from '@/stores/allAdminProductStore.js'
+import { useAdminProductsStore } from '@/stores/adminProductStore.js'
 import { mapStores } from 'pinia'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import uploadImageModal from '@/components/uploadImageModal.vue'
 
-const productsStore = useAllAdminProductsStore()
+const productsStore = useAdminProductsStore()
 const { VITE_API, VITE_PATH } = import.meta.env
 
 export default {
@@ -425,7 +425,7 @@ export default {
     }
   },
   computed: {
-    ...mapStores(useAllAdminProductsStore)
+    ...mapStores(useAdminProductsStore)
   },
   components: {
     uploadImageModal
