@@ -6,7 +6,7 @@
         <button type="button" class="py-2 py-md-3 px-6 px-md-9 btn btn-light fw-bold rounded-0"
           @click="copyCouponCode('present97')">點擊複製優惠碼</button>
       </div>
-      <img src="../../../public/images/present.jpg" alt="coupon"
+      <img src="../../public/images/present.jpg" alt="coupon"
         class="position-absolute top-0 z-n1 object-fit-cover w-100 h-100">
     </div>
 </template>
