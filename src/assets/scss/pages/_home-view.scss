@@ -32,9 +32,9 @@
   
   // 優惠券
   .home-coupon{
-    height: 302px;
+    min-height: 302px;
   
       @include media-breakpoint-up(md) {
-        height: 311px;
+        min-height: 311px;
       }
   }
