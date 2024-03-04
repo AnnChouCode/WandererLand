@@ -31,7 +31,8 @@
             <div class="w-100 h-100 home-article-mask"></div>
             <img src="../../../public/images/Exhibition/markus-spiske-RmvlD0oTsAo-unsplash.jpg" alt="art"
               class="position-absolute z-n1 object-fit-cover w-100 h-100">
-            <div class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
+            <div
+              class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
               <h3 class="mb-4 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
               <p class="fs-info fs-md-6 doubleline-ellipsis">ART TAIPEI is the landmark of Asian Art. It connects the
                 forefront of art from around the world to explore the topic of global art trends while focusing</p>
@@ -39,7 +40,8 @@
           </div>
           <div class="d-block d-xl-none py-3">
             <h3 class="mb-2 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It connects
+            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It
+              connects
               the forefront of art from around the world to explore the topic of global art trends while focusing</p>
           </div>
         </div>
@@ -49,7 +51,8 @@
             <div class="w-100 h-100 home-article-mask"></div>
             <img src="../../../public/images/Exhibition/markus-spiske-RmvlD0oTsAo-unsplash.jpg" alt="art"
               class="position-absolute z-n1 object-fit-cover w-100 h-100">
-            <div class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
+            <div
+              class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
               <h3 class="mb-4 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
               <p class="fs-info fs-md-6 doubleline-ellipsis">ART TAIPEI is the landmark of Asian Art. It connects the
                 forefront of art from around the world to explore the topic of global art trends while focusing</p>
@@ -57,7 +60,8 @@
           </div>
           <div class="d-block d-xl-none py-3">
             <h3 class="mb-2 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It connects
+            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It
+              connects
               the forefront of art from around the world to explore the topic of global art trends while focusing</p>
           </div>
         </div>
@@ -67,7 +71,8 @@
             <div class="w-100 h-100 home-article-mask"></div>
             <img src="../../../public/images/Exhibition/markus-spiske-RmvlD0oTsAo-unsplash.jpg" alt="art"
               class="position-absolute z-n1 object-fit-cover w-100 h-100">
-            <div class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
+            <div
+              class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
               <h3 class="mb-4 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
               <p class="fs-info fs-md-6 doubleline-ellipsis">ART TAIPEI is the landmark of Asian Art. It connects the
                 forefront of art from around the world to explore the topic of global art trends while focusing</p>
@@ -75,7 +80,8 @@
           </div>
           <div class="d-block d-xl-none py-3">
             <h3 class="mb-2 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It connects
+            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It
+              connects
               the forefront of art from around the world to explore the topic of global art trends while focusing</p>
           </div>
         </div>
@@ -85,7 +91,8 @@
             <div class="w-100 h-100 home-article-mask"></div>
             <img src="../../../public/images/Exhibition/markus-spiske-RmvlD0oTsAo-unsplash.jpg" alt="art"
               class="position-absolute z-n1 object-fit-cover w-100 h-100">
-            <div class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
+            <div
+              class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
               <h3 class="mb-4 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
               <p class="fs-info fs-md-6 doubleline-ellipsis">ART TAIPEI is the landmark of Asian Art. It connects the
                 forefront of art from around the world to explore the topic of global art trends while focusing</p>
@@ -93,7 +100,8 @@
           </div>
           <div class="d-block d-xl-none py-3">
             <h3 class="mb-2 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It connects
+            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It
+              connects
               the forefront of art from around the world to explore the topic of global art trends while focusing</p>
           </div>
         </div>
@@ -103,7 +111,8 @@
             <div class="w-100 h-100 home-article-mask"></div>
             <img src="../../../public/images/Exhibition/markus-spiske-RmvlD0oTsAo-unsplash.jpg" alt="art"
               class="position-absolute z-n1 object-fit-cover w-100 h-100">
-            <div class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
+            <div
+              class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
               <h3 class="mb-4 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
               <p class="fs-info fs-md-6 doubleline-ellipsis">ART TAIPEI is the landmark of Asian Art. It connects the
                 forefront of art from around the world to explore the topic of global art trends while focusing</p>
@@ -111,7 +120,8 @@
           </div>
           <div class="d-block d-xl-none py-3">
             <h3 class="mb-2 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It connects
+            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It
+              connects
               the forefront of art from around the world to explore the topic of global art trends while focusing</p>
           </div>
         </div>
@@ -120,15 +130,7 @@
   </div>
 
   <!-- 優惠券 -->
-  <div class="position-relative d-flex justify-content-center align-items-center w-100 home-coupon overflow-hidden">
-    <div class="text-center title-shadow">
-      <h2 class="mb-2 fs-4 fs-md-1 text-white title-letter-spacing">使用優惠券</h2>
-      <p class="mb-7 fs-info fs-md-6 text-white">為你的第一筆訂單，獲取 97 折折扣</p>
-      <button type="button" class="py-2 py-md-3 px-6 px-md-9 btn btn-light fw-bold rounded-0">點擊複製優惠碼</button>
-    </div>
-    <img src="../../../public/images/present.jpg" alt="coupon"
-      class="position-absolute top-0 z-n1 object-fit-cover w-100 h-100">
-  </div>
+  <couponComponent></couponComponent>
 
   <div class="container">
     <!-- 猜你喜歡 -->
@@ -200,7 +202,7 @@
     <div class="py-7 py-md-9">
       <h2 class="mb-7 mb-md-8 fs-2 fs-md-1">與我們聯絡</h2>
 
-      <div class="row d-flex flex-column flex-md-row g-7 g-md-6 justify-content-between">
+      <div class="row d-flex flex-column flex-md-row g-6 justify-content-between">
         <div class="col col-md-5">
           <div class="mb-4 mb-md-6">
             <p class="mb-2 fs-6 fs-md-5 fw-bold">合作說明</p>
@@ -220,7 +222,7 @@
           </div>
         </div>
         <div class="col col-md-6">
-          <v-form v-slot="{ errors }" @submit="submit" class="d-flex flex-column align-items-end">
+          <v-form v-slot="{ errors }" class="d-flex flex-column align-items-end">
             <!-- 來信類別 -->
             <div class="form-floating mb-4 mb-md-7 w-100">
               <select class="form-select  border-info rounded-0" id="floatingSelect" aria-label="Floating label select">
@@ -271,10 +273,12 @@
 
 <script>
 import swiperProductComponent from '@/components/swiperProductComponent.vue'
+import couponComponent from '@/components/couponComponent.vue'
 
 export default {
   components: {
-    swiperProductComponent
+    swiperProductComponent,
+    couponComponent
   }
 }
 

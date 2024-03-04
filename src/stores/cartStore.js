@@ -13,7 +13,9 @@ export default defineStore('cartStore', {
     // 顯示 toast
     toastState: true,
     // 動作成功提示
-    doAction: null
+    doAction: null,
+    // 優惠券碼
+    coupon_code: ''
   }),
   actions: {
     // 加入購物車
@@ -132,6 +134,17 @@ export default defineStore('cartStore', {
         .finally(() => {
           // 關閉 loading
           loader.hide()
+        })
+    },
+
+    // 點擊複製優惠券碼
+    copyCouponCode (code) {
+      navigator.clipboard.writeText(code)
+        .then(() => {
+          // 提示訊息
+          this.toastState = !this.toastState
+          this.doAction = 'copyCouponCode'
+          this.coupon_code = code
         })
     }
   }

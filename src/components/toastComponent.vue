@@ -15,10 +15,8 @@
 
 <script>
 import cartStore from '@/stores/cartStore.js'
-import { useAllAdminOrderStore } from '@/stores/allAdminOrderStore.js'
+import { useAdminOrderStore } from '@/stores/adminOrderStore.js'
 import { mapState, mapStores } from 'pinia'
-
-// const ordersStore = useAllAdminOrderStore()
 
 export default {
   data () {
@@ -45,6 +43,10 @@ export default {
         updateShipping: {
           icon: 'bi-info-circle',
           msg: '出貨狀態已更新'
+        },
+        copyCouponCode: {
+          icon: 'bi-info-circle',
+          msg: '優惠碼已複製'
         }
       }
     }
@@ -52,7 +54,7 @@ export default {
   props: ['adminOrderState', 'adminOrderAction'],
   computed: {
     ...mapState(cartStore, ['doAction', 'toastState']),
-    ...mapStores(useAllAdminOrderStore)
+    ...mapStores(useAdminOrderStore)
   },
   watch: {
     toastState () {
