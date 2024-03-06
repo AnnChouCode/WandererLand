@@ -24,22 +24,6 @@ const routes = [
         }
       },
       {
-        path: 'cart',
-        name: 'cart',
-        component: () => import('../views/user/UserCart.vue'),
-        meta: {
-          title: '購物車 - Wanderer Land'
-        }
-      },
-      {
-        path: 'userlogin',
-        name: 'userlogin',
-        component: () => import('../views/user/UserLogin.vue'),
-        meta: {
-          title: '登入 - Wanderer Land'
-        }
-      },
-      {
         path: 'productinfo/:id',
         component: () => import('../views/user/UserProductInfo.vue'),
         props: (route) => {
@@ -48,7 +32,35 @@ const routes = [
           }
         },
         meta: {
-          title: '產品資訊 - Wanderer Land'
+          title: '作品資訊 - Wanderer Land'
+        }
+      },
+      {
+        path: 'artistlist',
+        name: 'artistlist',
+        component: () => import('../views/user/UserArtistList.vue'),
+        meta: {
+          title: '藝術家列表 - Wanderer Land'
+        }
+      },
+      {
+        path: 'artistinfo/:id',
+        component: () => import('../views/user/UserArtistInfo.vue'),
+        props: (route) => {
+          return {
+            id: route.params.id
+          }
+        },
+        meta: {
+          title: '藝術家資訊 - Wanderer Land'
+        }
+      },
+      {
+        path: 'cart',
+        name: 'cart',
+        component: () => import('../views/user/UserCart.vue'),
+        meta: {
+          title: '購物車 - Wanderer Land'
         }
       },
       {
@@ -61,6 +73,14 @@ const routes = [
         },
         meta: {
           title: '訂單 - Wanderer Land'
+        }
+      },
+      {
+        path: 'userlogin',
+        name: 'userlogin',
+        component: () => import('../views/user/UserLogin.vue'),
+        meta: {
+          title: '登入 - Wanderer Land'
         }
       }
     ]
@@ -218,7 +238,7 @@ router.beforeEach((to, from, next) => {
     if (to.meta.navbarType === 'backend') {
       return 'theme-dark-navlink-active'
     } else if (to.meta.navbarType === 'frontend') {
-      return 'fw-bold text-white'
+      return 'navlink-underline-active'
     } else {
       return 'active'
     }
