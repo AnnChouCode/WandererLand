@@ -16,10 +16,13 @@ export default defineStore('allProductsStore', {
     getAllProducts () {
       const url = `${VITE_API}/api/${VITE_PATH}/products/all`
 
-      axios.get(url)
+      return axios.get(url)
         .then(res => {
+          console.log(res.data.products)
           this.allProducts = res.data.products
           this.getCategoryList()
+
+          return this.allProducts
         })
         .catch(err => {
           swal.fire(
@@ -35,6 +38,17 @@ export default defineStore('allProductsStore', {
     getCategoryList () {
       const categoryList = new Set(this.allProducts.map(item => item.category))
       this.categoryList = [...categoryList]
+    }
+  },
+  getters: {
+    sortNewest: ({ allProducts }) => {
+      const newestArtist = allProducts.filter(item => item.category === 'artists').reverse()
+      const newestProduct = allProducts.filter(item => item.category === 'products').reverse()
+
+      return {
+        newestArtist,
+        newestProduct
+      }
     }
   }
 })
