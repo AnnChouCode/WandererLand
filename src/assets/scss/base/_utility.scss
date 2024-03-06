@@ -26,6 +26,49 @@ $utilities: map-merge(
   )
 );
 
+//Generate utilites for Height
+$utilities: map-merge(
+  $utilities,
+  (
+    'height':
+      map-merge(
+        map-get($utilities, 'height'),
+        (
+          responsive: true
+        )
+      )
+  )
+);
+
+
+//Generate utilites for Line Height
+$utilities: map-merge(
+  $utilities,
+  (
+    'line-height':
+      map-merge(
+        map-get($utilities, 'line-height'),
+        (
+          responsive: true
+        )
+      )
+  )
+);
+
+//Generate utilites for Position
+$utilities: map-merge(
+  $utilities,
+  (
+    'position':
+      map-merge(
+        map-get($utilities, 'position'),
+        (
+          responsive: true
+        )
+      )
+  )
+);
+
 // 暗色 navlink
 .theme-dark-navlink {
   transition: background-color 0.3s;
@@ -40,6 +83,30 @@ $utilities: map-merge(
   color: black !important ;
   font-weight: bold;
   background-color: white;
+}
+
+// 底線 navlink
+.navlink-underline {
+  position: relative;
+  transition: 0.3s ease-in-out;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    border-bottom: 3px solid transparent;
+  }
+
+  &:hover::after {
+    border-bottom-color: #787878;
+  }
+}
+
+.navlink-underline-active::after{
+  border-bottom-color: #333333
 }
 
 // 比例
