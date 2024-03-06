@@ -1,0 +1,1 @@
+.btn-favorite>i{opacity:1;transition:opacity .3s ease}.btn-favorite i:nth-child(2){opacity:0;transition:opacity .3s ease}.btn-favorite:hover>i{opacity:0}.btn-favorite:hover i:nth-child(2){opacity:1}
