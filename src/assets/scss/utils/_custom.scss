@@ -6,3 +6,23 @@ label.has-required::before {
 .img-store {
   height: 80px;
 }
+
+.user-page-container {
+  padding-top: 81px;
+  padding-bottom: 50px;
+
+  @include media-breakpoint-up(lg) {
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+}
+
+.user-product-page-container {
+  padding-top: 141px;
+  padding-bottom: 50px;
+
+  @include media-breakpoint-up(lg) {
+    padding-top: 174.5px;
+    padding-bottom: 80px;
+  }
+}
