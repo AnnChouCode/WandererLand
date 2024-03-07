@@ -64,8 +64,8 @@ const routes = [
         }
       },
       {
-        path: 'orders',
-        component: () => import('../views/user/UserOrders.vue'),
+        path: 'order',
+        component: () => import('../views/user/UserOrder.vue'),
         props: (route) => {
           return {
             id: route.params.id
@@ -73,7 +73,32 @@ const routes = [
         },
         meta: {
           title: '訂單 - Wanderer Land'
-        }
+        },
+        children: [
+          {
+            path: 'checkform',
+            name: 'checkform',
+            component: () => import('../views/user/UserCheckOrderForm.vue')
+          },
+          {
+            path: 'payorder/:id',
+            component: () => import('../views/user/UserPayOrder.vue'),
+            props: (route) => {
+              return {
+                id: route.params.id
+              }
+            }
+          },
+          {
+            path: 'orderhistory/:id',
+            component: () => import('../views/user/UserOrderHistory.vue'),
+            props: (route) => {
+              return {
+                id: route.params.id
+              }
+            }
+          }
+        ]
       },
       {
         path: 'userlogin',
