@@ -48,6 +48,10 @@ export default {
         copyCouponCode: {
           icon: 'bi-info-circle',
           msg: '優惠碼已複製'
+        },
+        useCoupon: {
+          icon: 'bi-info-circle',
+          msg: '優惠券已套用'
         }
       }
     }
