@@ -22,7 +22,9 @@
             <i class="bi bi-heart fs-20"></i>
           </li>
           <li class="py-4">
-            <i class="bi bi-handbag fs-20"></i>
+            <router-link to="/cart" class="text-default">
+              <i class="bi bi-handbag fs-20"></i>
+            </router-link>
           </li>
         </ul>
       </div>
