@@ -2,7 +2,7 @@
   <!-- <userNavProductFilter></userNavProductFilter> -->
 
   <div class="container user-product-page-container">
-    <h2 class="mb-7 mb-md-8 h1 lh-sm title-letter-spacing text-center">作品</h2>
+    <h2 class="mb-7 mb-md-8 h1 lh-sm title-letter-spacing text-center h1">作品</h2>
     <div class="row  g-3 g-md-8">
       <div class="col-6 col-md-4" v-for="item in sortNewest.newestProduct" :key="item.id">
         <router-link :to="`productInfo/${item.id}`">

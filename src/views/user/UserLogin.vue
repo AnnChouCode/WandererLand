@@ -3,7 +3,7 @@
     <h2 class="mb-7 mb-md-8 text-center fs-4 fs-md-1">登入使用者後台</h2>
 
     <div class="row justify-content-center">
-      <div class="col-6">
+      <div class="col-12 col-md-6">
         <v-form v-slot="{ errors }" class="form-signin" @submit="login">
           <div class="form-floating mb-4 mb-md-7">
             <v-field id="username" name="email" type="email" class="form-control border-default rounded-0"

@@ -5,9 +5,9 @@
       <div class="col-12 col-md-8">
         <div class="row">
           <div class="position-relative col-12 col-lg-3">
-            <div class="bg-tertiary h-100">
+            <div class="bg-tertiary h-100 overflow-hidden">
               <div
-                class="position-lg-absolute row gap-0 gap-lg-2 px-2 py-2 py-lg-0 px-lg-auto flex-nowrap flex-lg-wrap overflow-auto scrollbar-y-hide w-lg-100 h-lg-100"
+                class="position-lg-absolute row gap-0 gap-lg-2 px-2 py-2 py-lg-0 px-lg-auto flex-nowrap flex-lg-column overflow-auto scrollbar-y-hide w-lg-100 h-lg-100"
                 v-if="product.imagesStock">
                 <a href="#" class="col-3 col-lg-12 ratio-1x1 overflow-hidden" v-for="(img, idx) in product.imagesStock"
                   :key="'img' + idx" @click.prevent="changeImage(idx)">
