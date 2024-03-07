@@ -20,7 +20,14 @@ $utilities: map-merge(
       map-merge(
         map-get($utilities, 'width'),
         (
-          responsive: true
+          responsive: true,
+          values:
+            map-merge(
+              map-get(map-get($utilities, 'width'), 'values'),
+              (
+                15: 15%
+              )
+            )
         )
       )
   )
@@ -39,7 +46,6 @@ $utilities: map-merge(
       )
   )
 );
-
 
 //Generate utilites for Line Height
 $utilities: map-merge(
@@ -91,7 +97,7 @@ $utilities: map-merge(
   transition: 0.3s ease-in-out;
 
   &::after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     bottom: -2px;
@@ -105,8 +111,8 @@ $utilities: map-merge(
   }
 }
 
-.navlink-underline-active::after{
-  border-bottom-color: #333333
+.navlink-underline-active::after {
+  border-bottom-color: #333333;
 }
 
 // 比例
@@ -158,7 +164,7 @@ $utilities: map-merge(
 }
 
 // 標題字距
-.title-letter-spacing{
+.title-letter-spacing {
   letter-spacing: 2px;
 }
 
