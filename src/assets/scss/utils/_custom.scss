@@ -1,6 +1,7 @@
-label.has-required::before {
+label.has-required::after {
   content: '*';
   color: red;
+  margin-left:2px;
 }
 
 .img-store {
