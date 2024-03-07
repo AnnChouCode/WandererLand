@@ -235,30 +235,30 @@
             </div>
             <!-- 標題 -->
             <div class="form-floating mb-4 mb-md-7 w-100">
-              <v-field id="title" name="title" type="text" class="form-control border-info rounded-0"
-                :class="{ 'is-invalid': errors['title'] }" placeholder="請輸入您的信件標題" rules="required"></v-field>
-              <error-message name="title" class="invalid-feedback"></error-message>
+              <v-field id="title" name="標題" type="text" class="form-control border-info rounded-0"
+                :class="{ 'is-invalid': errors['標題'] }" placeholder="請輸入您的信件標題" rules="required"></v-field>
+              <error-message name="標題" class="invalid-feedback"></error-message>
               <label for="title">信件標題</label>
             </div>
             <!-- 姓名 -->
             <div class="form-floating mb-4 mb-md-7 w-100">
-              <v-field id="name" name="name" type="text" class="form-control border-info rounded-0"
-                :class="{ 'is-invalid': errors['name'] }" placeholder="請輸入您的姓名" rules="required"></v-field>
-              <error-message name="name" class="invalid-feedback"></error-message>
+              <v-field id="name" name="姓名" type="text" class="form-control border-info rounded-0"
+                :class="{ 'is-invalid': errors['姓名'] }" placeholder="請輸入您的姓名" rules="required"></v-field>
+              <error-message name="姓名" class="invalid-feedback"></error-message>
               <label for="name">姓名</label>
             </div>
             <!-- Email -->
             <div class="form-floating mb-4 mb-md-7 w-100">
-              <v-field id="email" name="email" type="email" class="form-control border-info rounded-0"
-                :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入您的 Email" rules="email|required"></v-field>
-              <error-message name="email" class="invalid-feedback"></error-message>
+              <v-field id="email" name="Email" type="email" class="form-control border-info rounded-0"
+                :class="{ 'is-invalid': errors['Email'] }" placeholder="請輸入您的 Email" rules="email|required"></v-field>
+              <error-message name="Email" class="invalid-feedback"></error-message>
               <label for="email">Email</label>
             </div>
             <div class="form-floating mb-4 mb-md-7 w-100">
-              <v-field id="message" name="message" class="form-control border-info rounded-0" as="textarea"
-                placeholder="請輸入您的訊息" :class="{ 'is-invalid': errors['message'] }" rules="required"
+              <v-field id="message" name="訊息" class="form-control border-info rounded-0" as="textarea"
+                placeholder="請輸入您的訊息" :class="{ 'is-invalid': errors['訊息'] }" rules="required"
                 style="height:273px"></v-field>
-              <error-message name="message" class="invalid-feedback"></error-message>
+              <error-message name="訊息" class="invalid-feedback"></error-message>
               <label for="message">留言</label>
             </div>
             <button class="py-2 py-md-3 px-6 px-md-9 btn btn-default fw-bold rounded-0 w-100 w-md-auto" type="submit">
