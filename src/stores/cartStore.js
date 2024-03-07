@@ -44,7 +44,8 @@ export default defineStore('cartStore', {
           swal.fire(
             {
               icon: 'error',
-              text: err.response.data.message
+              text: err.response.data.message,
+              confirmButtonColor: '#333333'
             }
           )
         })
@@ -61,12 +62,14 @@ export default defineStore('cartStore', {
       axios.get(url)
         .then(res => {
           this.cartsList = res.data.data
+          console.log(this.cartsList)
         })
         .catch(err => {
           swal.fire(
             {
               icon: 'error',
-              text: err.response.data.message
+              text: err.response.data.message,
+              confirmButtonColor: '#333333'
             }
           )
         })
@@ -127,7 +130,8 @@ export default defineStore('cartStore', {
           swal.fire(
             {
               icon: 'error',
-              text: err.response.data.message
+              text: err.response.data.message,
+              confirmButtonColor: '#333333'
             }
           )
         })
@@ -145,6 +149,54 @@ export default defineStore('cartStore', {
           this.toastState = !this.toastState
           this.doAction = 'copyCouponCode'
           this.coupon_code = code
+        })
+    },
+
+    // 確認 coupon
+    checkCoupon (couponCode) {
+      console.log('checkCoupon')
+      const url = `${VITE_API}/api/${VITE_PATH}/coupon`
+
+      if (this.cartsList.total !== this.cartsList.final_total) {
+        swal.fire({
+          title: '已經套用此優惠券',
+          confirmButtonColor: '#333333',
+          confirmButtonText: '確認'
+        })
+
+        return
+      }
+
+      // 開啟 loading
+      const loader = $loading.show()
+
+      // 資料處理
+      const coupon = {
+        data: {
+          code: couponCode
+        }
+      }
+
+      axios.post(url, coupon)
+        .then(res => {
+          // 提示訊息
+          this.toastState = !this.toastState
+          this.doAction = 'useCoupon'
+
+          // 重整購物車
+          this.getCartsList()
+        })
+        .catch(err => {
+          swal.fire(
+            {
+              icon: 'error',
+              text: err.response.data.message
+            }
+          )
+        })
+        .finally(() => {
+          // 關閉 loading
+          loader.hide()
         })
     }
   }
