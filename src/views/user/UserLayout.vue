@@ -32,7 +32,7 @@
       </div>
     </div>
   </nav> -->
-  <div class="d-flex flex-column vh-100">
+  <div class="d-flex flex-column dvh-100">
     <userNavBar></userNavBar>
     <RouterView />
     <userFooter :isLoggedin="isLoggedin"></userFooter>
