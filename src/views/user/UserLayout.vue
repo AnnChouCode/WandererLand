@@ -45,7 +45,7 @@ import userNavBar from '@/components/userNavBar.vue'
 import userFooter from '@/components/userFooter.vue'
 import toastComponent from '@/components/toastComponent.vue'
 import cartStore from '@/stores/cartStore.js'
-import { mapActions, mapState } from 'pinia'
+import { mapActions } from 'pinia'
 
 export default {
   data () {
@@ -75,7 +75,6 @@ export default {
     toastComponent,
     userNavBar,
     userFooter
-  },
-  computed: { ...mapState(cartStore, ['cartsList']) }
+  }
 }
 </script>
