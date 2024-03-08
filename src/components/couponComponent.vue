@@ -21,3 +21,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+/* 優惠券 */
+.home-coupon {
+  min-height: 302px;
+
+  @media (min-width: 768px) {
+    min-height: 311px;
+  }
+}
+</style>
