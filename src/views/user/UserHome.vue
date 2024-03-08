@@ -2,9 +2,9 @@
   <!-- banner -->
   <div class="position-relative banner">
     <img src="../../../public/images/Exhibition/anastassiya-redko-5NJi3Kb4Mkc-unsplash.jpg" alt="banner"
-      class="vh-100 w-100 overflow-hidden object-fit-cover">
-    <div class="position-absolute z-1 top-0 bg-default opacity-50 w-100 vh-100"></div>
-    <div class="position-absolute z-2 top-50 start-50 translate-middle text-center">
+      class="h-100 w-100 overflow-hidden object-fit-cover">
+    <div class="position-absolute z-1 top-0 bg-default opacity-50 w-100 h-100"></div>
+    <div class="position-absolute z-2 top-50 start-50 translate-middle text-center banner-title">
       <h2 class="pb-5 pb-md-7 text-white title-shadow fs-2 fs-md-1 title-letter-spacing">台北藝術季 Taipei Arts Fest</h2>
       <button type="button" class="py-2 py-md-3 px-6 px-md-9 btn btn-light rounded-0 fw-bold">前往頁面</button>
     </div>
@@ -284,4 +284,46 @@ export default {
 
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.banner{
+    min-height: 289px;
+
+  @media (min-width: 768px) {
+    min-height: 100dvh;
+  }
+
+  &-title{
+    padding-top:60px;
+  }
+}
+
+/* 首頁文章 */
+.home-article {
+  >.home-article-img:first-child>div:first-child {
+    height: 208px;
+
+    @media (min-width: 576px) {
+      height: 350px;
+    }
+
+    @media (min-width: 1200px) {
+      height: 822px;
+    }
+  }
+
+  >.home-article-img:nth-child(n+3)>div:first-child {
+    aspect-ratio: 3/4;
+
+    @media (min-width: 768px) {
+      aspect-ratio: 1/1;
+    }
+  }
+
+  &-mask {
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(94, 94, 94, 0) 63%,
+        rgba(0, 0, 0, 0.6) 100%);
+  }
+}
+</style>
