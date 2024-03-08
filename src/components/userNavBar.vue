@@ -10,7 +10,7 @@
           <li><router-link to="/news" class="d-block px-5 py-4 text-default navlink-underline">最新消息</router-link></li>
         </ul>
         <h1 class="position-absolute top-50 start-50 translate-middle">
-          <a href="/home" class="d-block h5 fs-md-20 fw-bold text-default">WANDERER LAND</a>
+          <a href="#/home" class="d-block h5 fs-md-20 fw-bold text-default">WANDERER LAND</a>
         </h1>
         <ul class="d-flex gap-5 align-items-center list-unstyled">
           <li class="position-relative d-none d-lg-block py-4">
@@ -51,7 +51,6 @@ export default {
       const url = window.location.href
       const parts = url.split('/')
       this.pageType = parts[parts.length - 1]
-      console.log(this.pageType)
     }
   },
   watch: {
