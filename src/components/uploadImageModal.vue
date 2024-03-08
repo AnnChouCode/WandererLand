@@ -1,22 +1,11 @@
 <template>
-  <div
-    ref="uploadImageModal"
-    class="modal fade"
-    aria-hidden="true"
-    aria-labelledby="uploadImageModal"
-    tabindex="-1"
-  >
+  <div ref="uploadImageModal" class="modal fade" aria-hidden="true" aria-labelledby="uploadImageModal" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 v-if="isCover" class="modal-title text-bold fw-bold">上傳封面</h5>
           <h5 v-else class="modal-title text-bold fw-bold">上傳圖片</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <!-- <ul class="nav nav-tabs px-1">
           <li class="nav-item">
@@ -35,18 +24,19 @@
           <div class="row g-3">
             <div class="col-12 col-md-4">
               <div class="drop-area ratio-1x1">
-                <div v-if="imgUrl" :style="`background-image:url(${imgUrl})`" class="w-100 h-100 bg-img-contain bg-img-center bg-img-norepeat"></div>
+                <div v-if="imgUrl" :style="`background-image:url(${imgUrl})`"
+                  class="w-100 h-100 bg-img-contain bg-img-center bg-img-norepeat"></div>
                 <!-- <img v-if="imgUrl" :src="imgUrl" alt="picture"> -->
                 <p v-else>圖片預覽</p>
               </div>
             </div>
             <div class="col-12 col-md-8">
               <p class="mb-1">僅限使用 jpg、jpeg 與 png 格式，檔案大小限制為 3MB 以下</p>
-              <input class="form-control mb-1" type="text" placeholder="請填入圖片網址" v-model="imgUrl">
-              <input class="form-control" type="file" ref="dropArea"
-              :accept="accept"
-              @change="handleFile">
-          </div>
+              <form ref="imgForm">
+                <input class="form-control mb-1" type="text" placeholder="請填入圖片網址" v-model="imgUrl">
+                <input class="form-control" type="file" ref="dropArea" :accept="accept" @change="handleFile">
+              </form>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -67,7 +57,6 @@ export default {
   data () {
     return {
       modal: null,
-      dropArea: null,
       // 圖檔限制格式
       accept: ['jpg', 'jpeg', 'png'],
       // imgUrl
@@ -85,7 +74,6 @@ export default {
     // 檢查上傳圖檔
     handleFile (e) {
       const file = e.target.files[0]
-      console.log(file)
 
       // 檢查圖檔尺寸
       const fileSizeInMB = file.size / (1024 * 1024)
@@ -130,7 +118,7 @@ export default {
           this.imgUrl = res.data.imageUrl
         })
         .catch((err) => {
-          console.log(err)
+          console.log(err.response.data.message)
           this.$swal.fire({
             icon: 'error',
             text: err.response
@@ -144,7 +132,8 @@ export default {
 
     // 清空檔案上傳
     resetDropArea () {
-      this.dropArea.value = ''
+      this.imgUrl = ''
+      this.$refs.dropArea.value = ''
     },
 
     // 送出圖片網址
@@ -154,7 +143,7 @@ export default {
       } else {
         this.$emit('submitImgUrl', 'imagesUrl', this.imgUrl)
       }
-      this.imgUrl = ''
+      this.resetDropArea()
       this.closeModal()
     }
   },
@@ -163,7 +152,6 @@ export default {
       keyboard: false,
       backdrop: 'static'
     })
-    this.dropArea = this.$refs.dropArea
   }
 }
 </script>
