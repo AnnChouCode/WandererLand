@@ -66,8 +66,8 @@
               <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
                 aria-labelledby="panelsStayOpen-headingOne">
                 <div class="accordion-body p-0 pt-4 lh-base lh-md-lg h6 text-info">
-                  <p>剩餘版數 {{ product.productInfo.quantity - quantityInCart }}</p>
-                  <p>總版數 {{ product.productInfo.quantity }}</p>
+                  <p>剩餘版數 {{ product.productInfo.quantity ? product.productInfo.quantity - quantityInCart : '無限' }}</p>
+                  <p>總版數 {{ product.productInfo.quantity ? product.productInfo.quantity : '無限' }}</p>
                 </div>
               </div>
             </div>

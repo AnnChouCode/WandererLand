@@ -46,8 +46,14 @@
               <select class="form-select form-select-sm rounded-0 border-default fs-info fs-md-6"
                 aria-label=".form-select-sm example" style="width:65px;" v-model.number="item.qty"
                 @change="updateCart(item)">
-                <option v-for="num in item.product.quantity" :key="num" :selected="num === item.qty" :value="num">{{ num
+                <template v-if="item.product.quantity">
+                  <option v-for="num in item.product.quantity" :key="num" :selected="num === item.qty" :value="num">{{ num
                   }}</option>
+                </template>
+                <template v-else>
+                  <option v-for="num in 99" :key="num" :selected="num === item.qty" :value="num">{{ num
+                  }}</option>
+                </template>
               </select>
             </td>
             <td class="fs-info fs-md-6">
