@@ -75,7 +75,7 @@
           <div>
             <label for="title" class="form-label fw-bold has-required">文章標題</label>
             <v-field type="text" class="form-control" placeholder="請填入文章標題" v-model="tempArticleInfo.title" id="title"
-              name="title" :class="{ 'is-invalid': errors['title'] }" rules="required"></v-field>
+              name="title" :class="{ 'is-invalid': errors['title'] }" rules="required|max:25"></v-field>
             <error-message name="title" class="invalid-feedback"></error-message>
           </div>
           <div class="row g-5 g-md-1">
