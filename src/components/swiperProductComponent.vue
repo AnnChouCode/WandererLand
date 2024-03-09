@@ -91,18 +91,12 @@ export default {
         }
       },
       currentDatas: [],
+      // swiper 輪播設定
       modules: [Autoplay, Pagination, Navigation],
       isArtistBlock: true
     }
   },
   methods: {
-    goNext () {
-      Swiper.slideNext()
-    },
-    goPrev () {
-      Swiper.slidePrev()
-    },
-
     // 取得產品分類列表
     getCurrentDatas () {
       const allData = [...this.allDatas]
@@ -144,7 +138,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .swiper {
   margin: auto;
   padding: 0;
