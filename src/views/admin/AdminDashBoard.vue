@@ -80,7 +80,6 @@ export default {
     async getAllProductList () {
       await productStore.getAllProducts()
       this.allProductList = Object.values(productStore.allProducts)
-      console.log(this.allProductList)
 
       this.handleProductData()
     }
