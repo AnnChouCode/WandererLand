@@ -92,7 +92,7 @@ export default {
 
     // 切換顯示大圖
     changeImage (idx) {
-      this.product.currentImage = this.product.imagesStock[idx]
+      this.artist.currentImage = this.artist.imagesStock[idx]
     },
 
     // 獲取當頁藝術家資料
