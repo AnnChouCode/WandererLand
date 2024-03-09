@@ -12,7 +12,7 @@
   }" :navigation="{
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev'
-  }" :modules="modules">
+  }" :modules="modules" class="article-swiper">
             <SwiperSlide v-for="( img, idx ) in  article.imagesUrl " :key="idx">
               <div class="position-relative overflow-hidden">
                 <img :src="img" alt="news" class="object-fit-contain w-100 h-100">
@@ -71,7 +71,7 @@
             <router-link :to="`/productinfo/${product.id}`">
               <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default">{{ product.title }}</h3>
             </router-link>
-            <div v-if="!isArtistBlock" class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
               <p class="fs-info fs-md-6 text-info">NT$ {{ product.price.toLocaleString() }}</p>
               <btnFavorite></btnFavorite>
             </div>
@@ -151,13 +151,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.swiper {
+:deep(.article-swiper) {
   margin: auto;
   padding: 0;
 
   @media (min-width: 768px) {
     margin: 0 -20px !important;
     padding: 0 20px !important;
+  }
+
+  /* swiper 顯示區域尺寸 */
+  .swiper-wrapper {
+    margin-bottom: 36px;
+
+    @media (min-width: 768px) {
+      margin-bottom: 0rem;
+    }
   }
 
   /*Swiper 頁碼導覽*/
@@ -213,15 +222,6 @@ export default {
     @media (min-width: 768px) {
       display: flex;
     }
-  }
-}
-
-/* swiper 顯示區域尺寸 */
-.swiper-wrapper {
-  margin-bottom: 36px;
-
-  @media (min-width: 768px) {
-    margin-bottom: 0rem;
   }
 }
 </style>
