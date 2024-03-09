@@ -25,7 +25,8 @@ $utilities: map-merge(
             map-merge(
               map-get(map-get($utilities, 'width'), 'values'),
               (
-                15: 15%
+                15: 15%,
+                80: 80%
               )
             )
         )
@@ -166,6 +167,12 @@ $utilities: map-merge(
 // 標題字距
 .title-letter-spacing {
   letter-spacing: 2px;
+}
+
+// 標題文字換行
+.title-letter-word-wrap {
+  word-wrap: break-word;
+  white-space: pre-line;
 }
 
 // product image hover 效果
