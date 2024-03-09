@@ -29,16 +29,11 @@
 </template>
 
 <script>
-// import cartStore from '@/stores/cartStore.js'
 import userProductStore from '@/stores/userProductStore.js'
 import { mapActions, mapState } from 'pinia'
 
 // Import Components
 import btnFavorite from '@/components/btnFavorite.vue'
-
-// import userNavProductFilter from '@/components/userNavProductFilter.vue'
-// import paginationComponent from '@/components/paginationComponent.vue'
-// import filterCategory from '@/components/filterCategory.vue'
 
 // const { VITE_API, VITE_PATH } = import.meta.env
 
@@ -61,8 +56,6 @@ export default {
     }
   },
   mounted () {
-    // 取得分頁產品列表
-    // this.getProductList()
     // 取得所有產品資料
     this.getAllProducts()
   },
@@ -71,9 +64,6 @@ export default {
   },
   components: {
     btnFavorite
-    // userNavProductFilter
-    // paginationComponent,
-    // filterCategory
   }
 }
 </script>
