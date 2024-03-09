@@ -23,7 +23,7 @@
             <div class="col-12 col-md-3">
                 <div class="p-3 border rounded-2 bg-white">
                     <p class="fs-3">{{needReplenishedProduct.length}}</p>
-                    <h3 class="fs-6 fw-bold text-info">需補貨商品</h3>
+                    <h3 class="fs-6 fw-bold text-info">即將售鑿商品</h3>
                 </div>
             </div>
         </div>
@@ -61,11 +61,11 @@ export default {
   methods: {
     handleOrderData () {
       this.isNotPaidOrder = this.allOrderList.filter(order => !order.is_paid)
-      this.isNotShippingOrder = this.allOrderList.filter(order => order.is_paid && order.is_shipping)
+      this.isNotShippingOrder = this.allOrderList.filter(order => order.is_paid && !order.is_shipping)
     },
 
     handleProductData () {
-      this.needReplenishedProduct = this.allProductList.filter(product => product.num && product.num <= 3)
+      this.needReplenishedProduct = this.allProductList.filter(product => product.quantity && product.quantity <= 3)
     },
 
     async getAllOrderList () {
