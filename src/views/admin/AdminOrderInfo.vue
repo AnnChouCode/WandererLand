@@ -29,7 +29,8 @@
                     <h3 class="mb-2 fs-5 fw-bold">訂單總金額</h3>
                     <p class="mb-2 fs-2 fw-bold">NT$ {{ tempOrderInfo.total }}</p>
                     <button v-if="!tempOrderInfo.is_paid" class="btn btn-default"
-                      @click="updateOrder(tempOrderInfo, 'updatePaid')">更改為<span class="d-block d-sm-inline">「已付款」</span></button>
+                      @click="updateOrder(tempOrderInfo, 'updatePaid')">更改為<span
+                        class="d-block d-sm-inline">「已付款」</span></button>
                   </div>
                 </div>
                 <div class="col">
@@ -59,8 +60,9 @@
                       <div class="col-lg-6">
                         <div class="row">
                           <div class="col-6">
-                            <p class="text-end text-lg-start">NT$ {{ item.product.price.toLocaleString() }} x {{ item.qty
-                            }}</p>
+                            <p class="text-end text-lg-start">NT$ {{ item.product.price.toLocaleString() }} x {{
+      item.qty
+    }}</p>
                           </div>
                           <div class="col-6">
                             <p class="text-end">NT$ {{ item.total.toLocaleString() }}</p>
@@ -81,8 +83,8 @@
                         <p class="text-info">coupon 折抵</p>
                       </div>
                       <div class="col">
-                        <p class="text-info">NT$ {{ tempOrderInfo.total.toLocaleString() }}</p>
-                        <p class="text-danger">0</p>
+                        <p class="text-info">NT$ {{ total.toLocaleString() }}</p>
+                        <p class="text-danger">- {{ (total - tempOrderInfo.total).toLocaleString() }}</p>
                       </div>
                     </div>
                     <hr>
@@ -177,6 +179,7 @@
       </div>
     </div>
   </div>
+
   <toastComponent :adminOrderState="toastState" :adminOrderAction="doAction"></toastComponent>
 </template>
 
@@ -195,6 +198,8 @@ export default {
     return {
       // 訂單
       tempOrderInfo: {},
+      // 訂單小計金額
+      total: 0,
       // 訂單動作
       doAction: null,
       // 顯示 toast
@@ -227,6 +232,15 @@ export default {
           is_shipping: false
         }
       }
+
+      // 結算小計價格
+      this.getTotal()
+    },
+
+    // 結算小計價格
+    getTotal () {
+      const products = Object.values(this.tempOrderInfo.products)
+      this.total = products.reduce((acc, cur) => acc + cur.total, 0)
     },
 
     // 更改訂單狀態
