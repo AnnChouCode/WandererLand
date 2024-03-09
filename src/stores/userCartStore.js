@@ -62,7 +62,6 @@ export default defineStore('cartStore', {
       axios.get(url)
         .then(res => {
           this.cartsList = res.data.data
-          console.log(this.cartsList)
         })
         .catch(err => {
           swal.fire(
