@@ -40,12 +40,19 @@
             </td>
             <td>
               <div class="btn-group align-items-center">
+                <!-- 編輯文章 -->
                 <button type="button" class="btn border-0" @click="showArticlePage(article.id)">
                   <i class="bi bi-pencil text-default"></i>
                 </button>
+                <!-- 刪除文章 -->
                 <button type="button" class="btn border-0" @click="deleteArticle(article.id)">
                   <i class="bi bi-trash text-danger"></i>
                 </button>
+                <!-- 開前台文章頁 -->
+                <router-link class="d-none d-sm-table-cell btn border-0" target="_blank"
+                  :to="`/articleinfo/${article.id}`" :class="{ 'pe-none': !article.isPublic }">
+                  <i class="bi bi-house" :class="article.isPublic ? 'text-default' : 'text-light'"></i>
+                </router-link>
               </div>
             </td>
           </tr>
