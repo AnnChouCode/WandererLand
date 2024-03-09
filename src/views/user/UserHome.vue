@@ -145,13 +145,13 @@
         <div class="col-6 col-md-4">
           <div
             class="position-relative d-flex justify-content-center align-items-center ratio-1x1 overflow-hidden product-img">
-            <img src="../../../public/images/炭筆/Hannahpun-untitled (2)_M4x6.jpg" alt="art"
+            <img src="../../../public/images/攝影/Ian-Dooley-lips (1) _M1x1.jpg" alt="art"
               class="object-fit-contain w-100 h-100 product-img-up">
-            <img src="../../../public/images/炭筆/Hannahpun-untitled (2).jpg" alt="art"
+            <img src="../../../public/images/攝影/Ian-Dooley-lips (1).jpg" alt="art"
               class="position-absolute z-n1 object-fit-contain w-100 h-100 product-img-down">
           </div>
           <div class="py-3 px-0 px-md-4">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">landscape 3</h3>
+            <h3 class="mb-2 fs-info fs-md-5 fw-bold">lips</h3>
             <div class="d-flex justify-content-between align-items-center">
               <p class="fs-info fs-md-6 text-info">NT$ 10,000</p>
               <button type="button" class="btn p-0">
@@ -169,9 +169,9 @@
               class="position-absolute z-n1 object-fit-contain w-100 h-100 product-img-down">
           </div>
           <div class="py-3 px-0 px-md-4">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">landscape 3</h3>
+            <h3 class="mb-2 fs-info fs-md-5 fw-bold">untitled</h3>
             <div class="d-flex justify-content-between align-items-center">
-              <p class="fs-info fs-md-6 text-info">NT$ 10,000</p>
+              <p class="fs-info fs-md-6 text-info">NT$ 5,000</p>
               <button type="button" class="btn p-0">
                 <i class="bi bi-heart"></i>
               </button>
@@ -181,15 +181,15 @@
         <div class="d-none d-md-block col-4">
           <div
             class="position-relative d-flex justify-content-center align-items-center ratio-1x1 overflow-hidden product-img">
-            <img src="../../../public/images/炭筆/Hannahpun-untitled (2)_M4x6.jpg" alt="art"
+            <img src="../../../public/images/水彩/Caspar-David-Golden_M4x6.jpg" alt="art"
               class="object-fit-contain w-100 h-100 product-img-up">
-            <img src="../../../public/images/炭筆/Hannahpun-untitled (2).jpg" alt="art"
+            <img src="../../../public/images/水彩/Caspar-David-Golden.jpg" alt="art"
               class="position-absolute z-n1 object-fit-contain w-100 h-100 product-img-down">
           </div>
           <div class="py-3 px-0 px-md-4">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">landscape 3</h3>
+            <h3 class="mb-2 fs-info fs-md-5 fw-bold">Golden</h3>
             <div class="d-flex justify-content-between align-items-center">
-              <p class="fs-info fs-md-6 text-info">NT$ 10,000</p>
+              <p class="fs-info fs-md-6 text-info">NT$ 6,500</p>
               <button type="button" class="btn p-0">
                 <i class="bi bi-heart"></i>
               </button>
