@@ -47,9 +47,7 @@ export default {
 
       this.axios.get(url)
         .then(res => {
-          // 提示訊息
           this.order = res.data.order
-          console.log(this.order)
         })
         .catch(err => {
           this.swalInfoCheckWithBootstrapButtons.fire(
@@ -101,7 +99,6 @@ export default {
   mounted () {
     // 索取訂單編號
     const orderId = this.$route.params.id
-    console.log(orderId)
     this.getOrderInfo(orderId)
 
     // 客製化 info check alert 按鈕

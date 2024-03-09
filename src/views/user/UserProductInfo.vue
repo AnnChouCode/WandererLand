@@ -218,16 +218,11 @@ export default {
 
     // 獲取當前產品存在購物車的數量
     getAvailableProductNum (id) {
-      console.log(id)
-      console.log('this.cartsList.carts', this.cartsList.carts)
       const stateInCart = this.cartsList.carts.filter(item => {
-        console.log(item.product_id, id, item.product_id === id)
         return item.product_id === id
       })
-      console.log('stateInCart', stateInCart)
+
       this.quantityInCart = stateInCart.length ? stateInCart[0].qty : 0
-      console.log('this.quantityInCart', this.quantityInCart)
-      // console.log('product.productInfo.quantity - quantityInCart', this.product.productInfo.quantity - this.quantityInCart)
     }
   },
   async mounted () {

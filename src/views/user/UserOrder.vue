@@ -43,9 +43,8 @@ export default {
     checkProductPage () {
       const url = window.location.href
       const parts = url.split('/')
-      // this.pageType = parts[parts.length - 1]
+
       this.pageType = parts.filter(route => route === 'checkform' || route === 'payorder' || route === 'orderhistory').toString()
-      console.log(this.pageType)
     }
   },
   watch: {

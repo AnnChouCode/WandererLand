@@ -88,11 +88,10 @@ export default {
 
           // 清除表單
           this.$refs.form.resetForm()
-          console.log('清除表單')
+
           // 重整購物車
           this.getCartsList()
-          console.log('重整購物車')
-          console.log('頁面跳轉', `/order/payorder/${res.data.orderId}`)
+
           // 頁面跳轉
           this.$router.push(`/order/payorder/${res.data.orderId}`)
         })

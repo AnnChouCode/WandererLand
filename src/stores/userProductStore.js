@@ -18,7 +18,6 @@ export default defineStore('allProductsStore', {
 
       return axios.get(url)
         .then(res => {
-          console.log(res.data.products)
           this.allProducts = res.data.products
           this.getCategoryList()
 

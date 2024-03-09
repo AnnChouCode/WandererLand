@@ -95,7 +95,6 @@ export default {
           const { articles, pagination } = res.data
           this.currentArticles = articles
           this.pagination = pagination
-          console.log('this.currentArticles', this.currentArticles)
         })
         .catch((err) => {
           this.swalInfoCheckWithBootstrapButtons.fire({
