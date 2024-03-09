@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import cartStore from '@/stores/cartStore'
+import cartStore from '@/stores/userCartStore.js'
 import { mapActions } from 'pinia'
 
 export default {

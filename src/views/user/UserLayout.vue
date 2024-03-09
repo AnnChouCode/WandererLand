@@ -44,7 +44,7 @@
 import userNavBar from '@/components/userNavBar.vue'
 import userFooter from '@/components/userFooter.vue'
 import toastComponent from '@/components/toastComponent.vue'
-import cartStore from '@/stores/cartStore.js'
+import cartStore from '@/stores/userCartStore.js'
 import { mapActions } from 'pinia'
 
 export default {

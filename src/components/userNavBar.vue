@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import cartStore from '@/stores/cartStore.js'
+import cartStore from '@/stores/userCartStore.js'
 import { mapActions, mapState } from 'pinia'
 import userNavProductFilter from '@/components/userNavProductFilter.vue'
 import userNavArtistFilter from '@/components/userNavArtistFilter.vue'

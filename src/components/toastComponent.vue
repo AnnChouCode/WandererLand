@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import cartStore from '@/stores/cartStore.js'
+import cartStore from '@/stores/userCartStore.js'
 import { useAdminOrderStore } from '@/stores/adminOrderStore.js'
 import { mapState, mapStores } from 'pinia'
 
