@@ -5,8 +5,10 @@
       class="h-100 w-100 overflow-hidden object-fit-cover">
     <div class="position-absolute z-1 top-0 bg-default opacity-50 w-100 h-100"></div>
     <div class="position-absolute z-2 top-50 start-50 translate-middle text-center banner-title w-80 w-sm-50">
-      <h2 class="pb-5 pb-md-7 text-white title-shadow fs-2 fs-md-1 title-letter-spacing title-letter-word-wrap">{{ sortArticles.topArticle[0].title }}</h2>
-      <button type="button" class="py-2 py-md-3 px-6 px-md-9 btn btn-light rounded-0 fw-bold">前往頁面</button>
+      <h2 class="pb-5 pb-md-7 text-white title-shadow fs-2 fs-md-1 title-letter-spacing title-letter-word-wrap">{{
+    sortArticles.topArticle[0].title }}</h2>
+      <router-link :to="`/articleinfo/${sortArticles.topArticle[0].id}`"
+        class="py-2 py-md-3 px-6 px-md-9 btn btn-light rounded-0 fw-bold">前往頁面</router-link>
     </div>
   </div>
   <div class="container">
@@ -26,88 +28,103 @@
       <div class="row g-3 g-lg-6 home-article">
         <!-- article 1 -->
         <div class="col-12 col-lg-6 home-article-img">
-          <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
-            <div class="w-100 h-100 home-article-mask"></div>
-            <img :src="sortArticles.newestArticles[0].imageUrl" :alt="sortArticles.newestArticles[0].title"
-              class="position-absolute z-n1 object-fit-cover w-100 h-100">
-            <div
-              class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
-              <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{sortArticles.newestArticles[0].title}}</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[0].description }}</p>
+          <router-link :to="`/articleInfo/${sortArticles.newestArticles[0].id}`">
+            <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
+              <div class="w-100 h-100 home-article-mask"></div>
+              <img :src="sortArticles.newestArticles[0].imageUrl" :alt="sortArticles.newestArticles[0].title"
+                class="position-absolute z-n1 object-fit-cover w-100 h-100">
+              <div
+                class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
+                <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[0].title }}</h3>
+                <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[0].description }}</p>
+              </div>
             </div>
-          </div>
-          <div class="d-block d-xl-none py-3">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[0].title }}</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{sortArticles.newestArticles[0].description}}</p>
-          </div>
+            <div class="d-block d-xl-none py-3">
+              <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{ sortArticles.newestArticles[0].title }}</h3>
+              <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[0].description }}
+              </p>
+            </div>
+          </router-link>
         </div>
         <!-- article 2 -->
-        <div class="col-6 d-flex flex-column  home-article-img">
-          <div class="position-relative d-flex justify-content-center align-items-center flex-grow-1 overflow-hidden">
-            <div class="w-100 h-100 home-article-mask"></div>
-            <img :src="sortArticles.newestArticles[1].imageUrl" :alt="sortArticles.newestArticles[1].title"
-              class="position-absolute z-n1 object-fit-cover w-100 h-100">
-            <div
-              class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
-              <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{sortArticles.newestArticles[1].title}}</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis">{{sortArticles.newestArticles[1].description}}</p>
+        <div class="col-6 d-flex flex-column home-article-img">
+          <router-link :to="`/articleInfo/${sortArticles.newestArticles[1].id}`" class="d-flex flex-column flex-grow-1">
+            <div class="position-relative d-flex justify-content-center align-items-center flex-grow-1 overflow-hidden">
+              <div class="w-100 h-100 home-article-mask"></div>
+              <img :src="sortArticles.newestArticles[1].imageUrl" :alt="sortArticles.newestArticles[1].title"
+                class="position-absolute z-n1 object-fit-cover w-100 h-100">
+              <div
+                class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
+                <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[1].title }}</h3>
+                <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[1].description }}</p>
+              </div>
             </div>
-          </div>
-          <div class="d-block d-xl-none py-3">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">{{sortArticles.newestArticles[1].title}}</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{sortArticles.newestArticles[1].description}}</p>
-          </div>
+            <div class="d-block d-xl-none py-3">
+              <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{ sortArticles.newestArticles[1].title }}</h3>
+              <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[1].description }}
+              </p>
+            </div>
+          </router-link>
         </div>
         <!-- article 3 -->
         <div class="col-6 col-lg-4 home-article-img">
-          <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
-            <div class="w-100 h-100 home-article-mask"></div>
-            <img :src="sortArticles.newestArticles[2].imageUrl" :alt="sortArticles.newestArticles[2].title"
-              class="position-absolute z-n1 object-fit-cover w-100 h-100">
-            <div
-              class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
-              <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[2].title }}</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis">{{sortArticles.newestArticles[2].description}}</p>
+          <router-link :to="`/articleInfo/${sortArticles.newestArticles[2].id}`">
+            <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
+              <div class="w-100 h-100 home-article-mask"></div>
+              <img :src="sortArticles.newestArticles[2].imageUrl" :alt="sortArticles.newestArticles[2].title"
+                class="position-absolute z-n1 object-fit-cover w-100 h-100">
+              <div
+                class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
+                <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[2].title }}</h3>
+                <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[2].description }}</p>
+              </div>
             </div>
-          </div>
-          <div class="d-block d-xl-none py-3">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">{{sortArticles.newestArticles[2].title}}</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{sortArticles.newestArticles[2].description}}</p>
-          </div>
+            <div class="d-block d-xl-none py-3">
+              <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{ sortArticles.newestArticles[2].title }}</h3>
+              <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[2].description }}
+              </p>
+            </div>
+          </router-link>
         </div>
         <!-- article 4 -->
         <div class="col-6 col-lg-4 d-none d-lg-block home-article-img">
-          <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
+          <router-link :to="`/articleInfo/${sortArticles.newestArticles[3].id}`">
+            <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
             <div class="w-100 h-100 home-article-mask"></div>
             <img :src="sortArticles.newestArticles[3].imageUrl" alt="art"
               class="position-absolute z-n1 object-fit-cover w-100 h-100">
             <div
               class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
               <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[3].title }}</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis">{{sortArticles.newestArticles[3].description}}</p>
+              <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[3].description }}</p>
             </div>
           </div>
           <div class="d-block d-xl-none py-3">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[3].title }}</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{sortArticles.newestArticles[3].description}}</p>
+            <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{ sortArticles.newestArticles[3].title }}</h3>
+            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[3].description }}
+            </p>
           </div>
+          </router-link>
         </div>
         <!-- article 5 -->
         <div class="col-6 col-lg-4 d-none d-lg-block home-article-img">
-          <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
+          <router-link :to="`/articleInfo/${sortArticles.newestArticles[4].id}`">
+            <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
             <div class="w-100 h-100 home-article-mask"></div>
             <img :src="sortArticles.newestArticles[4].imageUrl" :alt="sortArticles.newestArticles[4].title"
               class="position-absolute z-n1 object-fit-cover w-100 h-100">
             <div
               class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
-              <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{sortArticles.newestArticles[4].title}}</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis">{{sortArticles.newestArticles[4].description}}</p>
+              <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[4].title }}</h3>
+              <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[4].description }}</p>
             </div>
           </div>
           <div class="d-block d-xl-none py-3">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">{{sortArticles.newestArticles[4].title}}</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{sortArticles.newestArticles[4].description}}</p>
+            <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{ sortArticles.newestArticles[4].title }}</h3>
+            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[4].description }}
+            </p>
           </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -293,7 +310,7 @@ export default {
 
 /* 首頁文章 */
 .home-article {
-  >.home-article-img:first-child>div:first-child {
+  >.home-article-img:first-child>a>div:first-child {
     height: 208px;
 
     @media (min-width: 576px) {
@@ -305,7 +322,7 @@ export default {
     }
   }
 
-  >.home-article-img:nth-child(n+3)>div:first-child {
+  >.home-article-img:nth-child(n+3)>a>div:first-child {
     aspect-ratio: 3/4;
 
     @media (min-width: 768px) {
