@@ -1,1 +1,0 @@
-import{_ as e,o,c as s,d as t}from"./index-6NoiBjOJ.js";const n={},i={type:"button",class:"position-relative btn-favorite btn p-0"},c=t("i",{class:"position-absolute bi bi-heart"},null,-1),a=t("i",{class:"bi bi-heart-fill text-info"},null,-1),r=[c,a];function _(l,b){return o(),s("button",i,r)}const f=e(n,[["render",_]]);export{f as b};
