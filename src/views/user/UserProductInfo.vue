@@ -36,7 +36,6 @@
           <p class="lh-base lh-md-lg fs-info text-info">{{ product.productInfo.content }}
           </p>
           <hr class="my-6 text-default">
-          <!-- <div class="py-6 w-100 border-bottom border-default"></div> -->
           <div class="accordion accordion-flush" id="accordionPanelsProductInfo">
             <div class="accordion-item bg-transparent border-default">
               <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -55,7 +54,25 @@
             </div>
           </div>
           <hr class="my-6 text-default">
-          <!-- <div class="py-6 w-100 border-bottom border-default"></div> -->
+          <div class="accordion accordion-flush" id="accordionPanelsProductInfo">
+            <div class="accordion-item bg-transparent border-default">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button text-info fw-bold bg-transparent p-0" type="button"
+                  data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                  aria-controls="panelsStayOpen-collapseOne" style="box-shadow: none;">
+                  作品版數
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body p-0 pt-4 lh-base lh-md-lg h6 text-info">
+                  <p>剩餘版數 {{ product.productInfo.quantity - quantityInCart }}</p>
+                  <p>總版數 {{ product.productInfo.quantity }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="my-6 text-default">
           <div class="accordion accordion-flush" id="accordionPanelsProductInfo">
             <div class="accordion-item bg-transparent">
               <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
@@ -74,9 +91,11 @@
             </div>
           </div>
         </div>
-        <button type="button" class="py-2 py-md-3 btn btn-default rounded-0 fw-bold w-100"
-          @click="addToCart(product.productInfo.id, qty)">加入購物車．NT$ {{
-    product.productInfo.price.toLocaleString() }}</button>
+        <button type="button" class="position-relative py-2 py-md-3 btn btn-default rounded-0 fw-bold w-100"
+          @click="addToCart(product.productInfo.id, qty)"
+          :disabled="product.productInfo.quantity - quantityInCart === 0">加入購物車．NT$ {{
+    product.productInfo.price.toLocaleString() }}
+        </button>
       </div>
     </div>
   </div>
@@ -116,7 +135,7 @@
 
 <script>
 import userProductStore from '@/stores/userProductStore.js'
-import cartStore from '@/stores/cartStore.js'
+import cartStore from '@/stores/userCartStore.js'
 import { mapActions, mapState } from 'pinia'
 
 // Import Components
@@ -127,6 +146,8 @@ const { VITE_API, VITE_PATH } = import.meta.env
 export default {
   data () {
     return {
+      // 當前產品 id
+      currentProductId: null,
       // 產品資訊
       product: {},
       // 產品數量
@@ -134,7 +155,14 @@ export default {
       // 相似產品
       relatedProducts: [],
       // 藝術家資訊
-      artistInfo: {}
+      artistInfo: {},
+      // 當前產品存在購物車的數量
+      quantityInCart: ''
+    }
+  },
+  watch: {
+    cartsList () {
+      this.getAvailableProductNum(this.currentProductId)
     }
   },
   methods: {
@@ -142,7 +170,7 @@ export default {
     ...mapActions(userProductStore, ['getAllProducts']),
 
     // 加入購物車
-    ...mapActions(cartStore, ['addToCart']),
+    ...mapActions(cartStore, ['addToCart', 'getCartsList']),
 
     // 切換顯示大圖
     changeImage (idx) {
@@ -186,16 +214,38 @@ export default {
     // 獲取藝術家資料
     getArtistInfo (artist) {
       this.artistInfo = this.sortNewest.newestArtist.filter(item => item.title === artist)[0]
+    },
+
+    // 獲取當前產品存在購物車的數量
+    getAvailableProductNum (id) {
+      console.log(id)
+      console.log('this.cartsList.carts', this.cartsList.carts)
+      const stateInCart = this.cartsList.carts.filter(item => {
+        console.log(item.product_id, id, item.product_id === id)
+        return item.product_id === id
+      })
+      console.log('stateInCart', stateInCart)
+      this.quantityInCart = stateInCart.length ? stateInCart[0].qty : 0
+      console.log('this.quantityInCart', this.quantityInCart)
+      // console.log('product.productInfo.quantity - quantityInCart', this.product.productInfo.quantity - this.quantityInCart)
     }
   },
   async mounted () {
     try {
-      const id = this.$route.params.id
+      this.currentProductId = this.$route.params.id
 
-      const currendProductArtist = await this.getCurrentProduct(id)
+      const currendProductArtist = await this.getCurrentProduct(this.currentProductId)
+      // 獲取所有產品資料
       await this.getAllProducts()
 
-      this.getRelatedProducts(currendProductArtist, id)
+      // 當前產品存在購物車的數量
+      this.getCartsList()
+      this.getAvailableProductNum(this.currentProductId)
+
+      // 獲取相關產品資料
+      this.getRelatedProducts(currendProductArtist, this.currentProductId)
+
+      // 獲取藝術家資料
       this.getArtistInfo(currendProductArtist)
     } catch (err) {
       console.log('錯誤:', err)
@@ -203,7 +253,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(userProductStore, ['sortNewest'])
+    ...mapState(userProductStore, ['sortNewest']),
+    ...mapState(cartStore, ['cartsList'])
   },
   components: {
     btnFavorite
