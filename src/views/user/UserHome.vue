@@ -1,15 +1,14 @@
 <template>
   <!-- banner -->
-  <div class="position-relative banner">
-    <img src="../../../public/images/Exhibition/anastassiya-redko-5NJi3Kb4Mkc-unsplash.jpg" alt="banner"
+  <div class="position-relative banner" v-if="sortArticles.topArticle[0]">
+    <img :src="sortArticles.topArticle[0].imageUrl" :alt="sortArticles.topArticle[0].title"
       class="h-100 w-100 overflow-hidden object-fit-cover">
     <div class="position-absolute z-1 top-0 bg-default opacity-50 w-100 h-100"></div>
-    <div class="position-absolute z-2 top-50 start-50 translate-middle text-center banner-title">
-      <h2 class="pb-5 pb-md-7 text-white title-shadow fs-2 fs-md-1 title-letter-spacing">台北藝術季 Taipei Arts Fest</h2>
+    <div class="position-absolute z-2 top-50 start-50 translate-middle text-center banner-title w-80 w-sm-50">
+      <h2 class="pb-5 pb-md-7 text-white title-shadow fs-2 fs-md-1 title-letter-spacing title-letter-word-wrap">{{ sortArticles.topArticle[0].title }}</h2>
       <button type="button" class="py-2 py-md-3 px-6 px-md-9 btn btn-light rounded-0 fw-bold">前往頁面</button>
     </div>
   </div>
-
   <div class="container">
     <!-- 探索新作品 -->
     <swiperProductComponent dataCategory="products"></swiperProductComponent>
@@ -18,7 +17,7 @@
     <swiperProductComponent dataCategory="artists"></swiperProductComponent>
 
     <!-- 最新消息 -->
-    <div class="py-7 py-md-9">
+    <div class="py-7 py-md-9" v-if="sortArticles.newestArticles[0]">
       <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
         <h2 class="fs-2 fs-md-1">最新消息</h2>
         <router-link to="/artists"
@@ -29,100 +28,85 @@
         <div class="col-12 col-lg-6 home-article-img">
           <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
             <div class="w-100 h-100 home-article-mask"></div>
-            <img src="../../../public/images/Exhibition/markus-spiske-RmvlD0oTsAo-unsplash.jpg" alt="art"
+            <img :src="sortArticles.newestArticles[0].imageUrl" :alt="sortArticles.newestArticles[0].title"
               class="position-absolute z-n1 object-fit-cover w-100 h-100">
             <div
               class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
-              <h3 class="mb-4 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis">ART TAIPEI is the landmark of Asian Art. It connects the
-                forefront of art from around the world to explore the topic of global art trends while focusing</p>
+              <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{sortArticles.newestArticles[0].title}}</h3>
+              <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[0].description }}</p>
             </div>
           </div>
           <div class="d-block d-xl-none py-3">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It
-              connects
-              the forefront of art from around the world to explore the topic of global art trends while focusing</p>
+            <h3 class="mb-2 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[0].title }}</h3>
+            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{sortArticles.newestArticles[0].description}}</p>
           </div>
         </div>
         <!-- article 2 -->
         <div class="col-6 d-flex flex-column  home-article-img">
           <div class="position-relative d-flex justify-content-center align-items-center flex-grow-1 overflow-hidden">
             <div class="w-100 h-100 home-article-mask"></div>
-            <img src="../../../public/images/Exhibition/markus-spiske-RmvlD0oTsAo-unsplash.jpg" alt="art"
+            <img :src="sortArticles.newestArticles[1].imageUrl" :alt="sortArticles.newestArticles[1].title"
               class="position-absolute z-n1 object-fit-cover w-100 h-100">
             <div
               class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
-              <h3 class="mb-4 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis">ART TAIPEI is the landmark of Asian Art. It connects the
-                forefront of art from around the world to explore the topic of global art trends while focusing</p>
+              <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{sortArticles.newestArticles[1].title}}</h3>
+              <p class="fs-info fs-md-6 doubleline-ellipsis">{{sortArticles.newestArticles[1].description}}</p>
             </div>
           </div>
           <div class="d-block d-xl-none py-3">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It
-              connects
-              the forefront of art from around the world to explore the topic of global art trends while focusing</p>
+            <h3 class="mb-2 fs-info fs-md-5 fw-bold">{{sortArticles.newestArticles[1].title}}</h3>
+            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{sortArticles.newestArticles[1].description}}</p>
           </div>
         </div>
         <!-- article 3 -->
         <div class="col-6 col-lg-4 home-article-img">
           <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
             <div class="w-100 h-100 home-article-mask"></div>
-            <img src="../../../public/images/Exhibition/markus-spiske-RmvlD0oTsAo-unsplash.jpg" alt="art"
+            <img :src="sortArticles.newestArticles[2].imageUrl" :alt="sortArticles.newestArticles[2].title"
               class="position-absolute z-n1 object-fit-cover w-100 h-100">
             <div
               class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
-              <h3 class="mb-4 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis">ART TAIPEI is the landmark of Asian Art. It connects the
-                forefront of art from around the world to explore the topic of global art trends while focusing</p>
+              <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[2].title }}</h3>
+              <p class="fs-info fs-md-6 doubleline-ellipsis">{{sortArticles.newestArticles[2].description}}</p>
             </div>
           </div>
           <div class="d-block d-xl-none py-3">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It
-              connects
-              the forefront of art from around the world to explore the topic of global art trends while focusing</p>
+            <h3 class="mb-2 fs-info fs-md-5 fw-bold">{{sortArticles.newestArticles[2].title}}</h3>
+            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{sortArticles.newestArticles[2].description}}</p>
           </div>
         </div>
         <!-- article 4 -->
         <div class="col-6 col-lg-4 d-none d-lg-block home-article-img">
           <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
             <div class="w-100 h-100 home-article-mask"></div>
-            <img src="../../../public/images/Exhibition/markus-spiske-RmvlD0oTsAo-unsplash.jpg" alt="art"
+            <img :src="sortArticles.newestArticles[3].imageUrl" alt="art"
               class="position-absolute z-n1 object-fit-cover w-100 h-100">
             <div
               class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
-              <h3 class="mb-4 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis">ART TAIPEI is the landmark of Asian Art. It connects the
-                forefront of art from around the world to explore the topic of global art trends while focusing</p>
+              <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[3].title }}</h3>
+              <p class="fs-info fs-md-6 doubleline-ellipsis">{{sortArticles.newestArticles[3].description}}</p>
             </div>
           </div>
           <div class="d-block d-xl-none py-3">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It
-              connects
-              the forefront of art from around the world to explore the topic of global art trends while focusing</p>
+            <h3 class="mb-2 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[3].title }}</h3>
+            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{sortArticles.newestArticles[3].description}}</p>
           </div>
         </div>
         <!-- article 5 -->
         <div class="col-6 col-lg-4 d-none d-lg-block home-article-img">
           <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
             <div class="w-100 h-100 home-article-mask"></div>
-            <img src="../../../public/images/Exhibition/markus-spiske-RmvlD0oTsAo-unsplash.jpg" alt="art"
+            <img :src="sortArticles.newestArticles[4].imageUrl" :alt="sortArticles.newestArticles[4].title"
               class="position-absolute z-n1 object-fit-cover w-100 h-100">
             <div
               class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
-              <h3 class="mb-4 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis">ART TAIPEI is the landmark of Asian Art. It connects the
-                forefront of art from around the world to explore the topic of global art trends while focusing</p>
+              <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{sortArticles.newestArticles[4].title}}</h3>
+              <p class="fs-info fs-md-6 doubleline-ellipsis">{{sortArticles.newestArticles[4].description}}</p>
             </div>
           </div>
           <div class="d-block d-xl-none py-3">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">台北藝術季 Taipei Arts Fest</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">ART TAIPEI is the landmark of Asian Art. It
-              connects
-              the forefront of art from around the world to explore the topic of global art trends while focusing</p>
+            <h3 class="mb-2 fs-info fs-md-5 fw-bold">{{sortArticles.newestArticles[4].title}}</h3>
+            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{sortArticles.newestArticles[4].description}}</p>
           </div>
         </div>
       </div>
@@ -272,28 +256,38 @@
 </template>
 
 <script>
+import articleStore from '@/stores/userArticleStore.js'
+import { mapActions, mapState } from 'pinia'
+
 import swiperProductComponent from '@/components/swiperProductComponent.vue'
 import couponComponent from '@/components/couponComponent.vue'
 
 export default {
+  methods: {
+    // 獲得購物車資料
+    ...mapActions(articleStore, ['getArticlesList'])
+  },
   components: {
     swiperProductComponent,
     couponComponent
+  },
+  computed: { ...mapState(articleStore, ['sortArticles', 'articlesList']) },
+  mounted () {
+    this.getArticlesList()
   }
 }
-
 </script>
 
 <style lang="scss" scoped>
-.banner{
-    min-height: 289px;
+.banner {
+  min-height: 289px;
 
   @media (min-width: 768px) {
     min-height: 100dvh;
   }
 
-  &-title{
-    padding-top:60px;
+  &-title {
+    padding-top: 60px;
   }
 }
 
