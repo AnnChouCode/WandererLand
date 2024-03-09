@@ -11,8 +11,9 @@
       <table v-else class="table align-middle fs-info fs-md-6">
         <thead>
           <tr>
+            <th class="text-nowrap">首頁<span class="d-block d-md-inline">置頂</span></th>
             <th>標題</th>
-            <th>分類</th>
+            <th class="d-none d-md-table-cell">分類</th>
             <th>狀態</th>
             <th class="d-none d-lg-table-cell">作者</th>
             <th class="d-none d-md-table-cell">撰寫日期</th>
@@ -21,8 +22,11 @@
         </thead>
         <tbody>
           <tr v-for="article in currentArticles" :key="article.id">
+            <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="setTopArticle"
+                @click="setTopArticle(article.id)" :checked="article.isTop" :ref="'topArticleCheckBox' + article.id">
+            </td>
             <td>{{ article.title }}</td>
-            <td>
+            <td class="d-none d-md-table-cell">
               <p class="py-1 rounded-pill bg-light text-center text-nowrap">{{ article.category }}</p>
             </td>
             <td>
@@ -84,7 +88,7 @@ export default {
           const { articles, pagination } = res.data
           this.currentArticles = articles
           this.pagination = pagination
-          console.log(this.currentArticles)
+          console.log('this.currentArticles', this.currentArticles)
         })
         .catch((err) => {
           this.swalInfoCheckWithBootstrapButtons.fire({
@@ -141,6 +145,120 @@ export default {
                 loader.hide()
               })
           }
+        })
+    },
+
+    // 確認當前置頂文章
+    checkTopArticle (id) {
+      const topArticle = this.currentArticles.filter(article => article.isTop === true)
+      return topArticle
+    },
+
+    // 文章設為首頁置頂
+    async setTopArticle (id) {
+      const currentTop = await this.checkTopArticle(id)
+
+      // 若目前沒有置頂文章
+      if (!currentTop.length) {
+        // 開啟 loading
+        const loader = this.$loading.show()
+
+        // 因 articleList API 獲得資料缺 content，必須額外針對特定 article 求完整資料
+        const tempArticleInfo = await this.getArticleInfo(id)
+        tempArticleInfo.isTop = true
+
+        // 設定 top 文章
+        const url = `${VITE_API}/api/${VITE_PATH}/admin/article/${id}`
+
+        this.axios.put(url, { data: tempArticleInfo })
+          .then((res) => {
+            this.swalInfoCheckWithBootstrapButtons.fire({
+              title: '已設為置頂',
+              confirmButtonText: '確認'
+            })
+            this.getCurrentArticles()
+          })
+          .catch((err) => {
+            this.swalInfoCheckWithBootstrapButtons.fire({
+              icon: 'error',
+              text: err.response.data.message,
+              confirmButtonText: '確認'
+            })
+          })
+          .finally(() => {
+            // 關閉 loading
+            loader.hide()
+          })
+
+        return false
+      }
+
+      // 若置頂文章與當前勾選文章相同
+      if (currentTop[0].id === id) {
+        // 開啟 loading
+        const loader = this.$loading.show()
+
+        // 因 articleList API 獲得資料缺 content，必須額外針對特定 article 求完整資料
+        const tempArticleInfo = await this.getArticleInfo(id)
+        tempArticleInfo.isTop = false
+
+        // 設定 top 文章
+        const url = `${VITE_API}/api/${VITE_PATH}/admin/article/${id}`
+
+        this.axios.put(url, { data: tempArticleInfo })
+          .then((res) => {
+            this.swalInfoCheckWithBootstrapButtons.fire({
+              title: '已取消置頂',
+              confirmButtonText: '確認'
+            })
+            this.getCurrentArticles()
+          })
+          .catch((err) => {
+            this.swalInfoCheckWithBootstrapButtons.fire({
+              icon: 'error',
+              text: err.response.data.message,
+              confirmButtonText: '確認'
+            })
+          })
+          .finally(() => {
+            // 關閉 loading
+            loader.hide()
+          })
+
+        return false
+      }
+
+      // 若置頂文章和當前勾選文章不同
+      if (currentTop[0].id !== id) {
+        // 取消當前勾選文章的勾選狀態
+        const targetCheckbox = `topArticleCheckBox${id}`
+        this.$refs[targetCheckbox][0].checked = false
+
+        // 提示需先取消當前置頂
+        this.swalInfoCheckWithBootstrapButtons.fire({
+          title: '請先取消當前置頂文章',
+          confirmButtonText: '確認'
+        })
+
+        return false
+      }
+    },
+
+    // 因 articleList API 獲得資料缺 content，必須額外針對特定 article 求完整資料
+    getArticleInfo (id) {
+      const url = `${VITE_API}/api/${VITE_PATH}/admin/article/${id}`
+
+      return this.axios
+        .get(url)
+        .then((res) => {
+          return res.data.article
+        })
+        .catch((err) => {
+          this.swalInfoCheckWithBootstrapButtons.fire({
+            icon: 'error',
+            text: err.response.data.message,
+            confirmButtonText: '確認'
+          })
         })
     }
   },
