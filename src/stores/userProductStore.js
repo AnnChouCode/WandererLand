@@ -29,7 +29,7 @@ export default defineStore('allProductsStore', {
         .then(res => {
           const allDatas = res.data.products
           this.allProducts = allDatas.filter(item => item.category === 'products')
-          this.allArtists = allDatas.filter(item => item.category === 'artists').sort((a, b) => b.title.localeCompare(a.title))
+          this.allArtists = allDatas.filter(item => item.category === 'artists').sort((a, b) => a.title.localeCompare(b.title))
 
           return allDatas
         })
@@ -77,6 +77,5 @@ export default defineStore('allProductsStore', {
         artistGroupList
       }
     }
-    // getGroupLis: ({}) => {}
   }
 })
