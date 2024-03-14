@@ -13,11 +13,11 @@
                                 <i class="bi bi-chevron-down"></i>
                             </button>
                             <ul class="dropdown-menu p-0 rounded-0" aria-labelledby="btnProductSort">
-                                <li><a class="dropdown-item p-3" href="#"
+                                <li><a class="dropdown-item p-3" :class="filterRules.sort === 'newest' ? 'bg-secondary' : ''" href="#"
                                         @click.prevent="filterShow(['sort', 'newest'])">最新藝術家</a></li>
-                                <li><a class="dropdown-item p-3" href="#"
+                                <li><a class="dropdown-item p-3" :class="filterRules.sort === 'nameAToZ' ? 'bg-secondary' : ''" href="#"
                                         @click.prevent="filterShow(['sort', 'nameAToZ'])">姓名：A - Z</a></li>
-                                <li><a class="dropdown-item p-3" href="#"
+                                <li><a class="dropdown-item p-3" :class="filterRules.sort === 'nameZToA' ? 'bg-secondary' : ''" href="#"
                                         @click.prevent="filterShow(['sort', 'nameZToA'])">姓名：Z - A</a></li>
                             </ul>
                         </div>
@@ -33,7 +33,7 @@
                             <ul class="dropdown-menu p-0 overflow-y-scroll rounded-0" aria-labelledby="btnGroupFilter"
                                 style="max-height:400px;">
                                 <li v-for="item in groupList.artistGroupList" :key="item">
-                                    <a class="dropdown-item p-3" href="#"
+                                    <a class="dropdown-item p-3" :class="filterRules.group === item ? 'bg-secondary' : ''" href="#"
                                         @click.prevent="filterShow(['group', item])">{{ item }}</a>
                                 </li>
                             </ul>
@@ -50,7 +50,7 @@
                             <ul class="dropdown-menu p-0 overflow-y-scroll rounded-0" aria-labelledby="btnArtistFilter"
                                 style="max-height:400px;">
                                 <li v-for="artist in allArtists" :key="artist.id">
-                                    <a class="dropdown-item p-3" href="#"
+                                    <a class="dropdown-item p-3" :class="filterRules.title === artist.title ? 'bg-secondary' : ''" href="#"
                                         @click.prevent="filterShow(['title', artist.title])">{{ artist.title }}</a>
                                 </li>
                             </ul>
@@ -74,15 +74,15 @@
                             </button>
                             <ul class="dropdown-menu p-0 overflow-hidden" aria-labelledby="btnProductSort">
                                 <li>
-                                    <a class="dropdown-item p-3" href="#"
+                                    <a class="dropdown-item p-3" :class="filterRules.sort === 'newest' ? 'bg-secondary' : ''" href="#"
                                         @click.prevent="filterShow(['sort', 'newest'])">最新藝術家</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item p-3" href="#"
+                                    <a class="dropdown-item p-3" :class="filterRules.sort === 'nameAToZ' ? 'bg-secondary' : ''" href="#"
                                         @click.prevent="filterShow(['sort', 'nameAToZ'])">姓名：A - Z</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item p-3" href="#"
+                                    <a class="dropdown-item p-3" :class="filterRules.sort === 'nameZToA' ? 'bg-secondary' : ''" href="#"
                                         @click.prevent="filterShow(['sort', 'nameZToA'])">姓名：Z - A</a>
                                 </li>
                             </ul>
@@ -125,8 +125,8 @@
                         <div class="accordion-body px-0 py-0">
                             <ul class="list-unstyled" aria-labelledby="btnGroupFilter">
                                 <li v-for="item in groupList.artistGroupList" :key="item">
-                                    <a class="d-block p-3 text-info" href="#"
-                                        @click.prevent="filterShow(['group', item])">{{ item }}</a>
+                                    <a class="d-block p-3 text-info" :class="filterRules.group === item ? 'fw-bold text-decoration-underline' : ''" href="#"
+                                        @click.prevent="filterShow(['group', item])" data-bs-dismiss="offcanvas">{{ item }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -144,8 +144,8 @@
                         <div class="accordion-body px-0 py-0">
                             <ul class="list-unstyled" aria-labelledby="btnArtistFilter">
                                 <li v-for="artist in allArtists" :key="artist.id">
-                                    <a class="d-block p-3 text-info" href="#"
-                                        @click.prevent="filterShow(['title', artist.title])">{{ artist.title }}</a>
+                                    <a class="d-block p-3 text-info" :class="filterRules.title === artist.title ? 'fw-bold text-decoration-underline' : ''" href="#"
+                                        @click.prevent="filterShow(['title', artist.title])" data-bs-dismiss="offcanvas">{{ artist.title }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -153,6 +153,10 @@
                 </li>
             </ul>
         </div>
+        <div class="position-absolute start-0 bottom-0 bg-primary p-4 w-100">
+                <button class="btn btn-outline-default rounded-0 fs-info w-100" type="button"
+                    v-if="Object.keys(filterRules).length" @click="filterShow()">清空篩選</button>
+            </div>
     </div>
 </template>
 
