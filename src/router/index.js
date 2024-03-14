@@ -100,14 +100,14 @@ const routes = [
           }
         ]
       },
-      // {
-      //   path: 'articlelist',
-      //   name: 'articlelist',
-      //   component: () => import('../views/user/UserArticleList.vue'),
-      //   meta: {
-      //     title: '最新消息 - Wanderer Land'
-      //   }
-      // },
+      {
+        path: 'articlelist',
+        name: 'articlelist',
+        component: () => import('../views/user/UserArticleList.vue'),
+        meta: {
+          title: '最新消息 - Wanderer Land'
+        }
+      },
       {
         path: 'articleinfo/:id',
         component: () => import('../views/user/UserArticleInfo.vue'),
