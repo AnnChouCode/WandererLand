@@ -38,15 +38,15 @@
           <hr class="my-6 text-default">
           <div class="accordion accordion-flush" id="accordionPanelsProductInfo">
             <div class="accordion-item bg-transparent border-default">
-              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+              <h2 class="accordion-header" id="panelsStayOpen-headingSize">
                 <button class="accordion-button text-info fw-bold bg-transparent p-0" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                  aria-controls="panelsStayOpen-collapseOne" style="box-shadow: none;">
+                  data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSize" aria-expanded="true"
+                  aria-controls="panelsStayOpen-collapseSize" style="box-shadow: none;">
                   作品規格
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                aria-labelledby="panelsStayOpen-headingOne">
+              <div id="panelsStayOpen-collapseSize" class="accordion-collapse collapse show"
+                aria-labelledby="panelsStayOpen-headingSize">
                 <div class="accordion-body p-0 pt-4 lh-base lh-md-lg h6 text-info">
                   {{ product.productInfo.size }}
                 </div>
@@ -56,15 +56,15 @@
           <hr class="my-6 text-default">
           <div class="accordion accordion-flush" id="accordionPanelsProductInfo">
             <div class="accordion-item bg-transparent border-default">
-              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+              <h2 class="accordion-header" id="panelsStayOpen-headingQty">
                 <button class="accordion-button text-info fw-bold bg-transparent p-0" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                  aria-controls="panelsStayOpen-collapseOne" style="box-shadow: none;">
+                  data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseQty" aria-expanded="true"
+                  aria-controls="panelsStayOpen-collapseQty" style="box-shadow: none;">
                   作品版數
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                aria-labelledby="panelsStayOpen-headingOne">
+              <div id="panelsStayOpen-collapseQty" class="accordion-collapse collapse show"
+                aria-labelledby="panelsStayOpen-headingQty">
                 <div class="accordion-body p-0 pt-4 lh-base lh-md-lg h6 text-info">
                   <p>剩餘版數 {{ product.productInfo.quantity ? product.productInfo.quantity - quantityInCart : '無限' }}</p>
                   <p>總版數 {{ product.productInfo.quantity ? product.productInfo.quantity : '無限' }}</p>
@@ -75,14 +75,14 @@
           <hr class="my-6 text-default">
           <div class="accordion accordion-flush" id="accordionPanelsProductInfo">
             <div class="accordion-item bg-transparent">
-              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+              <h2 class="accordion-header" id="panelsStayOpen-headingAbout">
                 <button class="accordion-button text-info fw-bold bg-transparent p-0" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
-                  aria-controls="panelsStayOpen-collapseTwo" style="box-shadow: none;">
+                  data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseAbout" aria-expanded="true"
+                  aria-controls="panelsStayOpen-collapseAbout" style="box-shadow: none;">
                   關於 {{ artistInfo.title }}
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+              <div id="panelsStayOpen-collapseAbout" class="accordion-collapse collapse"
                 aria-labelledby="panelsStayOpen-headingOne">
                 <div class="accordion-body p-0 pt-4 lh-base lh-md-lg fs-info text-info">
                   {{ artistInfo.content }}
