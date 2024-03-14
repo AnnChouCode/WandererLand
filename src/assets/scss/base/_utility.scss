@@ -159,6 +159,14 @@ $utilities: map-merge(
   overflow: hidden;
 }
 
+//文字三行省略
+.threeline-ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
 // 白色標題 shadow
 .title-shadow {
   text-shadow: 2px 2px 4px rgba(51, 51, 51, 0.7);
