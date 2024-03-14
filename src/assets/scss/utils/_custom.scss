@@ -27,3 +27,12 @@ label.has-required::after {
     padding-bottom: 80px;
   }
 }
+
+// 前台產品、藝術家 navbar
+.nav-product-filter {
+  padding-top: 56px;
+
+  @include media-breakpoint-up(lg) {
+    padding-top: 59px;
+  }
+}
