@@ -39,10 +39,8 @@
         <div v-html="articleContent" class="mb-7 mb-md-8">
         </div>
         <div class="d-flex gap-1 mb-0 flex-wrap">
-          <div class="px-3 py-1 bg-light rounded-pill fs-info text-info" v-for="(tag, idx) in article.tag" value="item"
-            :key="idx">
-            {{ tag }}
-          </div>
+          <button type="button" class="btn px-3 py-1 bg-light rounded-pill fs-info text-info" v-for="(tag, idx) in article.tag"
+            :key="idx" @click="toRelatedTag(tag)"> {{ tag }} </button>
         </div>
       </div>
     </div>
@@ -51,11 +49,7 @@
   <!-- 關聯作品 -->
   <div class="container" v-if="article.relatedProduct">
     <div class="py-7 py-md-9">
-      <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
-        <h2 class="fs-2 fs-md-1">關聯作品</h2>
-        <router-link to="/productlist"
-          class="text-default border-bottom border-default fw-bold fs-info fs-md-6">瀏覽更多</router-link>
-      </div>
+      <h2 class="mb-7 mb-md-8 fs-2 fs-md-1">關聯作品</h2>
 
       <div class="row g-3 g-md-8">
         <div class="col-6 col-md-4" v-for="product in article.relatedProduct" :key="product.id">
@@ -136,6 +130,11 @@ export default {
       this.articleContent = replacements.reduce((processedContent, [search, replace]) => {
         return processedContent.replaceAll(search, replace)
       }, content)
+    },
+
+    // 前往相關 tag 文章
+    toRelatedTag (tag) {
+      this.$router.push(`/articleList?tag=${tag}`)
     }
   },
   mounted () {

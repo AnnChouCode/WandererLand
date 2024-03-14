@@ -23,6 +23,7 @@ export default defineStore('articleStore', {
     }
   },
   getters: {
+    // 處理首頁文章顯示
     sortArticles: ({ articlesList }) => {
       // 深拷貝 articlesList
       const articles = JSON.parse(JSON.stringify(articlesList))
@@ -39,6 +40,16 @@ export default defineStore('articleStore', {
       return {
         topArticle,
         newestArticles
+      }
+    },
+
+    // 文章分類
+    tagList: ({ articlesList }) => {
+      const tempTagList = new Set(articlesList.reduce((acc, cur) => acc.concat(cur.tag), []))
+      const articleTagList = [...tempTagList]
+
+      return {
+        articleTagList
       }
     }
   }
