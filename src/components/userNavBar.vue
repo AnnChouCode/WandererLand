@@ -14,7 +14,7 @@
           </li>
           <li><router-link to="/artistlist" class="d-block px-5 py-4 text-default navlink-underline">藝術家</router-link>
           </li>
-          <li><router-link to="/news" class="d-block px-5 py-4 text-default navlink-underline">最新消息</router-link></li>
+          <li><router-link to="/articlelist" class="d-block px-5 py-4 text-default navlink-underline">最新消息</router-link></li>
         </ul>
         <h1 class="position-absolute top-50 start-50 translate-middle">
           <a href="#/home" class="d-block h5 fs-md-20 fw-bold text-default">WANDERER LAND</a>
@@ -61,7 +61,7 @@
           <router-link to="/artistlist" class="d-block py-4 text-default navlink-underline">藝術家</router-link>
         </li>
         <li>
-          <router-link to="/news" class="d-block py-4 text-default navlink-underline">最新消息</router-link>
+          <router-link to="/articlelist" class="d-block py-4 text-default navlink-underline">最新消息</router-link>
         </li>
       </ul>
     </div>
