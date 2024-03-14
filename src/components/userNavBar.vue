@@ -7,10 +7,6 @@
           @click="openMobileNav">
           <i class="bi bi-list fs-5"></i>
         </button>
-        <!-- <button class="d-block d-lg-none px-0 border-0 bg-transparent" type="button" data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasNav" aria-controls="offcanvasNav">
-          <i class="bi bi-list fs-5"></i>
-        </button> -->
 
         <!-- web Nav -->
         <ul class="d-none d-lg-flex align-items-center list-unstyled">
@@ -42,13 +38,10 @@
         </ul>
       </div>
     </nav>
-
-    <!-- <userNavProductFilter v-if="pageType === 'productlist'"></userNavProductFilter> -->
-    <!-- <userNavArtistFilter v-if="pageType === 'artistlist'"></userNavArtistFilter> -->
   </div>
 
   <!-- mobile Nav -->
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel"
+  <div class="offcanvas offcanvas-start bg-primary" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel"
     ref="mobileNav">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasNavLabel">WANDERER LAND</h5>
