@@ -43,8 +43,8 @@
       </div>
     </nav>
 
-    <userNavProductFilter v-if="pageType === 'productlist'"></userNavProductFilter>
-    <userNavArtistFilter v-if="pageType === 'artistlist'"></userNavArtistFilter>
+    <!-- <userNavProductFilter v-if="pageType === 'productlist'"></userNavProductFilter> -->
+    <!-- <userNavArtistFilter v-if="pageType === 'artistlist'"></userNavArtistFilter> -->
   </div>
 
   <!-- mobile Nav -->
@@ -78,8 +78,8 @@
 <script>
 import cartStore from '@/stores/userCartStore.js'
 import { mapActions, mapState } from 'pinia'
-import userNavProductFilter from '@/components/userNavProductFilter.vue'
-import userNavArtistFilter from '@/components/userNavArtistFilter.vue'
+// import userNavProductFilter from '@/components/userNavProductFilter.vue'
+// import userNavArtistFilter from '@/components/userNavArtistFilter.vue'
 import { Offcanvas } from 'bootstrap'
 
 export default {
@@ -96,11 +96,11 @@ export default {
     ...mapActions(cartStore, ['getCartsList']),
 
     // 判斷是否為產品頁，顯示對應 navbar
-    checkPageType () {
-      const url = window.location.href
-      const parts = url.split('/')
-      this.pageType = parts[parts.length - 1]
-    },
+    // checkPageType () {
+    //   const url = window.location.href
+    //   const parts = url.split('/')
+    //   this.pageType = parts[parts.length - 1]
+    // },
 
     // 開啟 mobile nav
     openMobileNav () {
@@ -114,16 +114,16 @@ export default {
   },
   watch: {
     $route () {
-      this.checkPageType()
+      // this.checkPageType()
       this.closeMobileNav()
     }
   },
   components: {
-    userNavProductFilter,
-    userNavArtistFilter
+    // userNavProductFilter,
+    // userNavArtistFilter
   },
   mounted () {
-    this.checkPageType()
+    // this.checkPageType()
 
     this.mobileNav = new Offcanvas(this.$refs.mobileNav)
   },
