@@ -1,5 +1,5 @@
 <template>
-    <nav class="bg-tertiary nav-product-filter">
+    <nav class="fixed-top z-1 bg-tertiary nav-product-filter w-100">
         <div class="container">
             <!-- web -->
             <ul class="d-none d-lg-flex align-items-center list-unstyled">
