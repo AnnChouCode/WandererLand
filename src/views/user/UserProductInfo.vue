@@ -104,7 +104,7 @@
     <div class="py-7 py-md-9">
       <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
         <h2 class="fs-2 fs-md-1">相似作品</h2>
-        <router-link to="/productlist"
+        <router-link v-if="tempRelatedAllProducts" :to="tempRelatedAllProducts.length ? `/productlist?artist=${artistInfo.title}` : `/productlist?group=${product.productInfo.group}`"
           class="text-default border-bottom border-default fw-bold fs-info fs-md-6">瀏覽更多</router-link>
       </div>
 
@@ -152,6 +152,8 @@ export default {
       product: {},
       // 產品數量
       qty: 1,
+      // 暫存相似產品
+      tempRelatedAllProducts: [],
       // 相似產品
       relatedProducts: [],
       // 藝術家資訊
@@ -202,13 +204,13 @@ export default {
     // 獲取 3 件相似作品
     getRelatedProducts (artist, id) {
       // 獲取藝術家的作品，不包含當前作品
-      let relatedAllProducts = this.sortNewest.newestProduct.filter(item => item.artist === artist && item.id !== id)
+      this.tempRelatedAllProducts = this.sortNewest.newestProduct.filter(item => item.artist === artist && item.id !== id)
       // 如果相似作品清單為 0，則改撈取相同題材作品
-      if (!relatedAllProducts.length) {
-        relatedAllProducts = this.sortNewest.newestProduct.filter(item => item.group === this.product.productInfo.group)
+      if (!this.tempRelatedAllProducts.length) {
+        this.tempRelatedAllProducts = this.sortNewest.newestProduct.filter(item => item.group === this.product.productInfo.group)
       }
 
-      this.relatedProducts = relatedAllProducts.slice(0, 3)
+      this.relatedProducts = this.tempRelatedAllProducts.slice(0, 3)
     },
 
     // 獲取藝術家資料
