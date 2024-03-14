@@ -238,10 +238,11 @@ export default {
       if (!this.isNewProduct) {
         url += `/${this.tempProductInfo.id}`
       }
-      this.tempProductInfo.category = 'products'
-      // if (this.isNewProduct) {
-      //   this.tempProductInfo.category = 'arts'
-      // }
+
+      if (this.isNewProduct) {
+        this.tempProductInfo.category = 'products'
+        this.tempProductInfo.create_at = Math.floor(Date.now() / 1000)
+      }
 
       this.axios[method](url, { data: this.tempProductInfo })
         .then((res) => {

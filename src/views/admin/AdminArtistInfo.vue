@@ -197,6 +197,7 @@ export default {
         this.tempArtistInfo.unit = '人'
         this.tempArtistInfo.origin_price = 0
         this.tempArtistInfo.price = 0
+        this.tempArtistInfo.create_at = Math.floor(Date.now() / 1000)
       }
 
       this.axios[method](url, { data: this.tempArtistInfo })
