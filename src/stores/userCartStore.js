@@ -57,6 +57,9 @@ export default defineStore('cartStore', {
 
     // 取得購物車列表
     getCartsList () {
+      // 開啟 loading
+      const loader = $loading.show()
+
       // 資料處理
       const url = `${VITE_API}/api/${VITE_PATH}/cart`
       axios.get(url)
@@ -71,6 +74,10 @@ export default defineStore('cartStore', {
               confirmButtonColor: '#333333'
             }
           )
+        })
+        .finally(() => {
+          // 關閉 loading
+          loader.hide()
         })
     },
 
@@ -153,7 +160,6 @@ export default defineStore('cartStore', {
 
     // 確認 coupon
     checkCoupon (couponCode) {
-      console.log('checkCoupon')
       const url = `${VITE_API}/api/${VITE_PATH}/coupon`
 
       if (this.cartsList.total !== this.cartsList.final_total) {
