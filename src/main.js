@@ -32,9 +32,6 @@ import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 import 'bootstrap'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
-// 引入 swiper
-import { register } from 'swiper/element/bundle'
-
 import App from './App.vue'
 import router from './router'
 
@@ -67,7 +64,6 @@ app.use(VueSweetalert2)
 app.use(createPinia())
 app.use(router)
 app.use(VueAxios, axios)
-app.use(register)
 app.use(CKEditor)
 
 app.mount('#app')

@@ -56,7 +56,7 @@
 <script>
 // import Swiper js
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Autoplay, Pagination, Navigation } from 'swiper/modules'
+import { Autoplay, Pagination, Navigation } from 'swiper'
 
 // Import Swiper styles
 import 'swiper/css'

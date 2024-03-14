@@ -30,7 +30,7 @@
         <!-- 文字 -->
         <div class="mb-7 mb-md-8 text-center">
           <h2 class="mb-4 h1 lh-sm title-letter-spacing h1">{{ article.title }}</h2>
-          <p class="text-info">
+          <p class="text-info" v-if="article.create_at">
             {{ new Date((article.create_at * 1000)).toLocaleDateString() }}
             <span class="px-2 fw-bold">‧</span>
             {{ article.author }}
@@ -85,7 +85,7 @@
 <script>
 // import Swiper js
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Autoplay, Pagination, Navigation } from 'swiper/modules'
+import { Autoplay, Pagination, Navigation } from 'swiper'
 
 // Import Swiper styles
 import 'swiper/css'
