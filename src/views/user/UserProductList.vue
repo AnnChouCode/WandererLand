@@ -40,19 +40,12 @@ export default {
   data () {
     return {
       // 產品列表
-      productsList: [],
-      // 頁碼
-      pagination: {}
+      productsList: []
     }
   },
   methods: {
     // 取得所有產品資料，生成產品與分類資料
     ...mapActions(userProductStore, ['getAllProducts', 'getSizeList']),
-
-    // 切換產品資訊頁
-    showProductInfo (id) {
-      this.$router.push(`/productinfo/${id}`)
-    },
 
     filterShow (filters) {
       // 獲取排序篩選條件
