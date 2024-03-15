@@ -58,8 +58,11 @@ export default defineStore('allProductsStore', {
   getters: {
     // 排序最新產品、藝術家
     sortNewest: ({ allProducts, allArtists }) => {
-      const newestArtist = allArtists.sort((a, b) => b.create_at - a.create_at)
-      const newestProduct = allProducts.sort((a, b) => b.create_at - a.create_at)
+      const artists = JSON.parse(JSON.stringify(allArtists))
+      const products = JSON.parse(JSON.stringify(allProducts))
+
+      const newestArtist = artists.sort((a, b) => b.create_at - a.create_at)
+      const newestProduct = products.sort((a, b) => b.create_at - a.create_at)
 
       return {
         newestArtist,
