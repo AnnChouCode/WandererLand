@@ -56,7 +56,7 @@ export default {
 
       // 篩選產品
       Object.entries(filterConditions).forEach(([key, value]) => {
-        if (value === '' || value === undefined) {
+        if (value === undefined) {
           return
         }
 
