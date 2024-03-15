@@ -135,7 +135,7 @@ export default {
       category: this.$route.query.category,
       tag: this.$route.query.tag
     }
-    console.log('filters', filters)
+
     this.filterShow(filters)
   },
   computed: {

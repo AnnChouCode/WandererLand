@@ -7,19 +7,6 @@
           <h5 v-else class="modal-title text-bold fw-bold">上傳圖片</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <!-- <ul class="nav nav-tabs px-1">
-          <li class="nav-item">
-            <a
-              class="nav-link text-secondary active"
-              aria-current="page"
-              href="#"
-              >上傳檔案</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-secondary" href="#">以圖片連結新增</a>
-          </li>
-        </ul> -->
         <div class="modal-body container">
           <div class="row g-3">
             <div class="col-12 col-md-4">
