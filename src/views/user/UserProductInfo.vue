@@ -31,7 +31,7 @@
               <h3 class="mb-2 h6 text-info fw-bold">{{ product.productInfo.artist }}</h3>
               <h2 class="h5 fw-bold">{{ product.productInfo.title }}</h2>
             </div>
-            <btnFavorite></btnFavorite>
+            <btnFavorite :productId="product.productInfo.id"></btnFavorite>
           </div>
           <p class="lh-base lh-md-lg fs-info text-info">{{ product.productInfo.content }}
           </p>
@@ -122,9 +122,9 @@
             <router-link :to="`/productinfo/${product.id}`">
               <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default">{{ product.title }}</h3>
             </router-link>
-            <div v-if="!isArtistBlock" class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
               <p class="fs-info fs-md-6 text-info">NT$ {{ product.price.toLocaleString() }}</p>
-              <btnFavorite></btnFavorite>
+              <btnFavorite :productId="product.id"></btnFavorite>
             </div>
           </div>
         </div>
@@ -165,6 +165,10 @@ export default {
   watch: {
     cartsList () {
       this.getAvailableProductNum(this.currentProductId)
+    },
+
+    $route () {
+      this.initPageInfo()
     }
   },
   methods: {
@@ -225,29 +229,34 @@ export default {
       })
 
       this.quantityInCart = stateInCart.length ? stateInCart[0].qty : 0
+    },
+
+    // 頁面資料初始化
+    async initPageInfo () {
+      try {
+        this.currentProductId = this.$route.params.id
+
+        const currendProductArtist = await this.getCurrentProduct(this.currentProductId)
+        // 獲取所有產品資料
+        await this.getAllProducts()
+
+        // 當前產品存在購物車的數量
+        this.getCartsList()
+        this.getAvailableProductNum(this.currentProductId)
+
+        // 獲取相關產品資料
+        this.getRelatedProducts(currendProductArtist, this.currentProductId)
+
+        // 獲取藝術家資料
+        this.getArtistInfo(currendProductArtist)
+      } catch (err) {
+        console.log('錯誤:', err)
+        throw err
+      }
     }
   },
-  async mounted () {
-    try {
-      this.currentProductId = this.$route.params.id
-
-      const currendProductArtist = await this.getCurrentProduct(this.currentProductId)
-      // 獲取所有產品資料
-      await this.getAllProducts()
-
-      // 當前產品存在購物車的數量
-      this.getCartsList()
-      this.getAvailableProductNum(this.currentProductId)
-
-      // 獲取相關產品資料
-      this.getRelatedProducts(currendProductArtist, this.currentProductId)
-
-      // 獲取藝術家資料
-      this.getArtistInfo(currendProductArtist)
-    } catch (err) {
-      console.log('錯誤:', err)
-      throw err
-    }
+  mounted () {
+    this.initPageInfo()
   },
   computed: {
     ...mapState(userProductStore, ['sortNewest']),
