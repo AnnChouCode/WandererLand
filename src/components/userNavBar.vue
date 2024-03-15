@@ -26,7 +26,9 @@
             <i class="position-absolute start-0 top-50 ms-5 bi bi-search translate-middle"></i>
           </li>
           <li class="py-4">
-            <i class="bi bi-heart"></i>
+            <router-link to="/favoritelist" class="position-relative text-default">
+              <i class="bi" :class="favoriteList.length ? 'bi-heart-fill' : 'bi-heart'"></i>
+            </router-link>
           </li>
           <li class="py-4">
             <router-link to="/cart" class="position-relative text-default">
@@ -70,9 +72,9 @@
 
 <script>
 import cartStore from '@/stores/userCartStore.js'
-import { mapActions, mapState } from 'pinia'
-// import userNavProductFilter from '@/components/userNavProductFilter.vue'
-// import userNavArtistFilter from '@/components/userNavArtistFilter.vue'
+import favoriteStore from '@/stores/favoriteStore.js'
+import { mapState } from 'pinia'
+
 import { Offcanvas } from 'bootstrap'
 
 export default {
@@ -85,9 +87,6 @@ export default {
     }
   },
   methods: {
-    // 獲得購物車資料
-    ...mapActions(cartStore, ['getCartsList']),
-
     // 判斷是否為產品頁，顯示對應 navbar
     // checkPageType () {
     //   const url = window.location.href
@@ -111,15 +110,12 @@ export default {
       this.closeMobileNav()
     }
   },
-  components: {
-    // userNavProductFilter,
-    // userNavArtistFilter
-  },
   mounted () {
-    // this.checkPageType()
-
     this.mobileNav = new Offcanvas(this.$refs.mobileNav)
   },
-  computed: { ...mapState(cartStore, ['cartsList']) }
+  computed: {
+    ...mapState(cartStore, ['cartsList']),
+    ...mapState(favoriteStore, ['favoriteList'])
+  }
 }
 </script>

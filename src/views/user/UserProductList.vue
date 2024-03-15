@@ -20,7 +20,7 @@
           </router-link>
           <div class="d-flex justify-content-between align-items-center">
             <p class="fs-info fs-md-6 text-info">NT$ {{ item.price.toLocaleString() }}</p>
-            <btnFavorite></btnFavorite>
+            <btnFavorite :productId="item.id"></btnFavorite>
           </div>
         </div>
       </div>

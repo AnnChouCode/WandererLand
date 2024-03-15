@@ -1,9 +1,32 @@
 <template>
-    <button type="button" class="position-relative btn-favorite btn p-0">
-        <i class="position-absolute bi bi-heart"></i>
+    <button type="button" class="position-relative btn-favorite btn p-0" @click="toggleFavorite()">
+        <i class="position-absolute bi" :class="favoriteList.includes(productId) ? 'bi-heart-fill': 'bi-heart'"></i>
         <i class="bi bi-heart-fill text-info"></i>
     </button>
 </template>
+
+<script>
+import favoriteStore from '@/stores/favoriteStore.js'
+import { mapActions, mapState } from 'pinia'
+
+export default {
+  props: ['productId'],
+  methods: {
+    // 取得使用者收藏清單
+    ...mapActions(favoriteStore, ['getFavoriteList', 'handleFavorite']),
+
+    toggleFavorite () {
+      this.handleFavorite(this.productId)
+    }
+  },
+  mounted () {
+    this.getFavoriteList()
+  },
+  computed: {
+    ...mapState(favoriteStore, ['favoriteList'])
+  }
+}
+</script>
 
 <style lang="scss">
 .btn-favorite {
