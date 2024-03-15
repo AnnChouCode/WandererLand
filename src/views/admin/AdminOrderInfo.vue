@@ -184,8 +184,9 @@
 </template>
 
 <script>
+import statusStore from '@/stores/statusStore'
 import { useAdminOrderStore } from '@/stores/adminOrderStore'
-import { mapStores } from 'pinia'
+import { mapActions, mapStores } from 'pinia'
 import toastComponent from '@/components/toastComponent.vue'
 import { useLoading } from 'vue-loading-overlay'
 
@@ -200,10 +201,10 @@ export default {
       tempOrderInfo: {},
       // 訂單小計金額
       total: 0,
-      // 訂單動作
-      doAction: null,
-      // 顯示 toast
-      toastState: true,
+      // // 訂單動作
+      // doAction: null,
+      // // 顯示 toast
+      // toastState: true,
       // 客製化 question alert 按鈕
       swalQuestionWithBootstrapButtons: null,
       // 客製化 info check alert 按鈕
@@ -211,6 +212,8 @@ export default {
     }
   },
   methods: {
+    ...mapActions(statusStore, ['addMsg']),
+
     // 取得該頁訂單資料
     getOrderInfo (id) {
       const order = ordersStore.currentOrderList.filter(order => order.id === id)
@@ -280,8 +283,7 @@ export default {
             this.axios.put(url, { data: item })
               .then(res => {
                 // 提示訊息
-                this.toastState = !this.toastState
-                this.doAction = action
+                this.addMsg('bi-info-circle', '訂單狀態已更新')
               })
               .catch(err => {
                 this.swalInfoCheckWithBootstrapButtons.fire({

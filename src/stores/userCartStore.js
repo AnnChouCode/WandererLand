@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia'
+import statusStore from '@/stores/statusStore.js'
+
 import axios from 'axios'
 import swal from 'sweetalert2'
 import { useLoading } from 'vue-loading-overlay'
@@ -10,16 +12,13 @@ export default defineStore('cartStore', {
   state: () => ({
     // 購物車清單
     cartsList: [],
-    // 顯示 toast
-    toastState: true,
-    // 動作成功提示
-    doAction: null,
     // 優惠券碼
     coupon_code: ''
   }),
   actions: {
     // 加入購物車
     addToCart (id, qty) {
+      console.log('addToCart')
       // 開啟 loading
       const loader = $loading.show()
 
@@ -35,8 +34,8 @@ export default defineStore('cartStore', {
       axios.post(url, item)
         .then(res => {
           // 提示訊息
-          this.toastState = !this.toastState
-          this.doAction = 'addToCart'
+          const { addMsg } = statusStore()
+          addMsg('bi-bag-check', '已更新購物車')
           // 重整購物車
           this.getCartsList()
         })
@@ -83,6 +82,7 @@ export default defineStore('cartStore', {
 
     // 更新購物車
     updateCart (data) {
+      console.log('updateCart')
       // 開啟 loading
       const loader = $loading.show()
 
@@ -98,8 +98,8 @@ export default defineStore('cartStore', {
       axios.put(url, item)
         .then(res => {
           // 提示訊息
-          this.toastState = !this.toastState
-          this.doAction = 'updateCart'
+          const { addMsg } = statusStore()
+          addMsg('bi-bag-check', '已更新購物車')
           // 重整購物車
           this.getCartsList()
         })
@@ -107,7 +107,8 @@ export default defineStore('cartStore', {
           swal.fire(
             {
               icon: 'error',
-              text: err.response.data.message
+              text: err.response.data.message,
+              confirmButtonColor: '#333333'
             }
           )
         })
@@ -127,8 +128,8 @@ export default defineStore('cartStore', {
       axios.delete(url)
         .then(res => {
           // 提示訊息
-          this.toastState = !this.toastState
-          this.doAction = 'deleteCartItem'
+          const { addMsg } = statusStore()
+          addMsg('bi-bag-check', '已更新購物車')
           // 重整購物車
           this.getCartsList()
         })
@@ -152,8 +153,8 @@ export default defineStore('cartStore', {
       navigator.clipboard.writeText(code)
         .then(() => {
           // 提示訊息
-          this.toastState = !this.toastState
-          this.doAction = 'copyCouponCode'
+          const { addMsg } = statusStore()
+          addMsg('bi-info-circle', '已複製優惠碼')
           this.coupon_code = code
         })
     },
@@ -163,11 +164,9 @@ export default defineStore('cartStore', {
       const url = `${VITE_API}/api/${VITE_PATH}/coupon`
 
       if (this.cartsList.total !== this.cartsList.final_total) {
-        swal.fire({
-          title: '已經套用此優惠券',
-          confirmButtonColor: '#333333',
-          confirmButtonText: '確認'
-        })
+        // 提示訊息
+        const { addMsg } = statusStore()
+        addMsg('bi-info-circle', '已套用優惠碼')
 
         return
       }
@@ -185,8 +184,8 @@ export default defineStore('cartStore', {
       axios.post(url, coupon)
         .then(res => {
           // 提示訊息
-          this.toastState = !this.toastState
-          this.doAction = 'useCoupon'
+          const { addMsg } = statusStore()
+          addMsg('bi-info-circle', '已套用優惠碼')
 
           // 重整購物車
           this.getCartsList()
