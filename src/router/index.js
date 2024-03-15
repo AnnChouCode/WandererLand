@@ -121,6 +121,14 @@ const routes = [
         }
       },
       {
+        path: 'favoritelist',
+        name: 'favoritelist',
+        component: () => import('../views/user/UserFavoriteList.vue'),
+        meta: {
+          title: '收藏 - Wanderer Land'
+        }
+      },
+      {
         path: 'userlogin',
         name: 'userlogin',
         component: () => import('../views/user/UserLogin.vue'),
