@@ -74,6 +74,8 @@ export default {
     return {
       // 當頁文章
       currentArticles: [],
+      // 所有文章
+      allArticles: [],
       // 頁碼
       pagination: {},
       // 是否為建立新文章
@@ -85,7 +87,7 @@ export default {
     }
   },
   methods: {
-    // 獲取所有文章
+    // 獲取當前頁面文章
     getCurrentArticles (page = 1) {
       const url = `${VITE_API}/api/${VITE_PATH}/admin/articles?page=${page}`
 
@@ -95,6 +97,9 @@ export default {
           const { articles, pagination } = res.data
           this.currentArticles = articles
           this.pagination = pagination
+
+          // 撈取所有文章，用於確認置頂文章
+          this.getAllArticles(this.pagination.total_pages)
         })
         .catch((err) => {
           this.swalInfoCheckWithBootstrapButtons.fire({
@@ -103,6 +108,30 @@ export default {
             confirmButtonText: '確認'
           })
         })
+    },
+
+    // 獲取所有文章，用於確認置頂文章
+    getAllArticles (pages) {
+      // 重置最新文章
+      this.allArticles = []
+
+      // 生成所有文章列表
+      for (let i = 1; i <= pages; i++) {
+        const url = `${VITE_API}/api/${VITE_PATH}/admin/articles?page=${i}`
+        this.axios
+          .get(url)
+          .then((res) => {
+            const { articles } = res.data
+            this.allArticles = this.allArticles.concat(articles)
+          })
+          .catch((err) => {
+            this.swalInfoCheckWithBootstrapButtons.fire({
+              icon: 'error',
+              text: err.response.data.message,
+              confirmButtonText: '確認'
+            })
+          })
+      }
     },
 
     // 觀看文章
@@ -156,97 +185,102 @@ export default {
 
     // 確認當前置頂文章
     checkTopArticle (id) {
-      const topArticle = this.currentArticles.filter(article => article.isTop === true)
+      const topArticle = this.allArticles.filter(article => article.isTop === true)
       return topArticle
     },
 
     // 文章設為首頁置頂
     async setTopArticle (id) {
-      const currentTop = await this.checkTopArticle(id)
+      try {
+        const currentTop = await this.checkTopArticle(id)
 
-      // 若目前沒有置頂文章
-      if (!currentTop.length) {
-        // 開啟 loading
-        const loader = this.$loading.show()
+        // 若目前沒有置頂文章
+        if (!currentTop.length) {
+          // 開啟 loading
+          const loader = this.$loading.show()
 
-        // 因 articleList API 獲得資料缺 content，必須額外針對特定 article 求完整資料
-        const tempArticleInfo = await this.getArticleInfo(id)
-        tempArticleInfo.isTop = true
+          // 因 articleList API 獲得資料缺 content，必須額外針對特定 article 求完整資料
+          const tempArticleInfo = await this.getArticleInfo(id)
+          tempArticleInfo.isTop = true
 
-        // 設定 top 文章
-        const url = `${VITE_API}/api/${VITE_PATH}/admin/article/${id}`
+          // 設定 top 文章
+          const url = `${VITE_API}/api/${VITE_PATH}/admin/article/${id}`
 
-        this.axios.put(url, { data: tempArticleInfo })
-          .then((res) => {
-            this.swalInfoCheckWithBootstrapButtons.fire({
-              title: '已設為置頂',
-              confirmButtonText: '確認'
+          this.axios.put(url, { data: tempArticleInfo })
+            .then((res) => {
+              this.swalInfoCheckWithBootstrapButtons.fire({
+                title: '已設為置頂',
+                confirmButtonText: '確認'
+              })
+              this.getCurrentArticles()
             })
-            this.getCurrentArticles()
-          })
-          .catch((err) => {
-            this.swalInfoCheckWithBootstrapButtons.fire({
-              icon: 'error',
-              text: err.response.data.message,
-              confirmButtonText: '確認'
+            .catch((err) => {
+              this.swalInfoCheckWithBootstrapButtons.fire({
+                icon: 'error',
+                text: err.response.data.message,
+                confirmButtonText: '確認'
+              })
             })
-          })
-          .finally(() => {
-            // 關閉 loading
-            loader.hide()
-          })
-
-        return false
-      }
-
-      // 若置頂文章與當前勾選文章相同
-      if (currentTop[0].id === id) {
-        // 開啟 loading
-        const loader = this.$loading.show()
-
-        // 因 articleList API 獲得資料缺 content，必須額外針對特定 article 求完整資料
-        const tempArticleInfo = await this.getArticleInfo(id)
-        tempArticleInfo.isTop = false
-
-        // 設定 top 文章
-        const url = `${VITE_API}/api/${VITE_PATH}/admin/article/${id}`
-
-        this.axios.put(url, { data: tempArticleInfo })
-          .then((res) => {
-            this.swalInfoCheckWithBootstrapButtons.fire({
-              title: '已取消置頂',
-              confirmButtonText: '確認'
+            .finally(() => {
+              // 關閉 loading
+              loader.hide()
             })
-            this.getCurrentArticles()
-          })
-          .catch((err) => {
-            this.swalInfoCheckWithBootstrapButtons.fire({
-              icon: 'error',
-              text: err.response.data.message,
-              confirmButtonText: '確認'
+
+          return false
+        }
+
+        // 若置頂文章與當前勾選文章相同
+        if (currentTop[0].id === id) {
+          // 開啟 loading
+          const loader = this.$loading.show()
+
+          // 因 articleList API 獲得資料缺 content，必須額外針對特定 article 求完整資料
+          const tempArticleInfo = await this.getArticleInfo(id)
+          tempArticleInfo.isTop = false
+
+          // 設定 top 文章
+          const url = `${VITE_API}/api/${VITE_PATH}/admin/article/${id}`
+
+          this.axios.put(url, { data: tempArticleInfo })
+            .then((res) => {
+              this.swalInfoCheckWithBootstrapButtons.fire({
+                title: '已取消置頂',
+                confirmButtonText: '確認'
+              })
+              this.getCurrentArticles()
             })
+            .catch((err) => {
+              this.swalInfoCheckWithBootstrapButtons.fire({
+                icon: 'error',
+                text: err.response.data.message,
+                confirmButtonText: '確認'
+              })
+            })
+            .finally(() => {
+              // 關閉 loading
+              loader.hide()
+            })
+
+          return false
+        }
+
+        // 若置頂文章和當前勾選文章不同
+        if (currentTop[0].id !== id) {
+          // 取消當前勾選文章的勾選狀態
+          const targetCheckbox = `topArticleCheckBox${id}`
+          this.$refs[targetCheckbox][0].checked = false
+
+          // 提示需先取消當前置頂
+          this.swalInfoCheckWithBootstrapButtons.fire({
+            title: '請先取消當前置頂文章',
+            confirmButtonText: '確認'
           })
-          .finally(() => {
-            // 關閉 loading
-            loader.hide()
-          })
 
-        return false
-      }
-
-      // 若置頂文章和當前勾選文章不同
-      if (currentTop[0].id !== id) {
-        // 取消當前勾選文章的勾選狀態
-        const targetCheckbox = `topArticleCheckBox${id}`
-        this.$refs[targetCheckbox][0].checked = false
-
-        // 提示需先取消當前置頂
-        this.swalInfoCheckWithBootstrapButtons.fire({
-          title: '請先取消當前置頂文章',
-          confirmButtonText: '確認'
-        })
-
-        return false
+          return false
+        }
+      } catch (err) {
+        console.log('錯誤:', err)
+        throw err
       }
     },
 

@@ -13,7 +13,8 @@
               <div class="position-relative border border-1 h-100">
                 <button type="button"
                   class="position-absolute top-0 end-0 d-flex justify-content-center align-items-center mt-2 me-2 btn btn-light"
-                  style="width: 36px; height: 36px" @click="deleteImage('imageUrl', idx)" v-if="tempArticleInfo.imageUrl">
+                  style="width: 36px; height: 36px" @click="deleteImage('imageUrl', idx)"
+                  v-if="tempArticleInfo.imageUrl">
                   <i class="bi bi-trash"></i>
                 </button>
                 <div class="position-absolute bottom-0 py-1 text-center text-white bg-dark opacity-75 w-100">
@@ -179,14 +180,16 @@
                       <div class="row g-3">
                         <div class="col-4">
                           <div :style="`background-image:url(${product.imageUrl})`"
-                            class="h-100 bg-img-cover bg-img-center bg-img-norepeat ratio-1x1" style="min-height: 48px;">
+                            class="h-100 bg-img-cover bg-img-center bg-img-norepeat ratio-1x1"
+                            style="min-height: 48px;">
                           </div>
                         </div>
                         <div class="col-6 d-flex align-items-center">
                           {{ product.title }}
                         </div>
                         <div class="col-2 d-flex justify-content-center align-items-center">
-                          <button type="button" class="btn-close" aria-label="Close" @click="deleteRelatedProduct(product)"></button>
+                          <button type="button" class="btn-close" aria-label="Close"
+                            @click="deleteRelatedProduct(product)"></button>
                         </div>
                       </div>
                     </div>
@@ -238,10 +241,9 @@ export default {
       tempArticleInfo: {},
       // 產品分類列表
       tempCategoryList: ['最新消息', '活動講座', '專欄文章'],
+      tempTagList: [],
       // 文章標籤手動輸入格
       tempTagInvputVaule: '',
-      // 文章標籤列表
-      tempTagList: [],
       // 增加文章封面或圖片
       isCover: false,
       // CKEditor 設定
@@ -431,31 +433,36 @@ export default {
     uploadImageModal
   },
   async mounted () {
-    // 判斷頁面為新增文章或編輯文章
-    const id = this.$route.params.id
+    try {
+      // 判斷頁面為新增文章或編輯文章
+      const id = this.$route.params.id
 
-    if (!id) {
-      this.isNewArticle = true
+      if (!id) {
+        this.isNewArticle = true
+      }
+
+      if (id) {
+        // 獲取所有資料
+        this.getArticleInfo(id)
+      }
+
+      // 獲取產品分類
+      await productsStore.getAllProducts()
+      // 增加標籤清單
+      productsStore.groupList.forEach((item) => this.updateTag(item))
+      this.relatedProduct.groupList = productsStore.groupList
+
+      // 客製化 info check alert 按鈕
+      this.swalInfoCheckWithBootstrapButtons = this.$swal.mixin({
+        customClass: {
+          confirmButton: 'm-1 btn btn-default'
+        },
+        buttonsStyling: false
+      })
+    } catch (err) {
+      console.log('錯誤:', err)
+      throw err
     }
-
-    if (id) {
-      // 獲取所有資料
-      this.getArticleInfo(id)
-    }
-
-    // 獲取產品分類
-    await productsStore.getAllProducts()
-    // 增加標籤清單
-    productsStore.groupList.forEach((item) => this.updateTag(item))
-    this.relatedProduct.groupList = productsStore.groupList
-
-    // 客製化 info check alert 按鈕
-    this.swalInfoCheckWithBootstrapButtons = this.$swal.mixin({
-      customClass: {
-        confirmButton: 'm-1 btn btn-default'
-      },
-      buttonsStyling: false
-    })
   }
 }
 </script>
