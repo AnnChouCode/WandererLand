@@ -36,8 +36,7 @@
                                 <span class="me-3">尺寸</span>
                                 <i class="bi bi-chevron-down"></i>
                             </button>
-                            <ul class="dropdown-menu p-0 overflow-y-scroll rounded-0" aria-labelledby="btnSizeFilter"
-                                style="max-height:400px;">
+                            <ul class="dropdown-menu p-0 overflow-y-scroll rounded-0 dropdown-scrollbar" aria-labelledby="btnSizeFilter">
                                 <li v-for="item in productSizeList" :key="item">
                                     <a class="dropdown-item p-3" :class="filterRules.size === item ? 'bg-secondary' : ''" href="#" @click.prevent="filterShow(['size', item])">{{
                                             item
@@ -54,8 +53,7 @@
                                 <span class="me-3">題材</span>
                                 <i class="bi bi-chevron-down"></i>
                             </button>
-                            <ul class="dropdown-menu p-0 overflow-y-scroll rounded-0" aria-labelledby="btnGroupFilter"
-                                style="max-height:400px;">
+                            <ul class="dropdown-menu p-0 overflow-y-scroll rounded-0 dropdown-scrollbar" aria-labelledby="btnGroupFilter">
                                 <li v-for="item in groupList.productGroupList" :key="item">
                                     <a class="dropdown-item p-3" :class="filterRules.group === item ? 'bg-secondary' : ''"  href="#"
                                         @click.prevent="filterShow(['group', item])">{{ item }}</a>
@@ -71,8 +69,7 @@
                                 <span class="me-3">藝術家</span>
                                 <i class="bi bi-chevron-down"></i>
                             </button>
-                            <ul class="dropdown-menu p-0 overflow-y-scroll rounded-0" aria-labelledby="btnArtistFilter"
-                                style="max-height:400px;">
+                            <ul class="dropdown-menu p-0 overflow-y-scroll rounded-0 dropdown-scrollbar" aria-labelledby="btnArtistFilter">
                                 <li v-for="artist in allArtists" :key="artist.id">
                                     <a class="dropdown-item p-3" :class="filterRules.artist === artist.title ? 'bg-secondary' : ''"  href="#"
                                         @click.prevent="filterShow(['artist', artist.title])">{{ artist.title }}</a>

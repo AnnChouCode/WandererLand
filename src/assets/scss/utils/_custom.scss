@@ -1,4 +1,4 @@
-label.has-required::after {
+.has-required::after {
   content: '*';
   color: red;
   margin-left:2px;
@@ -35,4 +35,26 @@ label.has-required::after {
   @include media-breakpoint-up(lg) {
     padding-top: 59px;
   }
+}
+
+.dropdown-scrollbar {
+  max-height:400px;
+  scrollbar-width: none; //Firefox 中隱藏滾動條外框
+  -ms-overflow-style: none; //隱藏滾動條外框（IE 和 Edge）
+
+  &::-webkit-scrollbar {
+    width: 8px; //滾動條寬度
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $primary; //滾動條滑塊顏色
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $tertiary; //滾動條軌道背景顏色
+  }
+
+  /* Firefox-specific styles */
+  scrollbar-width: thin;
+  scrollbar-color: $primary $tertiary; /* thumb track */
 }
