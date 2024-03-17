@@ -1,13 +1,8 @@
-// *,
-// *::before,
-// *::after {
-//   outline: 1px solid orange;
-// }
-
 html,
 body {
   font-family: 'Noto Sans TC', sans-serif;
   color: $default;
+  scroll-behavior:smooth;
 }
 
 img {
