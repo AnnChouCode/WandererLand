@@ -14,28 +14,63 @@
           </li>
           <li><router-link to="/artistlist" class="d-block px-5 py-4 text-default navlink-underline">藝術家</router-link>
           </li>
-          <li><router-link to="/articlelist" class="d-block px-5 py-4 text-default navlink-underline">最新消息</router-link></li>
+          <li><router-link to="/articlelist" class="d-block px-5 py-4 text-default navlink-underline">最新消息</router-link>
+          </li>
         </ul>
         <h1 class="position-absolute top-50 start-50 translate-middle">
           <a href="#/home" class="d-block h5 fs-md-20 fw-bold text-default">WANDERER LAND</a>
         </h1>
         <ul class="d-flex gap-4 gap-md-5 align-items-center list-unstyled">
-          <li class="position-relative d-none d-lg-block py-4">
-            <input type="search" class="pe-3 ps-8 rounded-pill border-default form-control bg-transparent fs-info"
-              placeholder="搜尋作品" style="height:28px;">
-            <i class="position-absolute start-0 top-50 ms-5 bi bi-search translate-middle"></i>
+          <li class="d-none d-lg-block py-4">
+            <productSearch></productSearch>
           </li>
           <li class="py-4">
             <router-link to="/favoritelist" class="position-relative text-default">
               <i class="bi" :class="favoriteList.length ? 'bi-heart-fill' : 'bi-heart'"></i>
             </router-link>
           </li>
-          <li class="py-4">
+          <li class="py-4"  @mouseover="showCartList"
+              @mouseout="hideCartList">
             <router-link to="/cart" class="position-relative text-default">
               <i class="bi bi-handbag"></i>
-              <div v-if="cartsList.total" class="position-absolute badge bg-default rounded-circle text-white"
+              <div v-if="cartsList.final_total" class="position-absolute badge bg-default rounded-circle text-white"
                 style="top: 8px;right: -10px;font-size:8px;">{{ cartsList.carts.length }}</div>
             </router-link>
+
+            <!-- 購物車選單 -->
+            <div class="d-none position-absolute end-0 top-100 px-6 pb-7 bg-primary" ref="cartList"
+              style="max-width:375px;" @mouseover="showCartList" @mouseout="hideCartList">
+              <div v-if="cartsList.total">
+                <p class="py-3 text-center border-bottom border-default">{{ cartsList.carts.length }} 個商品</p>
+                <ul class="list-unstyled">
+                  <li v-for="item in cartsList.carts" :key="item.product_id" class="py-3 border-bottom border-default">
+                    <div class="row g-5">
+                      <div class="col-4">
+                        <img :src="item.product.imageUrl" :alt="item.product.title"
+                          class="w-100 h-100 object-fit-contain">
+                      </div>
+                      <div class="col-8 d-flex flex-column justify-content-between">
+                        <div>
+                          <p class="fw-bold single-ellipsis">{{ item.product.title }}</p>
+                          <p class="fs-info single-ellipsis">{{ item.product.artist }}</p>
+                        </div>
+                        <p>NT$ {{ (item.product.price).toLocaleString() }}</p>
+                        <p>數量：{{ item.qty }}</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <div class="d-flex py-3 justify-content-between mb-6 fw-bold">
+                  <p>總計</p>
+                  <p>NT$ {{ cartsList.final_total.toLocaleString() }}</p>
+                </div>
+                <router-link to="/cart"
+                  class="py-2 btn btn-default text-center rounded-0 w-100 fw-bold">前往購物車</router-link>
+              </div>
+              <div v-else>
+                <p lass="py-3 text-center">目前購物車內沒有內容</p>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
@@ -51,10 +86,8 @@
     </div>
     <div class="offcanvas-body">
       <ul class="d-flex flex-column gap-3 gap-sm-5 list-unstyled">
-        <li class="position-relative">
-          <input type="search" class="pe-3 ps-8 rounded-pill border-default form-control bg-transparent fs-info"
-            placeholder="搜尋作品" style="height:28px;">
-          <i class="position-absolute start-0 top-50 ms-5 bi bi-search translate-middle"></i>
+        <li>
+          <productSearch></productSearch>
         </li>
         <li>
           <router-link to="/productlist" class="d-block py-4 text-default navlink-underline">作品</router-link>
@@ -75,24 +108,26 @@ import cartStore from '@/stores/userCartStore.js'
 import favoriteStore from '@/stores/favoriteStore.js'
 import { mapState } from 'pinia'
 
+// Import Components
+import productSearch from '@/components/productSearch.vue'
+
 import { Offcanvas } from 'bootstrap'
 
 export default {
   data () {
     return {
-      // 當前頁面類型
-      pageType: '',
       // mobile 選單
       mobileNav: null
     }
   },
   methods: {
-    // 判斷是否為產品頁，顯示對應 navbar
-    // checkPageType () {
-    //   const url = window.location.href
-    //   const parts = url.split('/')
-    //   this.pageType = parts[parts.length - 1]
-    // },
+    // 滑鼠移過購物車
+    showCartList () {
+      this.$refs.cartList.classList.remove('d-none')
+    },
+    hideCartList () {
+      this.$refs.cartList.classList.add('d-none')
+    },
 
     // 開啟 mobile nav
     openMobileNav () {
@@ -106,7 +141,6 @@ export default {
   },
   watch: {
     $route () {
-      // this.checkPageType()
       this.closeMobileNav()
     }
   },
@@ -116,6 +150,9 @@ export default {
   computed: {
     ...mapState(cartStore, ['cartsList']),
     ...mapState(favoriteStore, ['favoriteList'])
+  },
+  components: {
+    productSearch
   }
 }
 </script>
