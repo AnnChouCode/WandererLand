@@ -400,6 +400,11 @@ export default {
       let url = `${VITE_API}/api/${VITE_PATH}/admin/article`
       const method = this.isNewArticle ? 'post' : 'put'
 
+      if (!this.tempArticleInfo.imageUrl || !this.tempArticleInfo.imagesUrl || this.tempArticleInfo.imageUrl === '' || !this.tempArticleInfo.imagesUrl.length) {
+        this.swalInfoCheckWithBootstrapButtons.fire('圖片欄位為必填')
+        return
+      }
+
       if (!this.isNewArticle) {
         url += `/${this.tempArticleInfo.id}`
       }

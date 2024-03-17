@@ -45,9 +45,9 @@
             </div>
           </div>
           <!-- 新增圖片 -->
-          <div class="col-6 col-md-2 p-0 border border-1">
+          <div class="col-6 col-md-2">
             <button @click="openImageModal('inNotCover')"
-              class="d-flex align-items-center justify-content-center w-100 h-100 text-default btn btn-light rounded-0 ratio-1x1"
+              class="d-flex align-items-center justify-content-center w-100 h-100 text-default btn btn-light rounded-0 ratio-1x1 border border-1"
               type="button">
               新增圖片
             </button>
@@ -187,6 +187,11 @@ export default {
     updateArtistInfo () {
       let url = `${VITE_API}/api/${VITE_PATH}/admin/product`
       const method = this.isNewArtist ? 'post' : 'put'
+
+      if (!this.tempArtistInfo.imageUrl || !this.tempArtistInfo.imagesUrl || this.tempArtistInfo.imageUrl === '' || !this.tempArtistInfo.imagesUrl.length) {
+        this.swalInfoCheckWithBootstrapButtons.fire('圖片欄位為必填')
+        return
+      }
 
       if (!this.isNewArtist) {
         url += `/${this.tempArtistInfo.id}`
