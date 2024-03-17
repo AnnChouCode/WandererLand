@@ -3,7 +3,8 @@ import statusStore from '@/stores/statusStore.js'
 
 export default defineStore('favoriteStore', {
   state: () => ({
-    favoriteList: []
+    favoriteList: [],
+    recentlyProducts: []
   }),
   actions: {
     handleFavorite (id) {
@@ -23,7 +24,7 @@ export default defineStore('favoriteStore', {
 
     // 儲存收藏
     setStorage () {
-      localStorage.setItem('favoriteList', this.favoriteList)
+      localStorage.setItem('favoriteList', JSON.stringify(this.favoriteList))
     },
 
     // 獲得收藏
@@ -34,6 +35,24 @@ export default defineStore('favoriteStore', {
       }
 
       return this.favoriteList
+    },
+
+    // 最近看過
+    recentlyViewed (product) {
+      const recentlyIdx = this.recentlyProducts.findIndex(item => item.id === product.id)
+
+      if (recentlyIdx === -1) {
+        this.recentlyProducts.unshift(product)
+
+        if (this.recentlyProducts.length >= 8) {
+          this.recentlyProducts.pop()
+        }
+      } else {
+        this.recentlyProducts.splice(recentlyIdx, 1)
+        this.recentlyProducts.unshift(product)
+      }
+
+      localStorage.setItem('recentlyList', JSON.stringify(this.recentlyProducts))
     }
   }
 })
