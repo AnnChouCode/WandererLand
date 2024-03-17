@@ -31,11 +31,22 @@ export default defineStore('articleStore', {
       // 求取置頂文章
       const topArticleIndex = articlesList.findIndex(article => article.isTop === true)
 
-      const topArticle = articles.splice(topArticleIndex, 1)
-
-      // 求取置頂文章外的最新文章
+      // 置頂文章、非置頂文章
+      let topArticle, newestArticles
+      // 非置頂文章數量
       const articleNum = 5
-      const newestArticles = articles.slice(0, articleNum)
+
+      // 如果有設定置頂文章
+      if (topArticleIndex !== -1) {
+        topArticle = articles.splice(topArticleIndex, 1)
+        newestArticles = articles.slice(0, articleNum)
+      }
+
+      // 如果未設定置頂文章，以最新文章為置頂
+      if (topArticleIndex === -1) {
+        topArticle = articles.splice(0, 1)
+        newestArticles = articles.slice(0, articleNum)
+      }
 
       return {
         topArticle,
