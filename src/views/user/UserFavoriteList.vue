@@ -1,7 +1,7 @@
 <template>
     <div class="container user-page-container flex-grow-1">
         <h2 class="mb-7 mb-md-8 h1 lh-sm title-letter-spacing text-center h1">收藏</h2>
-        <div class="row  g-3 g-md-8">
+        <div v-if="favoriteProducts.length" class="row g-3 g-md-8">
             <div class="col-6 col-md-4" v-for="item in favoriteProducts" :key="item.id">
                 <router-link :to="`productInfo/${item.id}`">
                     <div
@@ -24,6 +24,7 @@
                 </div>
             </div>
         </div>
+        <p v-else class="text-center fs-4">目前沒有收藏</p>
     </div>
 </template>
 

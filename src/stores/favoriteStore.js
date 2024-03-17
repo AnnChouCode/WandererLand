@@ -24,7 +24,7 @@ export default defineStore('favoriteStore', {
 
     // 儲存收藏
     setStorage () {
-      localStorage.setItem('favoriteList', JSON.stringify(this.favoriteList))
+      localStorage.setItem('favoriteList', this.favoriteList)
     },
 
     // 獲得收藏
