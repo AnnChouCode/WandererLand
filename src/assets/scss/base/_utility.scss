@@ -143,6 +143,10 @@ $utilities: map-merge(
   text-decoration: underline;
 }
 
+.link-hover-bg:hover {
+  background-color:$light;
+}
+
 // 文字
 //文字單行省略
 .single-ellipsis {
