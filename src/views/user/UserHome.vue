@@ -135,7 +135,8 @@
 
   <div class="container">
     <!-- 猜你喜歡 -->
-    <div class="py-7 py-md-9">
+    <swiperProductComponent dataCategory="recently"></swiperProductComponent>
+    <!-- <div class="py-7 py-md-9">
       <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
         <h2 class="fs-2 fs-md-1">猜你喜歡</h2>
         <router-link to="/arts"
@@ -197,7 +198,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- 與我們聯絡 -->
     <div class="py-7 py-md-9">
@@ -226,7 +227,7 @@
           <v-form v-slot="{ errors }" class="d-flex flex-column align-items-end">
             <!-- 來信類別 -->
             <div class="form-floating mb-4 mb-md-7 w-100">
-              <select class="form-select  border-info rounded-0" id="floatingSelect" aria-label="Floating label select">
+              <select class="form-select  border-info rounded-0" id="floatingSelect" aria-label="Floating label select" v-model="messageType">
                 <option selected>請選擇類別</option>
                 <option value="異業合作">異業合作</option>
                 <option value="空間合作">空間合作</option>
@@ -234,33 +235,33 @@
               </select>
               <label for="floatingSelect">來信類別</label>
             </div>
-            <!-- 標題 -->
-            <div class="form-floating mb-4 mb-md-7 w-100">
-              <v-field id="title" name="標題" type="text" class="form-control border-info rounded-0"
-                :class="{ 'is-invalid': errors['標題'] }" placeholder="請輸入您的信件標題" rules="required"></v-field>
-              <error-message name="標題" class="invalid-feedback"></error-message>
-              <label for="title">信件標題</label>
-            </div>
             <!-- 姓名 -->
             <div class="form-floating mb-4 mb-md-7 w-100">
               <v-field id="name" name="姓名" type="text" class="form-control border-info rounded-0"
-                :class="{ 'is-invalid': errors['姓名'] }" placeholder="請輸入您的姓名" rules="required"></v-field>
+                :class="{ 'is-invalid': errors['姓名'] }" placeholder="請輸入您的姓名" rules="required"  v-model="messageName"></v-field>
               <error-message name="姓名" class="invalid-feedback"></error-message>
               <label for="name">姓名</label>
+            </div>
+            <!-- 標題 -->
+            <div class="form-floating mb-4 mb-md-7 w-100">
+              <v-field id="subject" name="標題" type="text" class="form-control border-info rounded-0"
+                :class="{ 'is-invalid': errors['標題'] }" placeholder="請輸入您的信件標題" rules="required" v-model="message.subject"></v-field>
+              <error-message name="標題" class="invalid-feedback"></error-message>
+              <label for="subject">信件標題</label>
             </div>
             <!-- Email -->
             <div class="form-floating mb-4 mb-md-7 w-100">
               <v-field id="email" name="Email" type="email" class="form-control border-info rounded-0"
-                :class="{ 'is-invalid': errors['Email'] }" placeholder="請輸入您的 Email" rules="email|required"></v-field>
+                :class="{ 'is-invalid': errors['Email'] }" placeholder="請輸入您的 Email" rules="email|required"  v-model="message.email"></v-field>
               <error-message name="Email" class="invalid-feedback"></error-message>
               <label for="email">Email</label>
             </div>
             <div class="form-floating mb-4 mb-md-7 w-100">
-              <v-field id="message" name="訊息" class="form-control border-info rounded-0" as="textarea"
+              <v-field id="body" name="訊息" class="form-control border-info rounded-0" as="textarea"
                 placeholder="請輸入您的訊息" :class="{ 'is-invalid': errors['訊息'] }" rules="required"
-                style="height:273px"></v-field>
+                style="height:273px" v-model="message.body"></v-field>
               <error-message name="訊息" class="invalid-feedback"></error-message>
-              <label for="message">留言</label>
+              <label for="body">留言</label>
             </div>
             <button class="py-2 py-md-3 px-6 px-md-9 btn btn-default fw-bold rounded-0 w-100 w-md-auto" type="submit">
               送出訊息
@@ -280,6 +281,26 @@ import swiperProductComponent from '@/components/swiperProductComponent.vue'
 import couponComponent from '@/components/couponComponent.vue'
 
 export default {
+  data () {
+    return {
+      messageType: '',
+      messageName: '',
+      message: {
+        subject: '',
+        email: '',
+        body: ''
+      }
+    }
+  },
+  watch: {
+    messageType () {
+      // this.message.subject = `【${this.messageType}_${this.messageName}】${}`
+    },
+    messageName () {
+      this.message.subject = `【${this.messageType}_${this.messageName}】`
+      console.log(this.message.subject)
+    }
+  },
   methods: {
     // 獲得購物車資料
     ...mapActions(articleStore, ['getArticlesList'])

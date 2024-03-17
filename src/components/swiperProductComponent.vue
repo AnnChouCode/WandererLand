@@ -2,7 +2,7 @@
   <div class="py-7 py-md-9">
     <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
       <h2 class="fs-2 fs-md-1">{{ DataInfo[dataCategory].title }}</h2>
-      <router-link :to="DataInfo[dataCategory].path"
+      <router-link v-if="DataInfo[dataCategory].path !== ''" :to="DataInfo[dataCategory].path"
         class="text-default border-bottom border-default fw-bold fs-info fs-md-6">瀏覽更多</router-link>
     </div>
 
@@ -54,6 +54,9 @@
 </template>
 
 <script>
+import userProductStore from '@/stores/userProductStore'
+import { mapActions, mapState } from 'pinia'
+
 // import Swiper js
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay, Pagination, Navigation } from 'swiper'
@@ -66,13 +69,13 @@ import 'swiper/css/navigation'
 // Import Components
 import btnFavorite from '@/components/btnFavorite.vue'
 
-const { VITE_API, VITE_PATH } = import.meta.env
-
 export default {
   props: ['dataCategory'],
   data () {
     return {
-      allDatas: [],
+      // 最多顯示數量
+      maxNumItem: 8,
+      // 傳入分類資料對照
       DataInfo: {
         products: {
           title: '探索新作品',
@@ -84,51 +87,78 @@ export default {
           path: '/artistlist',
           infoPath: '/artistinfo'
         },
-        favorite: {
+        recently: {
           title: '猜你喜歡',
-          path: 'favorites',
+          path: '',
           infoPath: '/productinfo'
         }
       },
+      // 顯示資料
       currentDatas: [],
       // swiper 輪播設定
       modules: [Autoplay, Pagination, Navigation],
+      // 是否為藝術家區塊
       isArtistBlock: true
     }
   },
   methods: {
-    // 取得產品分類列表
-    getCurrentDatas () {
-      const allData = [...this.allDatas]
-      this.currentDatas = allData.filter(data => data.category === this.dataCategory).reverse()
+    // 取得所有產品資料，生成產品與分類資料
+    ...mapActions(userProductStore, ['getAllProducts']),
+
+    // 獲取隨機產品資料
+    shuffleArray (array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]
+      }
+      return array
     },
 
-    // 獲取所有產品
-    getAllDatas () {
-      const url = `${VITE_API}/api/${VITE_PATH}/products/all`
+    // 獲取隨機產品資料
+    getRandomProducts (products) {
+      const emptyNumData = this.maxNumItem - this.currentDatas.length
 
-      this.axios.get(url)
-        .then(res => {
-          this.allDatas = res.data.products
-          this.getCurrentDatas()
-        })
-        .catch(err => {
-          this.$swal.fire(
-            {
-              icon: 'error',
-              text: err.response.data.message
-            }
-          )
-        })
+      // 先將資料來源打亂順序，再挑選前數個物件
+      const shuffledProducts = this.shuffleArray(products)
+      return shuffledProducts.slice(0, emptyNumData)
+    },
+
+    // 獲取所有將顯示資料
+    async getAllDatas () {
+      await this.getAllProducts()
+
+      if (this.dataCategory === 'artists') {
+        this.currentDatas = JSON.parse(JSON.stringify(this.sortNewest.newestArtist)).slice(0, this.maxNumItem)
+      }
+
+      if (this.dataCategory === 'products') {
+        this.currentDatas = JSON.parse(JSON.stringify(this.sortNewest.newestProduct)).slice(0, this.maxNumItem)
+      }
+
+      if (this.dataCategory === 'recently') {
+        this.currentDatas = this.currentDatas.concat(this.getRandomProducts(this.sortNewest.newestProduct))
+      }
     }
+
   },
   mounted () {
-    // 傳入分類是藝術家或作品，執行獲取產品資料
-    if (this.dataCategory !== 'favorites') {
-      this.getAllDatas()
+    this.isArtistBlock = this.dataCategory === 'artists'
+
+    // 傳入分類是猜你喜歡
+    if (this.dataCategory === 'recently') {
+      const recentlyList = JSON.parse(localStorage.getItem('recentlyList')) || []
+      this.currentDatas = recentlyList
+
+      if (this.currentDatas.length >= this.maxNumItem) {
+        return
+      }
     }
 
-    this.isArtistBlock = this.dataCategory === 'artists'
+    // 傳入分類是藝術家或作品 或 用戶瀏覽紀錄不足最大顯示數量，執行獲取產品資料
+    this.getAllDatas()
+  },
+  computed: {
+    ...mapState(userProductStore, ['sortNewest'])
   },
   components: {
     Swiper,
