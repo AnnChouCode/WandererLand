@@ -9,7 +9,7 @@ export default defineStore('statusStore', {
     // 新增單一訊息
     addMsg (icon = 'bi-info-circle', message = '') {
       this.message = {
-        icon: icon,
+        icon,
         msg: message
       }
 
