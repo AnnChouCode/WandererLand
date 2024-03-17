@@ -4,7 +4,7 @@
     <h2 v-else class="py-4 py-md-7 fw-bold">編輯商品</h2>
     <div>
       <div class="mb-7">
-        <h5 class="mb-3 fw-bold">商品圖片</h5>
+        <h5 class="mb-3 fw-bold has-required">商品圖片</h5>
         <div class="row g-1 mb-3">
           <!-- 封面圖 -->
           <div class="col-6 col-md-2">
@@ -45,9 +45,9 @@
             </div>
           </div>
           <!-- 新增圖片 -->
-          <div class="col-6 col-md-2 p-0 border border-1">
+          <div class="col-6 col-md-2">
             <button @click="openImageModal('inNotCover')"
-              class="d-flex align-items-center justify-content-center w-100 h-100 text-default btn btn-light rounded-0 ratio-1x1"
+              class="d-flex align-items-center justify-content-center w-100 h-100 text-default btn btn-light rounded-0 ratio-1x1 border border-1"
               type="button">
               新增圖片
             </button>
@@ -155,7 +155,7 @@
       </div>
     </div>
   </div>
-
+{{ tempProductInfo }}
   <uploadImageModal ref="uploadImageModal" @submitImgUrl="getImgUrl" :is-Cover="isCover"></uploadImageModal>
 </template>
 
@@ -234,6 +234,11 @@ export default {
     updateProductInfo () {
       let url = `${VITE_API}/api/${VITE_PATH}/admin/product`
       const method = this.isNewProduct ? 'post' : 'put'
+
+      if (!this.tempProductInfo.imageUrl || !this.tempProductInfo.imagesUrl || this.tempProductInfo.imageUrl === '' || !this.tempProductInfo.imagesUrl.length) {
+        this.swalInfoCheckWithBootstrapButtons.fire('圖片欄位為必填')
+        return
+      }
 
       if (!this.isNewProduct) {
         url += `/${this.tempProductInfo.id}`
