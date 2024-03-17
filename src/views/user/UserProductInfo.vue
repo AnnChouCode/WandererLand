@@ -135,6 +135,7 @@
 
 <script>
 import userProductStore from '@/stores/userProductStore.js'
+import favoriteStore from '@/stores/favoriteStore'
 import cartStore from '@/stores/userCartStore.js'
 import { mapActions, mapState } from 'pinia'
 
@@ -178,6 +179,9 @@ export default {
     // 加入購物車
     ...mapActions(cartStore, ['addToCart', 'getCartsList']),
 
+    // 儲存最近瀏覽資料
+    ...mapActions(favoriteStore, ['recentlyViewed']),
+
     // 切換顯示大圖
     changeImage (idx) {
       this.product.currentImage = this.product.imagesStock[idx]
@@ -199,6 +203,9 @@ export default {
           if (resData.imagesUrl) {
             this.product.imagesStock = [resData.imageUrl, ...resData.imagesUrl]
           }
+
+          // 儲存最近瀏覽資料
+          this.recentlyViewed(resData)
 
           return resData.artist
         })
