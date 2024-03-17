@@ -105,7 +105,6 @@ export default {
           this.imgUrl = res.data.imageUrl
         })
         .catch((err) => {
-          console.log(err.response.data.message)
           this.$swal.fire({
             icon: 'error',
             text: err.response

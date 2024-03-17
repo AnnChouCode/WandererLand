@@ -18,7 +18,6 @@ export default defineStore('cartStore', {
   actions: {
     // 加入購物車
     addToCart (id, qty) {
-      console.log('addToCart')
       // 開啟 loading
       const loader = $loading.show()
 
@@ -82,7 +81,6 @@ export default defineStore('cartStore', {
 
     // 更新購物車
     updateCart (data) {
-      console.log('updateCart')
       // 開啟 loading
       const loader = $loading.show()
 
