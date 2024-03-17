@@ -155,7 +155,7 @@
       </div>
     </div>
   </div>
-{{ tempProductInfo }}
+
   <uploadImageModal ref="uploadImageModal" @submitImgUrl="getImgUrl" :is-Cover="isCover"></uploadImageModal>
 </template>
 
