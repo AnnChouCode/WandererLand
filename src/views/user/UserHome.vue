@@ -2,7 +2,8 @@
   <!-- banner -->
   <div class="position-relative banner" v-if="sortArticles.topArticle[0]">
     <img :src="sortArticles.topArticle[0].imageUrl" :alt="sortArticles.topArticle[0].title"
-      class="h-100 w-100 overflow-hidden object-fit-cover">
+      class="position-fixed z-n1 h-100 w-100 overflow-hidden object-fit-cover">
+    <!-- <div class="w-100 h-100" style="background-attachment: fixed;"></div> -->
     <div class="position-absolute z-1 top-0 bg-default opacity-50 w-100 h-100"></div>
     <div class="position-absolute z-2 top-50 start-50 translate-middle text-center banner-title w-80 w-sm-50">
       <h2 class="pb-5 pb-md-7 text-white title-shadow fs-2 fs-md-1 title-letter-spacing title-letter-word-wrap">{{
@@ -11,120 +12,133 @@
         class="py-2 py-md-3 px-6 px-md-9 btn btn-light rounded-0 fw-bold">前往頁面</router-link>
     </div>
   </div>
-  <div class="container">
-    <!-- 探索新作品 -->
-    <swiperProductComponent dataCategory="products"></swiperProductComponent>
+  <div class="bg-white">
+    <div class="container">
+      <!-- 探索新作品 -->
+      <swiperProductComponent dataCategory="products"></swiperProductComponent>
 
-    <!-- 認識新藝術家 -->
-    <swiperProductComponent dataCategory="artists"></swiperProductComponent>
+      <!-- 認識新藝術家 -->
+      <swiperProductComponent dataCategory="artists"></swiperProductComponent>
 
-    <!-- 最新消息 -->
-    <div class="py-7 py-md-9" v-if="sortArticles.newestArticles[0]">
-      <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
-        <h2 class="fs-2 fs-md-1">最新消息</h2>
-        <router-link to="/artists"
-          class="text-default border-bottom border-default fw-bold fs-info fs-md-6">瀏覽更多</router-link>
-      </div>
-      <div class="row g-3 g-lg-6 home-article">
-        <!-- article 1 -->
-        <div class="col-12 col-lg-6 home-article-img">
-          <router-link :to="`/articleInfo/${sortArticles.newestArticles[0].id}`">
-            <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
-              <div class="w-100 h-100 home-article-mask"></div>
-              <img :src="sortArticles.newestArticles[0].imageUrl" :alt="sortArticles.newestArticles[0].title"
-                class="position-absolute z-n1 object-fit-cover w-100 h-100">
-              <div
-                class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
-                <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[0].title }}</h3>
-                <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[0].description }}</p>
+      <!-- 最新消息 -->
+      <div class="py-7 py-md-9" v-if="sortArticles.newestArticles[0]">
+        <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
+          <h2 class="fs-2 fs-md-1">最新消息</h2>
+          <router-link to="/artists"
+            class="text-default border-bottom border-default fw-bold fs-info fs-md-6">瀏覽更多</router-link>
+        </div>
+        <div class="row g-3 g-lg-6 home-article">
+          <!-- article 1 -->
+          <div class="col-12 col-lg-6 home-article-img">
+            <router-link :to="`/articleInfo/${sortArticles.newestArticles[0].id}`">
+              <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
+                <div class="position-absolute z-1 w-100 h-100 home-article-mask"></div>
+                <img :src="sortArticles.newestArticles[0].imageUrl" :alt="sortArticles.newestArticles[0].title"
+                  class="object-fit-cover w-100 h-100">
+                <div
+                  class="position-absolute z-2 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
+                  <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[0].title }}</h3>
+                  <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[0].description }}</p>
+                </div>
               </div>
-            </div>
-            <div class="d-block d-xl-none py-3">
-              <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{ sortArticles.newestArticles[0].title }}</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[0].description }}
-              </p>
-            </div>
-          </router-link>
-        </div>
-        <!-- article 2 -->
-        <div class="col-6 d-flex flex-column home-article-img">
-          <router-link :to="`/articleInfo/${sortArticles.newestArticles[1].id}`" class="d-flex flex-column flex-grow-1">
-            <div class="position-relative d-flex justify-content-center align-items-center flex-grow-1 overflow-hidden">
-              <div class="w-100 h-100 home-article-mask"></div>
-              <img :src="sortArticles.newestArticles[1].imageUrl" :alt="sortArticles.newestArticles[1].title"
-                class="position-absolute z-n1 object-fit-cover w-100 h-100">
-              <div
-                class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
-                <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[1].title }}</h3>
-                <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[1].description }}</p>
+              <div class="d-block d-xl-none py-3">
+                <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{
+    sortArticles.newestArticles[0].title }}</h3>
+                <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[0].description
+                  }}
+                </p>
               </div>
-            </div>
-            <div class="d-block d-xl-none py-3">
-              <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{ sortArticles.newestArticles[1].title }}</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[1].description }}
-              </p>
-            </div>
-          </router-link>
-        </div>
-        <!-- article 3 -->
-        <div class="col-6 col-lg-4 home-article-img">
-          <router-link :to="`/articleInfo/${sortArticles.newestArticles[2].id}`">
-            <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
-              <div class="w-100 h-100 home-article-mask"></div>
-              <img :src="sortArticles.newestArticles[2].imageUrl" :alt="sortArticles.newestArticles[2].title"
-                class="position-absolute z-n1 object-fit-cover w-100 h-100">
+            </router-link>
+          </div>
+          <!-- article 2 -->
+          <div class="col-6 d-flex flex-column home-article-img">
+            <router-link :to="`/articleInfo/${sortArticles.newestArticles[1].id}`"
+              class="d-flex flex-column flex-grow-1">
               <div
-                class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
-                <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[2].title }}</h3>
-                <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[2].description }}</p>
+                class="position-relative d-flex justify-content-center align-items-center flex-grow-1 overflow-hidden">
+                <div class="position-absolute z-1 w-100 h-100 home-article-mask"></div>
+                <img :src="sortArticles.newestArticles[1].imageUrl" :alt="sortArticles.newestArticles[1].title"
+                  class="object-fit-cover w-100 h-100">
+                <div
+                  class="position-absolute z-2 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
+                  <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[1].title }}</h3>
+                  <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[1].description }}</p>
+                </div>
               </div>
-            </div>
-            <div class="d-block d-xl-none py-3">
-              <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{ sortArticles.newestArticles[2].title }}</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[2].description }}
-              </p>
-            </div>
-          </router-link>
-        </div>
-        <!-- article 4 -->
-        <div class="col-6 col-lg-4 d-none d-lg-block home-article-img">
-          <router-link :to="`/articleInfo/${sortArticles.newestArticles[3].id}`">
-            <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
-            <div class="w-100 h-100 home-article-mask"></div>
-            <img :src="sortArticles.newestArticles[3].imageUrl" alt="art"
-              class="position-absolute z-n1 object-fit-cover w-100 h-100">
-            <div
-              class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
-              <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[3].title }}</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[3].description }}</p>
-            </div>
+              <div class="d-block d-xl-none py-3">
+                <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{
+    sortArticles.newestArticles[1].title }}</h3>
+                <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[1].description
+                  }}
+                </p>
+              </div>
+            </router-link>
           </div>
-          <div class="d-block d-xl-none py-3">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{ sortArticles.newestArticles[3].title }}</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[3].description }}
-            </p>
+          <!-- article 3 -->
+          <div class="col-6 col-lg-4 home-article-img">
+            <router-link :to="`/articleInfo/${sortArticles.newestArticles[2].id}`">
+              <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
+                <div class="position-absolute z-1 w-100 h-100 home-article-mask"></div>
+                <img :src="sortArticles.newestArticles[2].imageUrl" :alt="sortArticles.newestArticles[2].title"
+                  class="object-fit-cover w-100 h-100">
+                <div
+                  class="position-absolute z-2 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
+                  <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[2].title }}</h3>
+                  <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[2].description }}</p>
+                </div>
+              </div>
+              <div class="d-block d-xl-none py-3">
+                <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{
+    sortArticles.newestArticles[2].title }}</h3>
+                <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[2].description
+                  }}
+                </p>
+              </div>
+            </router-link>
           </div>
-          </router-link>
-        </div>
-        <!-- article 5 -->
-        <div class="col-6 col-lg-4 d-none d-lg-block home-article-img">
-          <router-link :to="`/articleInfo/${sortArticles.newestArticles[4].id}`">
-            <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
-            <div class="w-100 h-100 home-article-mask"></div>
-            <img :src="sortArticles.newestArticles[4].imageUrl" :alt="sortArticles.newestArticles[4].title"
-              class="position-absolute z-n1 object-fit-cover w-100 h-100">
-            <div
-              class="position-absolute z-1 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
-              <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[4].title }}</h3>
-              <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[4].description }}</p>
-            </div>
+          <!-- article 4 -->
+          <div class="col-6 col-lg-4 d-none d-lg-block home-article-img">
+            <router-link :to="`/articleInfo/${sortArticles.newestArticles[3].id}`">
+              <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
+                <div class="position-absolute z-1 w-100 h-100 home-article-mask"></div>
+                <img :src="sortArticles.newestArticles[3].imageUrl" alt="art" class="object-fit-cover w-100 h-100">
+                <div
+                  class="position-absolute z-2 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
+                  <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[3].title }}</h3>
+                  <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[3].description }}</p>
+                </div>
+              </div>
+              <div class="d-block d-xl-none py-3">
+                <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{
+    sortArticles.newestArticles[3].title }}</h3>
+                <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[3].description
+                  }}
+                </p>
+              </div>
+            </router-link>
           </div>
-          <div class="d-block d-xl-none py-3">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{ sortArticles.newestArticles[4].title }}</h3>
-            <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[4].description }}
-            </p>
+          <!-- article 5 -->
+          <div class="col-6 col-lg-4 d-none d-lg-block home-article-img">
+            <router-link :to="`/articleInfo/${sortArticles.newestArticles[4].id}`">
+              <div class="position-relative d-flex justify-content-center align-items-center overflow-hidden">
+                <div class="position-absolute z-1 w-100 h-100 home-article-mask"></div>
+                <img :src="sortArticles.newestArticles[4].imageUrl" :alt="sortArticles.newestArticles[4].title"
+                  class="object-fit-cover w-100 h-100">
+                <div
+                  class="position-absolute z-2 start-0 bottom-0 d-none d-xl-block px-7 py-8 text-white w-100 title-shadow">
+                  <h3 class="mb-4 fs-info fs-md-5 fw-bold">{{ sortArticles.newestArticles[4].title }}</h3>
+                  <p class="fs-info fs-md-6 doubleline-ellipsis">{{ sortArticles.newestArticles[4].description }}</p>
+                </div>
+              </div>
+              <div class="d-block d-xl-none py-3">
+                <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{
+    sortArticles.newestArticles[4].title }}</h3>
+                <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[4].description
+                  }}
+                </p>
+              </div>
+            </router-link>
           </div>
-          </router-link>
         </div>
       </div>
     </div>
@@ -133,140 +147,84 @@
   <!-- 優惠券 -->
   <couponComponent></couponComponent>
 
-  <div class="container">
-    <!-- 猜你喜歡 -->
-    <swiperProductComponent dataCategory="recently"></swiperProductComponent>
-    <!-- <div class="py-7 py-md-9">
-      <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
-        <h2 class="fs-2 fs-md-1">猜你喜歡</h2>
-        <router-link to="/arts"
-          class="text-default border-bottom border-default fw-bold fs-info fs-md-6">瀏覽更多</router-link>
-      </div>
-      <div class="row g-3 g-md-8">
-        <div class="col-6 col-md-4">
-          <div
-            class="position-relative d-flex justify-content-center align-items-center ratio-1x1 overflow-hidden product-img">
-            <img src="../../../public/images/攝影/Ian-Dooley-lips (1) _M1x1.jpg" alt="art"
-              class="object-fit-contain w-100 h-100 product-img-up">
-            <img src="../../../public/images/攝影/Ian-Dooley-lips (1).jpg" alt="art"
-              class="position-absolute z-n1 object-fit-contain w-100 h-100 product-img-down">
-          </div>
-          <div class="py-3 px-0 px-md-4">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">lips</h3>
-            <div class="d-flex justify-content-between align-items-center">
-              <p class="fs-info fs-md-6 text-info">NT$ 10,000</p>
-              <button type="button" class="btn p-0">
-                <i class="bi bi-heart"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-md-4">
-          <div
-            class="position-relative d-flex justify-content-center align-items-center ratio-1x1 overflow-hidden product-img">
-            <img src="../../../public/images/炭筆/Hannahpun-untitled (2)_M4x6.jpg" alt="art"
-              class="object-fit-contain w-100 h-100 product-img-up">
-            <img src="../../../public/images/炭筆/Hannahpun-untitled (2).jpg" alt="art"
-              class="position-absolute z-n1 object-fit-contain w-100 h-100 product-img-down">
-          </div>
-          <div class="py-3 px-0 px-md-4">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">untitled</h3>
-            <div class="d-flex justify-content-between align-items-center">
-              <p class="fs-info fs-md-6 text-info">NT$ 5,000</p>
-              <button type="button" class="btn p-0">
-                <i class="bi bi-heart"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="d-none d-md-block col-4">
-          <div
-            class="position-relative d-flex justify-content-center align-items-center ratio-1x1 overflow-hidden product-img">
-            <img src="../../../public/images/水彩/Caspar-David-Golden_M4x6.jpg" alt="art"
-              class="object-fit-contain w-100 h-100 product-img-up">
-            <img src="../../../public/images/水彩/Caspar-David-Golden.jpg" alt="art"
-              class="position-absolute z-n1 object-fit-contain w-100 h-100 product-img-down">
-          </div>
-          <div class="py-3 px-0 px-md-4">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold">Golden</h3>
-            <div class="d-flex justify-content-between align-items-center">
-              <p class="fs-info fs-md-6 text-info">NT$ 6,500</p>
-              <button type="button" class="btn p-0">
-                <i class="bi bi-heart"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
+  <div class="bg-white">
+    <div class="container">
+      <!-- 猜你喜歡 -->
+      <swiperProductComponent dataCategory="recently"></swiperProductComponent>
 
-    <!-- 與我們聯絡 -->
-    <div class="py-7 py-md-9">
-      <h2 class="mb-7 mb-md-8 fs-2 fs-md-1">與我們聯絡</h2>
+      <!-- 與我們聯絡 -->
+      <div class="py-7 py-md-9">
+        <h2 class="mb-7 mb-md-8 fs-2 fs-md-1">與我們聯絡</h2>
 
-      <div class="row d-flex flex-column flex-md-row g-6 justify-content-between">
-        <div class="col col-md-5">
-          <div class="mb-4 mb-md-6">
-            <p class="mb-2 fs-6 fs-md-5 fw-bold">合作說明</p>
-            <p>謝謝您對 Wanderdr Land 的認可與提攜，我們歡迎各種合作，期盼與藝術激發更多靈感與火花。誠摯邀請您來信提案，我們將有專門窗口與您聯繫。</p>
+        <div class="row d-flex flex-column flex-md-row g-6 justify-content-between">
+          <div class="col col-md-5">
+            <div class="mb-4 mb-md-6">
+              <p class="mb-2 fs-6 fs-md-5 fw-bold">合作說明</p>
+              <p>謝謝您對 Wanderdr Land 的認可與提攜，我們歡迎各種合作，期盼與藝術激發更多靈感與火花。誠摯邀請您來信提案，我們將有專門窗口與您聯繫。</p>
+            </div>
+            <div class="mb-4">
+              <p class="mb-2 fs-info fs-md-5 fw-bold">合作單位</p>
+              <p>請附上您的提案網址及單位官網，並於來信標題寫入單位名稱。</p>
+            </div>
+            <div class="mb-4">
+              <p class="mb-2 fs-info fs-md-5 fw-bold">空間</p>
+              <p>請附上您的空間官網，並於來信標題寫入空間名稱。</p>
+            </div>
+            <div>
+              <p class="mb-2 fs-info fs-md-5 fw-bold">藝術家</p>
+              <p>請附上您的 CV 或是作品集網址，並於來信標題寫入藝術家名稱。</p>
+            </div>
           </div>
-          <div class="mb-4">
-            <p class="mb-2 fs-info fs-md-5 fw-bold">合作單位</p>
-            <p>請附上您的提案網址及單位官網，並於來信標題寫入單位名稱。</p>
+          <div class="col col-md-6">
+            <v-form v-slot="{ errors }" class="d-flex flex-column align-items-end"  @submit="sendEmail">
+              <!-- 來信類別 -->
+              <div class="form-floating mb-4 mb-md-7 w-100">
+                <select class="form-select  border-info rounded-0" id="floatingSelect"
+                  aria-label="Floating label select" v-model="tempMessage.type">
+                  <option selected>請選擇類別</option>
+                  <option value="異業合作">異業合作</option>
+                  <option value="空間合作">空間合作</option>
+                  <option value="藝術家合作">藝術家合作</option>
+                </select>
+                <label for="floatingSelect">來信類別</label>
+              </div>
+              <!-- 姓名 -->
+              <div class="form-floating mb-4 mb-md-7 w-100">
+                <v-field id="name" name="姓名" type="text" class="form-control border-info rounded-0"
+                  :class="{ 'is-invalid': errors['姓名'] }" placeholder="請輸入您的姓名" rules="required"
+                  v-model="tempMessage.name"></v-field>
+                <error-message name="姓名" class="invalid-feedback"></error-message>
+                <label for="name">姓名</label>
+              </div>
+              <!-- 標題 -->
+              <div class="form-floating mb-4 mb-md-7 w-100">
+                <v-field id="subject" name="標題" type="text" class="form-control border-info rounded-0"
+                  :class="{ 'is-invalid': errors['標題'] }" placeholder="請輸入您的信件標題" rules="required"
+                  v-model="message.subject"></v-field>
+                <error-message name="標題" class="invalid-feedback"></error-message>
+                <label for="subject">信件標題</label>
+              </div>
+              <!-- Email -->
+              <div class="form-floating mb-4 mb-md-7 w-100">
+                <v-field id="email" name="Email" type="email" class="form-control border-info rounded-0"
+                  :class="{ 'is-invalid': errors['Email'] }" placeholder="請輸入您的 Email" rules="email|required"
+                  v-model="message.email"></v-field>
+                <error-message name="Email" class="invalid-feedback"></error-message>
+                <label for="email">Email</label>
+              </div>
+              <div class="form-floating mb-4 mb-md-7 w-100">
+                <v-field id="body" name="訊息" class="form-control border-info rounded-0" as="textarea"
+                  placeholder="請輸入您的訊息" :class="{ 'is-invalid': errors['訊息'] }" rules="required" style="height:273px"
+                  v-model="message.body"></v-field>
+                <error-message name="訊息" class="invalid-feedback"></error-message>
+                <label for="body">留言</label>
+              </div>
+              <button type="submit" class="py-2 py-md-3 px-6 px-md-9 btn btn-default fw-bold rounded-0 w-100 w-md-auto">
+    送出訊息
+</button>
+
+            </v-form>
           </div>
-          <div class="mb-4">
-            <p class="mb-2 fs-info fs-md-5 fw-bold">空間</p>
-            <p>請附上您的空間官網，並於來信標題寫入空間名稱。</p>
-          </div>
-          <div>
-            <p class="mb-2 fs-info fs-md-5 fw-bold">藝術家</p>
-            <p>請附上您的 CV 或是作品集網址，並於來信標題寫入藝術家名稱。</p>
-          </div>
-        </div>
-        <div class="col col-md-6">
-          <v-form v-slot="{ errors }" class="d-flex flex-column align-items-end">
-            <!-- 來信類別 -->
-            <div class="form-floating mb-4 mb-md-7 w-100">
-              <select class="form-select  border-info rounded-0" id="floatingSelect" aria-label="Floating label select" v-model="messageType">
-                <option selected>請選擇類別</option>
-                <option value="異業合作">異業合作</option>
-                <option value="空間合作">空間合作</option>
-                <option value="藝術家合作">藝術家合作</option>
-              </select>
-              <label for="floatingSelect">來信類別</label>
-            </div>
-            <!-- 姓名 -->
-            <div class="form-floating mb-4 mb-md-7 w-100">
-              <v-field id="name" name="姓名" type="text" class="form-control border-info rounded-0"
-                :class="{ 'is-invalid': errors['姓名'] }" placeholder="請輸入您的姓名" rules="required"  v-model="messageName"></v-field>
-              <error-message name="姓名" class="invalid-feedback"></error-message>
-              <label for="name">姓名</label>
-            </div>
-            <!-- 標題 -->
-            <div class="form-floating mb-4 mb-md-7 w-100">
-              <v-field id="subject" name="標題" type="text" class="form-control border-info rounded-0"
-                :class="{ 'is-invalid': errors['標題'] }" placeholder="請輸入您的信件標題" rules="required" v-model="message.subject"></v-field>
-              <error-message name="標題" class="invalid-feedback"></error-message>
-              <label for="subject">信件標題</label>
-            </div>
-            <!-- Email -->
-            <div class="form-floating mb-4 mb-md-7 w-100">
-              <v-field id="email" name="Email" type="email" class="form-control border-info rounded-0"
-                :class="{ 'is-invalid': errors['Email'] }" placeholder="請輸入您的 Email" rules="email|required"  v-model="message.email"></v-field>
-              <error-message name="Email" class="invalid-feedback"></error-message>
-              <label for="email">Email</label>
-            </div>
-            <div class="form-floating mb-4 mb-md-7 w-100">
-              <v-field id="body" name="訊息" class="form-control border-info rounded-0" as="textarea"
-                placeholder="請輸入您的訊息" :class="{ 'is-invalid': errors['訊息'] }" rules="required"
-                style="height:273px" v-model="message.body"></v-field>
-              <error-message name="訊息" class="invalid-feedback"></error-message>
-              <label for="body">留言</label>
-            </div>
-            <button class="py-2 py-md-3 px-6 px-md-9 btn btn-default fw-bold rounded-0 w-100 w-md-auto" type="submit">
-              送出訊息
-            </button>
-          </v-form>
         </div>
       </div>
     </div>
@@ -283,8 +241,10 @@ import couponComponent from '@/components/couponComponent.vue'
 export default {
   data () {
     return {
-      messageType: '',
-      messageName: '',
+      tempMessage: {
+        type: '',
+        Name: ''
+      },
       message: {
         subject: '',
         email: '',
@@ -293,17 +253,25 @@ export default {
     }
   },
   watch: {
-    messageType () {
-      // this.message.subject = `【${this.messageType}_${this.messageName}】${}`
-    },
-    messageName () {
-      this.message.subject = `【${this.messageType}_${this.messageName}】`
-      console.log(this.message.subject)
+    tempMessage: {
+      handler () {
+        const typePart = this.tempMessage.type !== undefined ? this.tempMessage.type : ''
+        const namePart = this.tempMessage.name !== undefined ? `_${this.tempMessage.name}` : ''
+        this.message.subject = `【${typePart}${namePart}】`
+      },
+      deep: true
     }
   },
   methods: {
     // 獲得購物車資料
-    ...mapActions(articleStore, ['getArticlesList'])
+    ...mapActions(articleStore, ['getArticlesList']),
+
+    sendEmail () {
+      const isCompletedForm = Object.values(this.message).every(value => value !== '')
+      if (isCompletedForm) {
+        window.open(`mailto:wandererland@gmail.com?cc=${this.message.email}&subject=${this.message.subject}&body=${this.message.body}`, '_blank')
+      }
+    }
   },
   components: {
     swiperProductComponent,
