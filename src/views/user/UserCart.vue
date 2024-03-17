@@ -47,12 +47,13 @@
                 aria-label=".form-select-sm example" style="width:65px;" v-model.number="item.qty"
                 @change="updateCart(item)">
                 <template v-if="item.product.quantity">
-                  <option v-for="num in item.product.quantity" :key="num" :selected="num === item.qty" :value="num">{{ num
-                  }}</option>
+                  <option v-for="num in item.product.quantity" :key="num" :selected="num === item.qty" :value="num">{{
+      num
+    }}</option>
                 </template>
                 <template v-else>
                   <option v-for="num in 99" :key="num" :selected="num === item.qty" :value="num">{{ num
-                  }}</option>
+                    }}</option>
                 </template>
               </select>
             </td>
@@ -100,11 +101,34 @@
       </div>
     </div>
   </div>
+
+  <div class="modal show" tabindex="-1" ref="couponModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="container modal-content rounded-0">
+        <div class="row flex-column flex-md-row">
+          <div class="d-none d-md-block col col-md-6 px-0">
+            <img src="../../../public/images/present.jpg" alt="coupon" class="object-fit-cover w-100 h-100">
+          </div>
+          <div class="col col-md-6 d-flex flex-column p-4">
+            <button type="button" class="align-self-end btn-close" aria-label="Close" @click="hideCouponModal"></button>
+            <div class="mx-auto mt-4 mb-5 mt-md-8 mb-md-9">
+              <h3 class="mb-5 mb-md-8 fs-5 fs-md-3 title-letter-spacing lh-base">為你的第一筆訂單，<span class="d-block">獲取 <span
+                    class="fw-bold">97</span> 折折扣</span></h3>
+              <button type="button" class="py-2 py-md-3 px-6 px-md-9 btn btn-default fw-bold rounded-0 w-100"
+                @click="copyCouponCode('present97')">點擊複製優惠碼</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import cartStore from '@/stores/userCartStore.js'
 import { mapActions, mapState } from 'pinia'
+
+import Modal from 'bootstrap/js/dist/modal'
 
 const { VITE_API, VITE_PATH } = import.meta.env
 
@@ -116,12 +140,14 @@ export default {
       // 顯示 toast
       toastState: true,
       // 動作成功提示
-      doAction: null
+      doAction: null,
+      // 優惠券 modal
+      modal: null
     }
   },
   methods: {
     // 獲得購物車資料
-    ...mapActions(cartStore, ['getCartsList', 'updateCart', 'deleteCartItem', 'checkCoupon']),
+    ...mapActions(cartStore, ['getCartsList', 'updateCart', 'deleteCartItem', 'checkCoupon', 'copyCouponCode']),
 
     // 刪除全部購物車
     clearCartsList () {
@@ -171,10 +197,26 @@ export default {
     // 前往訂單資料頁
     checkOrder () {
       this.$router.push('/order/checkform')
+    },
+
+    hideCouponModal () {
+      sessionStorage.setItem('shownCouponModal', true)
+      this.modal.hide()
     }
   },
   mounted () {
     this.getCartsList()
+
+    const showCoupon = sessionStorage.getItem('shownCouponModal')
+
+    if (!showCoupon) {
+      // 優惠券 modal
+      this.modal = new Modal(this.$refs.couponModal, {
+        keyboard: false,
+        backdrop: 'static'
+      })
+      this.modal.show()
+    }
 
     // 客製化 question alert 按鈕
     this.swalQuestionWithBootstrapButtons = this.$swal.mixin({
