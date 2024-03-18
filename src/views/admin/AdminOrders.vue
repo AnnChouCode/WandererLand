@@ -13,8 +13,7 @@
             <th>訂單編號</th>
             <th class="d-none d-md-table-cell text-center">訂單時間</th>
             <th class="d-none d-lg-table-cell text-center">客戶姓名</th>
-            <th class="text-nowrap">付款<span class="d-block d-sm-inline">狀態</span></th>
-            <th class="text-nowrap">處理<span class="d-block d-sm-inline">狀態</span></th>
+            <th class="text-nowrap">訂單<span class="d-block d-sm-inline">狀態</span></th>
             <th class="d-none d-lg-table-cell text-center">總金額</th>
             <th></th>
           </tr>
@@ -25,12 +24,9 @@
             <td class="d-none d-md-table-cell text-center">{{ new Date(order.create_at * 1000).toLocaleDateString() }}</td>
             <td class="d-none d-lg-table-cell text-center">{{ order.user.name }}</td>
             <td>
-              <span v-if="order.is_paid" class="text-danger text-nowrap">已付款</span>
-              <span v-else class="text-nowrap">未付款</span>
-            </td>
-            <td>
-              <span v-if="order.is_shipping" class="text-nowrap">已出貨</span>
-              <span v-else class="text-danger text-nowrap">未出貨</span>
+              <span v-if="!order.is_paid" class="text-warningh ">未付款</span>
+              <span v-else-if="order.is_paid && !order.is_shipping" class="text-danger">待出貨</span>
+              <span v-else class="text-info">已完成</span>
             </td>
             <td class="d-none d-lg-table-cell text-end">NT$ {{ order.total.toLocaleString() }}</td>
             <td>
