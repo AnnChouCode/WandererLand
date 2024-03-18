@@ -139,7 +139,7 @@
             <label for="description" class="form-label fw-bold has-required">簡述</label>
             <v-field id="description" name="description" class="form-control" v-model="tempArticleInfo.description"
               as="textarea" placeholder="請填寫 100 字內簡述" :class="{ 'is-invalid': errors['description'] }"
-              rules="required|max:100"></v-field>
+              rules="required|max:100" style="min-height:100px;"></v-field>
             <error-message name="description" class="invalid-feedback"></error-message>
           </div>
           <div class="editor-block mb-5">
@@ -177,15 +177,15 @@
                   <div class="col-6 col-md-3" v-for="product in tempArticleInfo.relatedProduct" :key="product"
                     style="min-height:48px;">
                     <div class="border rounded-2 overflow-hidden h-100">
-                      <div class="row g-3">
+                      <div class="row g-1 g-md-3">
                         <div class="col-4">
                           <div :style="`background-image:url(${product.imageUrl})`"
-                            class="h-100 bg-img-cover bg-img-center bg-img-norepeat ratio-1x1"
+                            class="w-100 h-100 bg-img-cover bg-img-center bg-img-norepeat ratio-1x1"
                             style="min-height: 48px;">
                           </div>
                         </div>
-                        <div class="col-6 d-flex align-items-center">
-                          {{ product.title }}
+                        <div class="col-6 d-flex align-items-center fs-info fs-md-6">
+                          <span class="doubleline-ellipsis">{{ product.title }}</span>
                         </div>
                         <div class="col-2 d-flex justify-content-center align-items-center">
                           <button type="button" class="btn-close" aria-label="Close"
