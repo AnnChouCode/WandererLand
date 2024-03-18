@@ -18,11 +18,22 @@
                 <img :src="img" alt="news" class="object-fit-contain w-100 h-100">
               </div>
             </SwiperSlide>
-            <div class="z-1 swiper-button-next translate-middle-y">
+            <!-- <div class="z-1 swiper-button-next translate-middle-y">
               <i class="bi bi-arrow-right-circle text-warning fs-1"></i>
             </div>
             <div class="z-1 swiper-button-prev translate-middle-y">
               <i class="bi bi-arrow-left-circle text-warning fs-1"></i>
+            </div> -->
+            <!-- 左右 navigation -->
+            <div
+              class="position-relative position-absolute top-50 end-0 z-1 translate-middle-y navigate-next rounded-circle overflow-hidden navigation-next">
+              <div class="swiper-button-next translate-middle-y"></div>
+              <div class="navigation-bg"></div>
+            </div>
+            <div
+              class="position-relative position-absolute top-50 start-0 z-1 translate-middle-y rounded-circle overflow-hidden navigation-prev">
+              <div class="swiper-button-prev translate-middle-y"></div>
+              <div class="navigation-bg"></div>
             </div>
           </Swiper>
         </div>
@@ -39,8 +50,8 @@
         <div v-html="articleContent" class="mb-7 mb-md-8">
         </div>
         <div class="d-flex gap-1 mb-0 flex-wrap">
-          <button type="button" class="btn px-3 py-1 bg-light rounded-pill fs-info text-info" v-for="(tag, idx) in article.tag"
-            :key="idx" @click="toRelatedTag(tag)"> {{ tag }} </button>
+          <button type="button" class="btn px-3 py-1 bg-light rounded-pill fs-info text-info"
+            v-for="(tag, idx) in article.tag" :key="idx" @click="toRelatedTag(tag)"> {{ tag }} </button>
         </div>
       </div>
     </div>
@@ -187,29 +198,73 @@ export default {
 
   /*Swiper 左右箭頭*/
   /* 右 */
-  .swiper-button-next {
+  .navigation-next {
     display: none;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-right-circle' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z'/%3E%3C/svg%3E") no-repeat center;
-    background-size: 40px 40px;
-    z-index: 11;
-    right: 0;
-    text-indent: 150%;
-    white-space: nowrap;
-    overflow: hidden;
     width: 40px;
     height: 40px;
 
     @media (min-width: 768px) {
       display: flex;
     }
+
+    .navigation-bg {
+      width: 0%;
+      height: 100%;
+      transition: width 0.3s ease;
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    &:hover {
+      .navigation-bg {
+        width: 100%;
+      }
+    }
+  }
+
+  .swiper-button-next {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-right-circle' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z'/%3E%3C/svg%3E") no-repeat center;
+    background-size: 40px 40px;
+    z-index: 11;
+    top: 105%;
+    right: 0;
+    text-indent: 150%;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
   }
 
   /* 左 */
+  .navigation-prev {
+    display: none;
+    width: 40px;
+    height: 40px;
+
+    @media (min-width: 768px) {
+      display: flex;
+    }
+
+    .navigation-bg {
+      width: 0%;
+      height: 100%;
+      transition: width 0.3s ease;
+      background-color: rgba(255, 255, 255, 0.7);
+      position: absolute;
+      right: 0;
+    }
+
+    &:hover {
+      .navigation-bg {
+        width: 100%;
+      }
+    }
+  }
+
   .swiper-button-prev {
     position: absolute;
     z-index: 1;
+    top: 105%;
     left: 0;
-    display: none;
     background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-left-circle' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z'/%3E%3C/svg%3E") no-repeat center;
     background-size: 40px 40px;
     text-indent: 150%;
@@ -217,10 +272,6 @@ export default {
     overflow: hidden;
     width: 40px;
     height: 40px;
-
-    @media (min-width: 768px) {
-      display: flex;
-    }
   }
 }
 </style>
