@@ -114,7 +114,7 @@
             <div class="mx-auto mt-4 mb-5 mt-md-8 mb-md-9">
               <h3 class="mb-5 mb-md-8 fs-5 fs-md-3 title-letter-spacing lh-base">為你的第一筆訂單，<span class="d-block">獲取 <span
                     class="fw-bold">97</span> 折折扣</span></h3>
-              <button type="button" class="py-2 py-md-3 px-6 px-md-9 btn btn-default fw-bold rounded-0 w-100"
+              <button type="button" class="py-2 py-md-3 px-6 px-lg-9 btn btn-default fw-bold rounded-0 w-100 text-nowrap"
                 @click="copyCouponCode('present97')">點擊複製優惠碼</button>
             </div>
           </div>
