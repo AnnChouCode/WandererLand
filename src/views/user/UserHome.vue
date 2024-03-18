@@ -176,16 +176,17 @@
             </div>
           </div>
           <div class="col col-md-6">
-            <v-form v-slot="{ errors }" class="d-flex flex-column align-items-end"  @submit="sendEmail">
+            <v-form v-slot="{ errors }" class="d-flex flex-column align-items-end"  @submit="sendEmail" ref="cooperationForm">
               <!-- 來信類別 -->
               <div class="form-floating mb-4 mb-md-7 w-100">
-                <select class="form-select  border-info rounded-0" id="floatingSelect"
-                  aria-label="Floating label select" v-model="tempMessage.type">
+                <v-field class="form-select  border-info rounded-0" :class="{ 'is-invalid': errors['類別'] }" id="floatingSelect"
+                  aria-label="Floating label select" v-model="tempMessage.type" as="select" name="類別" rules="required">
                   <option selected>請選擇類別</option>
                   <option value="異業合作">異業合作</option>
                   <option value="空間合作">空間合作</option>
                   <option value="藝術家合作">藝術家合作</option>
-                </select>
+                </v-field>
+                <error-message name="類別" class="invalid-feedback"></error-message>
                 <label for="floatingSelect">來信類別</label>
               </div>
               <!-- 姓名 -->
@@ -204,14 +205,7 @@
                 <error-message name="標題" class="invalid-feedback"></error-message>
                 <label for="subject">信件標題</label>
               </div>
-              <!-- Email -->
-              <div class="form-floating mb-4 mb-md-7 w-100">
-                <v-field id="email" name="Email" type="email" class="form-control border-info rounded-0"
-                  :class="{ 'is-invalid': errors['Email'] }" placeholder="請輸入您的 Email" rules="email|required"
-                  v-model="message.email"></v-field>
-                <error-message name="Email" class="invalid-feedback"></error-message>
-                <label for="email">Email</label>
-              </div>
+              <!-- 訊息 -->
               <div class="form-floating mb-4 mb-md-7 w-100">
                 <v-field id="body" name="訊息" class="form-control border-info rounded-0" as="textarea"
                   placeholder="請輸入您的訊息" :class="{ 'is-invalid': errors['訊息'] }" rules="required" style="height:273px"
@@ -247,7 +241,6 @@ export default {
       },
       message: {
         subject: '',
-        email: '',
         body: ''
       }
     }
@@ -270,6 +263,7 @@ export default {
       const isCompletedForm = Object.values(this.message).every(value => value !== '')
       if (isCompletedForm) {
         window.open(`mailto:wandererland@gmail.com?cc=${this.message.email}&subject=${this.message.subject}&body=${this.message.body}`, '_blank')
+        this.$refs.cooperationForm.resetForm()
       }
     }
   },
