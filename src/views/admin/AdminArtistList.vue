@@ -20,7 +20,7 @@
         <tbody>
           <tr v-for="artist in artistsList" :key="artist.id">
             <td>
-              <div class="bg-img-center bg-img-contain bg-img-norepeat ratio-1x1" style="width: 100px;"
+              <div class="bg-img-center bg-img-contain bg-img-norepeat ratio-1x1"  style="min-width:50px;max-width: 100px;"
                 :style="{ backgroundImage: `url(${artist.imageUrl})` }"></div>
             </td>
             <td>
