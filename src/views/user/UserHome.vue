@@ -176,11 +176,13 @@
             </div>
           </div>
           <div class="col col-md-6">
-            <v-form v-slot="{ errors }" class="d-flex flex-column align-items-end"  @submit="sendEmail" ref="cooperationForm">
+            <v-form v-slot="{ errors }" class="d-flex flex-column align-items-end" @submit="sendEmail"
+              ref="cooperationForm">
               <!-- 來信類別 -->
               <div class="form-floating mb-4 mb-md-7 w-100">
-                <v-field class="form-select  border-info rounded-0" :class="{ 'is-invalid': errors['類別'] }" id="floatingSelect"
-                  aria-label="Floating label select" v-model="tempMessage.type" as="select" name="類別" rules="required">
+                <v-field class="form-select  border-info rounded-0" :class="{ 'is-invalid': errors['類別'] }"
+                  id="floatingSelect" aria-label="Floating label select" v-model="tempMessage.type" as="select"
+                  name="類別" rules="required">
                   <option selected>請選擇類別</option>
                   <option value="異業合作">異業合作</option>
                   <option value="空間合作">空間合作</option>
@@ -214,8 +216,8 @@
                 <label for="body">留言</label>
               </div>
               <button type="submit" class="py-2 py-md-3 px-6 px-md-9 btn btn-default fw-bold rounded-0 w-100 w-md-auto">
-    送出訊息
-</button>
+                送出訊息
+              </button>
 
             </v-form>
           </div>
@@ -318,6 +320,11 @@ export default {
         rgba(255, 255, 255, 0) 0%,
         rgba(94, 94, 94, 0) 63%,
         rgba(0, 0, 0, 0.6) 100%);
+        transition: background 0.3s ease;
+
+    &:hover {
+      background:rgba(0, 0, 0, 0.4);
+    }
   }
 }
 </style>
