@@ -157,14 +157,14 @@ const routes = [
         name: 'products',
         component: () => import('../views/admin/AdminProductList.vue'),
         meta: {
-          title: '產品管理 - Wanderer Land'
+          title: '商品管理 - Wanderer Land'
         }
       },
       {
         path: 'productinfo/new',
         component: () => import('../views/admin/AdminProductInfo.vue'),
         meta: {
-          title: '作品管理 - Wanderer Land'
+          title: '商品管理 - Wanderer Land'
         }
       },
       {
@@ -176,7 +176,7 @@ const routes = [
           }
         },
         meta: {
-          title: '產品管理 - Wanderer Land'
+          title: '商品管理 - Wanderer Land'
         }
       },
       {

@@ -1,11 +1,11 @@
 <template>
   <div class="overflow-y-scroll scrollbar-y-hide vh-100">
     <div class="d-flex justify-content-between py-4 py-md-7 ">
-      <h2 class="fw-bold">產品管理</h2>
-      <!-- btn 建立新產品 -->
-      <router-link to="/admin/productinfo/new" class="btn btn-dark d-flex align-items-center">建立新的產品</router-link>
+      <h2 class="fw-bold">商品管理</h2>
+      <!-- btn 建立新商品 -->
+      <router-link to="/admin/productinfo/new" class="btn btn-dark d-flex align-items-center">建立新的商品</router-link>
     </div>
-    <!-- 產品列表 -->
+    <!-- 商品列表 -->
     <div>
       <table class="table align-middle fs-info fs-md-6">
         <thead>
@@ -43,15 +43,15 @@
             </td>
             <td>
               <div class="btn-group align-items-center">
-                <!-- 編輯產品 -->
+                <!-- 編輯商品 -->
                 <button type="button" class="btn border-0" @click="showProductPage(product.id)">
                   <i class="bi bi-pencil text-default"></i>
                 </button>
-                <!-- 刪除產品 -->
+                <!-- 刪除商品 -->
                 <button type="button" class="btn border-0" @click="deleteProduct(product.id)">
                   <i class="bi bi-trash text-danger"></i>
                 </button>
-                <!-- 開產品資訊頁 -->
+                <!-- 開商品資訊頁 -->
                 <router-link class="d-none d-sm-table-cell btn border-0" target="_blank"
                   :to="`/productinfo/${product.id}`" :class="{ 'pe-none': !product.is_enabled }">
                   <i class="bi bi-house" :class="product.is_enabled ? 'text-default' : 'text-light'"></i>
@@ -75,7 +75,7 @@ const { VITE_API, VITE_PATH } = import.meta.env
 export default {
   data () {
     return {
-      // 產品列表
+      // 商品列表
       productsList: [],
       // 頁碼
       pagination: {},
@@ -86,7 +86,7 @@ export default {
     }
   },
   methods: {
-    // 獲取產品列表
+    // 獲取商品列表
     getProductList (page = 1, category = 'products') {
       const url = `${VITE_API}/api/${VITE_PATH}/admin/products?page=${page}&category=${category}`
 
@@ -105,19 +105,19 @@ export default {
         })
     },
 
-    // 觀看產品頁
+    // 觀看商品頁
     showProductPage (id) {
       this.$router.push(`/admin/productinfo/${id}`)
     },
 
-    // 刪除產品
+    // 刪除商品
     deleteProduct (id) {
       const url = `${VITE_API}/api/${VITE_PATH}/admin/product/${id}`
 
       // 刪除前詢問
       this.swalQuestionWithBootstrapButtons
         .fire({
-          title: '確定要刪除產品嗎？',
+          title: '確定要刪除商品嗎？',
           text: '這個動作無法復原',
           icon: 'question',
           showCancelButton: true,
@@ -156,7 +156,7 @@ export default {
     }
   },
   mounted () {
-    // 獲取產品列表
+    // 獲取商品列表
     this.getProductList()
 
     // 客製化 question alert 按鈕
