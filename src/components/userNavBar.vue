@@ -29,8 +29,8 @@
               <i class="bi" :class="favoriteList.length ? 'bi-heart-fill' : 'bi-heart'"></i>
             </router-link>
           </li>
-          <li class="py-4"  @mouseover="showCartList"
-              @mouseout="hideCartList">
+          <li class="py-4"  @mouseenter="showCartList"
+              @mouseleave="hideCartList">
             <router-link to="/cart" class="position-relative text-default">
               <i class="bi bi-handbag"></i>
               <div v-if="cartsList.final_total" class="position-absolute badge bg-default rounded-circle text-white"
@@ -39,7 +39,7 @@
 
             <!-- 購物車選單 -->
             <div class="d-none position-absolute end-0 top-100 px-6 pb-7 bg-primary" ref="cartList"
-              style="max-width:375px;" @mouseover="showCartList" @mouseout="hideCartList">
+              style="max-width:375px;" @mouseenter="showCartList" @mouseleave="hideCartList">
               <div v-if="cartsList.total">
                 <p class="py-3 text-center border-bottom border-default">{{ cartsList.carts.length }} 個商品</p>
                 <ul class="list-unstyled">
@@ -123,10 +123,14 @@ export default {
   methods: {
     // 滑鼠移過購物車
     showCartList () {
-      this.$refs.cartList.classList.remove('d-none')
+      if (window.innerWidth >= 991.98) {
+        this.$refs.cartList.classList.remove('d-none')
+      }
     },
     hideCartList () {
-      this.$refs.cartList.classList.add('d-none')
+      if (window.innerWidth >= 991.98) {
+        this.$refs.cartList.classList.add('d-none')
+      }
     },
 
     // 開啟 mobile nav
