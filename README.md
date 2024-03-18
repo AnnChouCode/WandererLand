@@ -55,7 +55,9 @@ Node.js 版本建議為：18.17.1 以上
 - vue-loading-overlay (6.0)
 - vue-sweetalert2 (^5.0.5)
 - ckeditor5-vue" (^5.1.0)
-  
+
+---------------------------------------
+
 ## 前台簡介
 
 ### 首頁
@@ -84,23 +86,24 @@ Node.js 版本建議為：18.17.1 以上
   
 ## 後台簡介
 
-## 作品 與 藝術家管理
+### 作品 與 藝術家管理
 - web 與 mobile 均可操作
 - 可上傳本機端或網址圖片
 ![image](https://github.com/AnnChouCode/image-stock/blob/main/WandererLand/adminproduct.jpg?raw=true)
 
-## 訂單管理
+### 訂單管理
 - 可手動更改付款與出貨狀態
 - 檢視訂單動作流程
 ![image](https://github.com/AnnChouCode/image-stock/blob/main/WandererLand/adminorder.jpg?raw=true)
 
-## 文章管理
+### 文章管理
 - 可設定首頁置頂文章
 - 快速選擇文章標籤
 - 設定文章相關聯作品
 ![image](https://github.com/AnnChouCode/image-stock/blob/main/WandererLand/adminarticle.jpg?raw=true)
 
-  
+---------------------------------------
+
 ## 安裝與使用
 
 以下將會引導你如何安裝此專案到你的電腦上。
@@ -143,6 +146,8 @@ npm run build
 npm run deploy
 ```
 
+---------------------------------------
+
 ## 資料夾結構
 
 - `.vscode`：Visual Studio Code 的設定檔
@@ -165,6 +170,8 @@ npm run deploy
 - `package.json`：專案資訊
 - `README.md`：專案說明
 - `vite.config.js`：Vite 設定檔
+
+---------------------------------------
 
 ## gh-pages 部署說明
 
