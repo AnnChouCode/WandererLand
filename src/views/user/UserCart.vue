@@ -104,21 +104,30 @@
 
   <div class="modal show" tabindex="-1" ref="couponModal">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="container modal-content rounded-0">
+      <div class="position-relative container modal-content rounded-0">
         <div class="row flex-column flex-md-row">
           <div class="d-none d-md-block col col-md-6 px-0">
             <img src="../../../public/images/present.jpg" alt="coupon" class="object-fit-cover w-100 h-100">
           </div>
           <div class="col col-md-6 d-flex flex-column p-4">
             <button type="button" class="align-self-end btn-close" aria-label="Close" @click="hideCouponModal"></button>
-            <div class="mx-auto mt-4 mb-5 mt-md-8 mb-md-9">
+            <div class="mx-auto mt-4 mb-5 mt-md-8 mb-md-9" data-aos="fade-up" data-aos-duration="3000">
               <h3 class="mb-5 mb-md-8 fs-5 fs-md-3 title-letter-spacing lh-base">為你的第一筆訂單，<span class="d-block">獲取 <span
                     class="fw-bold">97</span> 折折扣</span></h3>
-              <button type="button" class="py-2 py-md-3 px-6 px-lg-9 btn btn-default fw-bold rounded-0 w-100 text-nowrap"
+              <button type="button"
+                class="py-2 py-md-3 px-6 px-lg-9 btn btn-default fw-bold rounded-0 w-100 text-nowrap"
                 @click="copyCouponCode('present97')">點擊複製優惠碼</button>
             </div>
           </div>
         </div>
+        <img src="../../../public/images/firework01.svg" alt="firework"
+          class="position-absolute firework translate-middle" style="width: 170px;right: -121px;top: 7px;">
+        <img src="../../../public/images/firework03.svg" alt="firework"
+          class="position-absolute firework translate-middle" style="width: 100px;right: -101px;top: 109px;">
+        <img src="../../../public/images/firework02.svg" alt="firework"
+          class="position-absolute firework translate-middle" style="width: 67px;left: -2px;top: 75px;">
+        <img src="../../../public/images/firework03.svg" alt="firework"
+          class="position-absolute firework translate-middle" style="width: 167px;left: -32px;top: 167px;">
       </div>
     </div>
   </div>
@@ -250,6 +259,43 @@ export default {
   @media (min-width: 768px) {
     padding-top: 16px;
     padding-bottom: 16px;
+  }
+}
+
+@keyframes fireworksAnimation {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.3);
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+.firework {
+  opacity: 0.5;
+  animation: fireworksAnimation 2s ease forwards;
+
+  &:nth-child(1) {
+    animation-delay: 1s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 1.5s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 2.5s;
+  }
+
+  &:nth-child(4) {
+    animation-delay: 3s;
   }
 }
 </style>
