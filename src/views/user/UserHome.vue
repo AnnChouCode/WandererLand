@@ -2,8 +2,7 @@
   <!-- banner -->
   <div class="position-relative banner" v-if="sortArticles.topArticle[0]">
     <img :src="sortArticles.topArticle[0].imageUrl" :alt="sortArticles.topArticle[0].title"
-      class="position-fixed z-n1 h-100 w-100 overflow-hidden object-fit-cover">
-    <!-- <div class="w-100 h-100" style="background-attachment: fixed;"></div> -->
+      class="position-fixed z-n1 h-100 w-100 overflow-hidden object-fit-cover" data-aos="zoom-out" data-aos-duration="3000">
     <div class="position-absolute z-1 top-0 bg-default opacity-50 w-100 h-100"></div>
     <div class="position-absolute z-2 top-50 start-50 translate-middle text-center banner-title w-80 w-sm-50">
       <h2 class="pb-5 pb-md-7 text-white title-shadow fs-2 fs-md-1 title-letter-spacing title-letter-word-wrap">{{
