@@ -121,9 +121,9 @@
           </div>
         </div>
         <img src="../../../public/images/firework01.svg" alt="firework"
-          class="position-absolute firework translate-middle" style="width: 170px;right: -121px;top: 7px;">
+          class="position-absolute firework translate-middle" style="width: 170px;right: -121px;top: 77px;">
         <img src="../../../public/images/firework03.svg" alt="firework"
-          class="position-absolute firework translate-middle" style="width: 100px;right: -101px;top: 109px;">
+          class="position-absolute firework translate-middle" style="width: 100px;right: -14px;top: 169px;">
         <img src="../../../public/images/firework02.svg" alt="firework"
           class="position-absolute firework translate-middle" style="width: 67px;left: -2px;top: 75px;">
         <img src="../../../public/images/firework03.svg" alt="firework"
