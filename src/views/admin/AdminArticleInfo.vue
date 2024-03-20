@@ -76,24 +76,24 @@
           <div>
             <label for="title" class="form-label fw-bold has-required">文章標題</label>
             <v-field type="text" class="form-control" placeholder="請填入文章標題" v-model="tempArticleInfo.title" id="title"
-              name="title" :class="{ 'is-invalid': errors['title'] }" rules="required|max:25"></v-field>
-            <error-message name="title" class="invalid-feedback"></error-message>
+              name="標題" :class="{ 'is-invalid': errors['標題'] }" rules="required|max:25"></v-field>
+            <error-message name="標題" class="invalid-feedback"></error-message>
           </div>
           <div class="row g-5 g-md-1">
             <div class="col-md-6">
               <label for="author" class="form-label fw-bold has-required">作者</label>
               <v-field type="text" class="form-control" placeholder="請填入作者" v-model="tempArticleInfo.author" id="author"
-                name="author" :class="{ 'is-invalid': errors['author'] }" rules="required"
+                name="作者" :class="{ 'is-invalid': errors['author'] }" rules="required"
                 @blur="updateTag(tempArticleInfo.author)"></v-field>
-              <error-message name="author" class="invalid-feedback"></error-message>
+              <error-message name="作者" class="invalid-feedback"></error-message>
             </div>
             <div class="col-md-6">
               <div>
                 <label for="category" class="form-label fw-bold has-required">文章分類</label>
-                <v-field type="text" id="category" name="category" class="form-control mb-1" placeholder="請輸入文章分類"
-                  :class="{ 'is-invalid': errors['category'] }" rules="required"
+                <v-field type="text" id="category" name="分類" class="form-control mb-1" placeholder="請輸入文章分類"
+                  :class="{ 'is-invalid': errors['分類'] }" rules="required"
                   v-model="tempArticleInfo.category"></v-field>
-                <error-message name="category" class="invalid-feedback"></error-message>
+                <error-message name="分類" class="invalid-feedback"></error-message>
               </div>
               <div class="d-flex align-items-center text-nowrap fs-info">
                 <span class="text-info">點擊帶入分類：</span>
@@ -137,10 +137,10 @@
           </div>
           <div>
             <label for="description" class="form-label fw-bold has-required">簡述</label>
-            <v-field id="description" name="description" class="form-control" v-model="tempArticleInfo.description"
+            <v-field id="description" name="簡述" class="form-control" v-model="tempArticleInfo.description"
               as="textarea" placeholder="請填寫 100 字內簡述" :class="{ 'is-invalid': errors['description'] }"
               rules="required|max:100" style="min-height:100px;"></v-field>
-            <error-message name="description" class="invalid-feedback"></error-message>
+            <error-message name="簡述" class="invalid-feedback"></error-message>
           </div>
           <div class="editor-block mb-5">
             <label for="description" class="form-label fw-bold">文章內容</label>

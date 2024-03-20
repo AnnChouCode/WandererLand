@@ -67,15 +67,15 @@
           <div>
             <label for="title" class="form-label fw-bold has-required">藝術家名稱</label>
             <v-field type="text" class="form-control" placeholder="請輸入藝術家名稱" v-model="tempArtistInfo.title" id="title"
-              name="title" :class="{ 'is-invalid': errors['title'] }" rules="required"></v-field>
-            <error-message name="title" class="invalid-feedback"></error-message>
+              name="名稱" :class="{ 'is-invalid': errors['名稱'] }" rules="required"></v-field>
+            <error-message name="名稱" class="invalid-feedback"></error-message>
           </div>
           <div>
             <div>
               <label for="group" class="form-label fw-bold has-required">藝術家分類</label>
-              <v-field type="text" id="group" name="group" class="form-control mb-1" placeholder="請輸入藝術家分類"
-                :class="{ 'is-invalid': errors['group'] }" rules="required" v-model="tempArtistInfo.group"></v-field>
-              <error-message name="group" class="invalid-feedback"></error-message>
+              <v-field type="text" id="group" name="分類" class="form-control mb-1" placeholder="請輸入藝術家分類"
+                :class="{ 'is-invalid': errors['分類'] }" rules="required" v-model="tempArtistInfo.group"></v-field>
+              <error-message name="分類" class="invalid-feedback"></error-message>
             </div>
             <div class="d-flex align-items-center text-nowrap fs-info">
               <span class="text-info">點擊帶入分類：</span>
