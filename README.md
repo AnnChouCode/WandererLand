@@ -54,7 +54,9 @@ Node.js 版本建議為：18.17.1 以上
 - vee-validate (^4.12.5)
 - vue-loading-overlay (6.0)
 - vue-sweetalert2 (^5.0.5)
-- ckeditor5-vue" (^5.1.0)
+- ckeditor5-vue (^5.1.0)
+- chart.js (^4.4.2),
+- vue-chartjs (^5.3.0")
 
 ---------------------------------------
 
