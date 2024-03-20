@@ -28,6 +28,11 @@
       </div>
     </div>
     <div class="p-2 p-md-3 bg-light">
+      <select class="mb-5 form-select" aria-label="selectMonthZone" v-model="chartMonthZone" style="width:150px;">
+        <option value="3" selected>3 個月</option>
+        <option value="6">6 個月</option>
+        <option value="12">12 個月</option>
+      </select>
       <div class="w-100 p-3 border rounded-2 bg-white" v-if="Object.values(chartData).length">
         <barChart :chartOptions="chartOptions" :chartData="chartData"></barChart>
       </div>
@@ -59,6 +64,7 @@ export default {
       isNotShippingOrder: [],
       // 需補貨，即將售完商品
       needReplenishedProduct: [],
+      // 圖表月份長度
       chartMonthZone: 3,
       // 圖表資料
       chartData: {},
@@ -80,7 +86,7 @@ export default {
   },
   methods: {
     // 圖表數據
-    handleChartData (monthZone = 12) {
+    handleChartData (monthZone = 3) {
       // 獲取月份表
       const currentDate = new Date() // 現在的日期
       const currentMonth = currentDate.getMonth() + 1 // 獲取當前月份
@@ -99,8 +105,6 @@ export default {
 
         previousMonths.unshift(`${previousYear.toString().slice(2, 4)} ${previousMonth}月`)
       }
-
-      this.chartData.labels = previousMonths
 
       const turnoverMap = {}
 
@@ -122,13 +126,16 @@ export default {
         return turnoverMap[month] || 0
       })
 
-      this.chartData.datasets = [
-        {
-          label: '總銷售額',
-          backgroundColor: '#333333',
-          data: turnoverResult
-        }
-      ]
+      this.chartData = {
+        labels: previousMonths,
+        datasets: [
+          {
+            label: '總銷售額',
+            backgroundColor: '#333333',
+            data: turnoverResult
+          }
+        ]
+      }
     },
 
     // 訂單數據
@@ -170,6 +177,7 @@ export default {
   },
   components: {
     barChart
+    // barChart2
   }
 }
 </script>
