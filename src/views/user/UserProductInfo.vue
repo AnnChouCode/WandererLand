@@ -7,11 +7,11 @@
           <div class="position-relative col-12 col-lg-3">
             <div class="bg-tertiary h-100 overflow-hidden">
               <div
-                class="position-lg-absolute row gap-0 gap-lg-2 px-2 py-2 py-lg-0 px-lg-auto flex-nowrap flex-lg-column overflow-auto scrollbar-y-hide w-lg-100 h-lg-100"
+                class="position-lg-absolute row px-2 py-2 py-lg-0 px-lg-auto flex-nowrap flex-lg-column overflow-auto scrollbar-y-hide w-lg-100 h-lg-100"
                 v-if="product.imagesStock">
-                <a href="#" class="col-3 col-lg-12 ratio-1x1 overflow-hidden" v-for="(img, idx) in product.imagesStock"
+                <a href="#" class="col-3 col-lg-12 py-0 py-lg-2 overflow-hidden" v-for="(img, idx) in product.imagesStock"
                   :key="'img' + idx" @click.prevent="changeImage(idx)">
-                  <img :src="img" alt="product" class="object-fit-contain w-100 h-100">
+                  <img :src="img" alt="product" class="object-fit-contain w-100 h-100" :class="img === product.currentImage ? 'border border-2 border-info' : ''">
                 </a>
               </div>
             </div>
@@ -93,8 +93,11 @@
         </div>
         <button type="button" class="position-relative py-2 py-md-3 btn btn-default rounded-0 fw-bold w-100"
           @click="addToCart(product.productInfo.id, qty)"
-          :disabled="product.productInfo.quantity - quantityInCart === 0">加入購物車．NT$ {{
-    product.productInfo.price.toLocaleString() }}
+          :disabled="product.productInfo.quantity - quantityInCart === 0">
+          <span v-if="product.productInfo.quantity - quantityInCart !== 0">加入購物車．NT$ {{
+    product.productInfo.price.toLocaleString() }}</span>
+          <span else>已絕版．NT$ {{
+    product.productInfo.price.toLocaleString() }}</span>
         </button>
       </div>
     </div>
@@ -104,7 +107,8 @@
     <div class="py-7 py-md-9">
       <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
         <h2 class="fs-2 fs-md-1">相似作品</h2>
-        <router-link v-if="tempRelatedAllProducts" :to="tempRelatedAllProducts.length ? `/productlist?artist=${artistInfo.title}` : `/productlist?group=${product.productInfo.group}`"
+        <router-link v-if="tempRelatedAllProducts"
+          :to="tempRelatedAllProducts.length ? `/productlist?artist=${artistInfo.title}` : `/productlist?group=${product.productInfo.group}`"
           class="text-default border-bottom border-default fw-bold fs-info fs-md-6">瀏覽更多</router-link>
       </div>
 
