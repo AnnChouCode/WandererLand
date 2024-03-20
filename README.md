@@ -88,6 +88,11 @@ Node.js 版本建議為：18.17.1 以上
   
 ## 後台簡介
 
+### 營業總覽
+- 用戶營業狀態一覽
+- 視覺化銷售額圖表
+![image](https://github.com/AnnChouCode/image-stock/blob/main/WandererLand/dashboard.jpg?raw=true)
+
 ### 作品 與 藝術家管理
 - web 與 mobile 均可操作
 - 可上傳本機端或網址圖片
