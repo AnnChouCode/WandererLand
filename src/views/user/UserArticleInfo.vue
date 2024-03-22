@@ -18,21 +18,15 @@
                 <img :src="img" alt="news" class="object-fit-contain w-100 h-100">
               </div>
             </SwiperSlide>
-            <!-- <div class="z-1 swiper-button-next translate-middle-y">
-              <i class="bi bi-arrow-right-circle text-warning fs-1"></i>
-            </div>
-            <div class="z-1 swiper-button-prev translate-middle-y">
-              <i class="bi bi-arrow-left-circle text-warning fs-1"></i>
-            </div> -->
             <!-- 左右 navigation -->
             <div
-              class="position-relative position-absolute top-50 end-0 z-1 translate-middle-y navigate-next rounded-circle overflow-hidden navigation-next">
-              <div class="swiper-button-next translate-middle-y"></div>
+              class="position-relative position-absolute top-50 end-0 z-1 translate-middle-y rounded-circle overflow-hidden navigation-next">
+              <div class="swiper-button-next"></div>
               <div class="navigation-bg"></div>
             </div>
             <div
               class="position-relative position-absolute top-50 start-0 z-1 translate-middle-y rounded-circle overflow-hidden navigation-prev">
-              <div class="swiper-button-prev translate-middle-y"></div>
+              <div class="swiper-button-prev"></div>
               <div class="navigation-bg"></div>
             </div>
           </Swiper>
@@ -207,31 +201,41 @@ export default {
       display: flex;
     }
 
+    &:hover {
+      border: 3px solid #333333;
+
+      .navigation-bg {
+        width: 100%;
+      }
+
+      .swiper-button-next {
+        border: none;
+        right: -5px
+      }
+    }
+
     .navigation-bg {
       width: 0%;
       height: 100%;
       transition: width 0.3s ease;
       background-color: rgba(255, 255, 255, 0.7);
     }
-
-    &:hover {
-      .navigation-bg {
-        width: 100%;
-      }
-    }
   }
 
   .swiper-button-next {
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-right-circle' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z'/%3E%3C/svg%3E") no-repeat center;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z'/%3E%3C/svg%3E") no-repeat center;
     background-size: 40px 40px;
     z-index: 11;
-    top: 105%;
-    right: 0;
+    top: 55%;
+    right: 0px;
     text-indent: 150%;
     white-space: nowrap;
     overflow: hidden;
     width: 40px;
     height: 40px;
+    border: 3px solid #333333;
+    border-radius: 50px;
+    transition: right 0.3s ease, border 0.3s ease;
   }
 
   /* 左 */
@@ -244,6 +248,19 @@ export default {
       display: flex;
     }
 
+    &:hover {
+      border: 3px solid #333333;
+
+      .navigation-bg {
+        width: 100%;
+      }
+
+      .swiper-button-prev {
+        border: none;
+        left: -5px
+      }
+    }
+
     .navigation-bg {
       width: 0%;
       height: 100%;
@@ -252,26 +269,23 @@ export default {
       position: absolute;
       right: 0;
     }
-
-    &:hover {
-      .navigation-bg {
-        width: 100%;
-      }
-    }
   }
 
   .swiper-button-prev {
     position: absolute;
     z-index: 1;
-    top: 105%;
+    top: 55%;
     left: 0;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-arrow-left-circle' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z'/%3E%3C/svg%3E") no-repeat center;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5'/%3E%3C/svg%3E") no-repeat center;
     background-size: 40px 40px;
     text-indent: 150%;
     white-space: nowrap;
     overflow: hidden;
     width: 40px;
     height: 40px;
+    border: 3px solid #333333;
+    border-radius: 50px;
+    transition: right 0.3s ease, border 0.3s ease;
   }
 }
 </style>
