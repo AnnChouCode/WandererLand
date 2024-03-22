@@ -96,7 +96,7 @@
           :disabled="product.productInfo.quantity - quantityInCart === 0">
           <span v-if="product.productInfo.quantity - quantityInCart !== 0">加入購物車．NT$ {{
     product.productInfo.price.toLocaleString() }}</span>
-          <span else>已絕版．NT$ {{
+          <span v-else>已絕版．NT$ {{
     product.productInfo.price.toLocaleString() }}</span>
         </button>
       </div>
