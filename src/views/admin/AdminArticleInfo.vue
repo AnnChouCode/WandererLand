@@ -75,14 +75,14 @@
         <v-form v-slot="{ errors }" class="d-flex flex-column gap-3" @submit="updateArticleInfo">
           <div>
             <label for="title" class="form-label fw-bold has-required">文章標題</label>
-            <v-field type="text" class="form-control" placeholder="請填入文章標題" v-model="tempArticleInfo.title" id="title"
+            <v-field type="text" class="form-control" placeholder="請填入文章標題" v-model.trim="tempArticleInfo.title" id="title"
               name="標題" :class="{ 'is-invalid': errors['標題'] }" rules="required|max:25"></v-field>
             <error-message name="標題" class="invalid-feedback"></error-message>
           </div>
           <div class="row g-5 g-md-1">
             <div class="col-md-6">
               <label for="author" class="form-label fw-bold has-required">作者</label>
-              <v-field type="text" class="form-control" placeholder="請填入作者" v-model="tempArticleInfo.author" id="author"
+              <v-field type="text" class="form-control" placeholder="請填入作者" v-model.trim="tempArticleInfo.author" id="author"
                 name="作者" :class="{ 'is-invalid': errors['author'] }" rules="required"
                 @blur="updateTag(tempArticleInfo.author)"></v-field>
               <error-message name="作者" class="invalid-feedback"></error-message>
@@ -92,7 +92,7 @@
                 <label for="category" class="form-label fw-bold has-required">文章分類</label>
                 <v-field type="text" id="category" name="分類" class="form-control mb-1" placeholder="請輸入文章分類"
                   :class="{ 'is-invalid': errors['分類'] }" rules="required"
-                  v-model="tempArticleInfo.category"></v-field>
+                  v-model.trim="tempArticleInfo.category"></v-field>
                 <error-message name="分類" class="invalid-feedback"></error-message>
               </div>
               <div class="d-flex align-items-center text-nowrap fs-info">
@@ -120,7 +120,7 @@
                   </div>
                   <button type="button" class="d-flex flex-nowrap py-1 btn btn-outline-secondary rounded-pill">
                     <input type="text" id="tag" name="tag" class="border-0" style="width: 80px" placeholder="自訂標籤"
-                      @keyup.enter="chooseTag(tempTagInvputVaule, 'tagInput')" v-model="tempTagInvputVaule" />
+                      @keyup.enter="chooseTag(tempTagInvputVaule, 'tagInput')" v-model.trim="tempTagInvputVaule" />
                   </button>
                 </div>
               </div>
@@ -137,14 +137,14 @@
           </div>
           <div>
             <label for="description" class="form-label fw-bold has-required">簡述</label>
-            <v-field id="description" name="簡述" class="form-control" v-model="tempArticleInfo.description"
+            <v-field id="description" name="簡述" class="form-control" v-model.trim="tempArticleInfo.description"
               as="textarea" placeholder="請填寫 100 字內簡述" :class="{ 'is-invalid': errors['description'] }"
               rules="required|max:100" style="min-height:100px;"></v-field>
             <error-message name="簡述" class="invalid-feedback"></error-message>
           </div>
           <div class="editor-block mb-5">
             <label for="description" class="form-label fw-bold">文章內容</label>
-            <ckeditor :editor="editor" :config="editorConfig" v-model="tempArticleInfo.content"></ckeditor>
+            <ckeditor :editor="editor" :config="editorConfig" v-model.trim="tempArticleInfo.content"></ckeditor>
           </div>
           <div class="mb-5">
             <h5 class="d-inline-block me-2 mb-5 fw-bold">關聯商品</h5>

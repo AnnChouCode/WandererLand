@@ -66,7 +66,7 @@
         <v-form v-slot="{ errors }" class="d-flex flex-column gap-5" @submit="updateArtistInfo">
           <div>
             <label for="title" class="form-label fw-bold has-required">藝術家名稱</label>
-            <v-field type="text" class="form-control" placeholder="請輸入藝術家名稱" v-model="tempArtistInfo.title" id="title"
+            <v-field type="text" class="form-control" placeholder="請輸入藝術家名稱" v-model.trim="tempArtistInfo.title" id="title"
               name="名稱" :class="{ 'is-invalid': errors['名稱'] }" rules="required"></v-field>
             <error-message name="名稱" class="invalid-feedback"></error-message>
           </div>
@@ -74,7 +74,7 @@
             <div>
               <label for="group" class="form-label fw-bold has-required">藝術家分類</label>
               <v-field type="text" id="group" name="分類" class="form-control mb-1" placeholder="請輸入藝術家分類"
-                :class="{ 'is-invalid': errors['分類'] }" rules="required" v-model="tempArtistInfo.group"></v-field>
+                :class="{ 'is-invalid': errors['分類'] }" rules="required" v-model.trim="tempArtistInfo.group"></v-field>
               <error-message name="分類" class="invalid-feedback"></error-message>
             </div>
             <div class="d-flex align-items-center text-nowrap fs-info">
@@ -90,7 +90,7 @@
           <div>
             <label for="content" class="form-label fw-bold">藝術家介紹</label>
             <textarea type="text" id="content" class="form-control" placeholder="請輸入藝術家介紹"
-              v-model="tempArtistInfo.content" style="height:200px"></textarea>
+              v-model.trim="tempArtistInfo.content" style="height:200px"></textarea>
           </div>
           <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" role="switch" id="is_enabled"
