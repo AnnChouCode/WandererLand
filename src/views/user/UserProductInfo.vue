@@ -113,24 +113,8 @@
       </div>
 
       <div class="row g-3 g-md-8">
-        <div class="col-6 col-md-4" v-for="product in relatedProducts" :key="product.id">
-          <router-link :to="`/productinfo/${product.id}`">
-            <div
-              class="position-relative d-flex justify-content-center align-items-center ratio-1x1 overflow-hidden product-img">
-              <img :src="product.imageUrl" :alt="product.title" class="object-fit-contain w-100 h-100 product-img-up">
-              <img :src="product.imagesUrl[0]" alt="item.title"
-                class="position-absolute z-n1 object-fit-contain w-100 h-100 product-img-down">
-            </div>
-          </router-link>
-          <div class="py-3 px-0 px-md-4">
-            <router-link :to="`/productinfo/${product.id}`">
-              <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default">{{ product.title }}</h3>
-            </router-link>
-            <div class="d-flex justify-content-between align-items-center">
-              <p class="fs-info fs-md-6 text-info">NT$ {{ product.price.toLocaleString() }}</p>
-              <btnFavorite :productId="product.id"></btnFavorite>
-            </div>
-          </div>
+        <div class="col-6 col-md-4" v-for="item in relatedProducts" :key="item.id">
+          <productCard :item="item" :linkTo="`/productInfo/${item.id}`" :showPrice="true" :showFavorite="true"></productCard>
         </div>
       </div>
     </div>
@@ -144,7 +128,7 @@ import cartStore from '@/stores/userCartStore.js'
 import { mapActions, mapState } from 'pinia'
 
 // Import Components
-import btnFavorite from '@/components/btnFavorite.vue'
+import productCard from '@/components/productCard.vue'
 
 const { VITE_API, VITE_PATH } = import.meta.env
 
@@ -274,7 +258,7 @@ export default {
     ...mapState(cartStore, ['cartsList'])
   },
   components: {
-    btnFavorite
+    productCard
   }
 }
 </script>

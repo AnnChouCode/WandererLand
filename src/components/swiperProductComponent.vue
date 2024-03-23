@@ -21,26 +21,8 @@
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       }" :modules="modules" class="product-swiper">
-        <SwiperSlide v-for="( item, idx ) in  currentDatas " :key="idx">
-          <router-link :to="`${DataInfo[dataCategory].infoPath}/${item.id}`">
-            <div
-              class="position-relative d-flex justify-content-center align-items-center ratio-1x1 overflow-hidden product-img"
-              :class="{ 'rounded-circle': isArtistBlock }">
-              <img :src="item.imageUrl" :alt="item.title" class="object-fit-contain w-100 h-100 product-img-up">
-              <img :src="item.imagesUrl[0]" alt="item.title"
-                class="position-absolute z-n1 object-fit-contain w-100 h-100 product-img-down">
-            </div>
-          </router-link>
-          <div class="py-3 px-0 px-md-4">
-            <router-link :to="`${DataInfo[dataCategory].infoPath}/${item.id}`">
-              <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default" :class="{ 'text-center': isArtistBlock }">{{
-        item.title }}</h3>
-            </router-link>
-            <div v-if="!isArtistBlock" class="d-flex justify-content-between align-items-center">
-              <p class="fs-info fs-md-6 text-info">NT$ {{ item.price.toLocaleString() }}</p>
-              <btnFavorite :productId="item.id"></btnFavorite>
-            </div>
-          </div>
+        <SwiperSlide v-for="item in  currentDatas" :key="item.id">
+          <productCard :item="item" :linkTo="`/${DataInfo[dataCategory].infoPath}/${item.id}`" :showPrice="!isArtistBlock" :showFavorite="!isArtistBlock" :shape="isArtistBlock ? 'rounded-circle' : ''" :titlePosition="isArtistBlock ? 'text-center' : ''"></productCard>
         </SwiperSlide>
         <!-- 左右 navigation -->
         <btnSwiperNavigation position="bottom" direction="next"></btnSwiperNavigation>
@@ -64,8 +46,8 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
 // Import Components
-import btnFavorite from '@/components/btnFavorite.vue'
 import btnSwiperNavigation from '@/components/btnSwiperNavigation.vue'
+import productCard from '@/components/productCard.vue'
 
 export default {
   props: ['dataCategory'],
@@ -78,17 +60,17 @@ export default {
         products: {
           title: '探索新作品',
           path: '/productlist',
-          infoPath: '/productinfo'
+          infoPath: 'productinfo'
         },
         artists: {
           title: '認識新藝術家',
           path: '/artistlist',
-          infoPath: '/artistinfo'
+          infoPath: 'artistinfo'
         },
         recently: {
           title: '猜你喜歡',
           path: '',
-          infoPath: '/productinfo'
+          infoPath: 'productinfo'
         }
       },
       // 顯示資料
@@ -161,8 +143,8 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
-    btnFavorite,
-    btnSwiperNavigation
+    btnSwiperNavigation,
+    productCard
   }
 }
 </script>

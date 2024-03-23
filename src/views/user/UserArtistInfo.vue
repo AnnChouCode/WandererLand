@@ -7,11 +7,11 @@
           <div class="position-relative col-12 col-lg-3">
             <div class="bg-tertiary h-100 overflow-hidden">
               <div
-                class="position-lg-absolute row gap-0 gap-lg-2 px-2 py-2 py-lg-0 px-lg-auto flex-nowrap flex-lg-column overflow-auto scrollbar-y-hide w-lg-100 h-lg-100"
+                class="position-lg-absolute row px-2 py-2 py-lg-0 px-lg-auto flex-nowrap flex-lg-column overflow-auto scrollbar-y-hide w-lg-100 h-lg-100"
                 v-if="artist.imagesStock">
-                <a href="#" class="col-3 col-lg-12 ratio-1x1 overflow-hidden" v-for="(img, idx) in artist.imagesStock"
+                <a href="#" class="col-3 col-lg-12 py-0 py-lg-2 overflow-hidden" v-for="(img, idx) in artist.imagesStock"
                   :key="'img' + idx" @click.prevent="changeImage(idx)">
-                  <img :src="img" alt="product" class="object-fit-contain w-100 h-100">
+                  <img :src="img" alt="product" class="object-fit-contain w-100 h-100"  :class="img === artist.currentImage ? 'border border-2 border-info' : ''">
                 </a>
               </div>
             </div>
@@ -44,24 +44,8 @@
       <h2 class="mb-7 mb-md-8 fs-2 fs-md-1">藝術家作品</h2>
 
       <div class="row g-3 g-md-8">
-        <div class="col-6 col-md-4" v-for="product in relatedProducts" :key="product.id">
-          <router-link :to="`/productinfo/${product.id}`">
-            <div
-              class="position-relative d-flex justify-content-center align-items-center ratio-1x1 overflow-hidden product-img">
-              <img :src="product.imageUrl" :alt="product.title" class="object-fit-contain w-100 h-100 product-img-up">
-              <img :src="product.imagesUrl[0]" alt="item.title"
-                class="position-absolute z-n1 object-fit-contain w-100 h-100 product-img-down">
-            </div>
-          </router-link>
-          <div class="py-3 px-0 px-md-4">
-            <router-link :to="`/productinfo/${product.id}`">
-              <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default">{{ product.title }}</h3>
-            </router-link>
-            <div v-if="!isArtistBlock" class="d-flex justify-content-between align-items-center">
-              <p class="fs-info fs-md-6 text-info">NT$ {{ product.price.toLocaleString() }}</p>
-              <btnFavorite></btnFavorite>
-            </div>
-          </div>
+        <div class="col-6 col-md-4" v-for="item in relatedProducts" :key="item.id">
+          <productCard :item="item" :linkTo="`/productInfo/${item.id}`" :showPrice="true" :showFavorite="true"></productCard>
         </div>
       </div>
     </div>
@@ -73,7 +57,7 @@ import userProductStore from '@/stores/userProductStore.js'
 import { mapActions, mapState } from 'pinia'
 
 // Import Components
-import btnFavorite from '@/components/btnFavorite.vue'
+import productCard from '@/components/productCard.vue'
 
 const { VITE_API, VITE_PATH } = import.meta.env
 
@@ -147,7 +131,7 @@ export default {
     ...mapState(userProductStore, ['sortNewest'])
   },
   components: {
-    btnFavorite
+    productCard
   }
 }
 </script>
