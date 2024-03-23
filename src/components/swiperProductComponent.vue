@@ -45,16 +45,6 @@
         <!-- 左右 navigation -->
         <btnSwiperNavigation position="bottom" direction="next"></btnSwiperNavigation>
         <btnSwiperNavigation position="bottom" direction="prev"></btnSwiperNavigation>
-        <!-- <div
-          class="position-relative position-absolute bottom-50 end-0 z-1 rounded-circle overflow-hidden navigation-next">
-          <div class="swiper-button-next"></div>
-          <div class="navigation-bg"></div>
-        </div> -->
-        <!-- <div
-          class="position-relative position-absolute bottom-50 start-0 z-1 rounded-circle overflow-hidden navigation-prev">
-          <div class="swiper-button-prev"></div>
-          <div class="navigation-bg"></div>
-        </div> -->
       </Swiper>
     </div>
   </div>
