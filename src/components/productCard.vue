@@ -14,7 +14,7 @@
         </router-link>
         <div class="d-flex justify-content-between align-items-center">
             <p class="fs-info fs-md-6 text-info" v-if="showPrice">NT$ {{ item.price.toLocaleString() }}</p>
-            <btnFavorite v-if="showFavorite" :productId="item.id"></btnFavorite>
+            <btnFavorite v-if="showFavorite" :productId="item.id" @click="getFavoriteProducts"></btnFavorite>
         </div>
     </div>
 </template>
@@ -25,31 +25,50 @@ import btnFavorite from '@/components/btnFavorite.vue'
 
 export default {
   props: {
+    // 傳入資料
     item: Object,
+    // 點擊後連結
     linkTo: String,
+    // 是否顯示標題
     showTitle: {
       type: Boolean,
       default: true
     },
+    // 是否顯示價格
     showPrice: {
       type: Boolean,
       default: true
     },
+    // 是否顯示收藏按鈕
     showFavorite: {
       type: Boolean,
       default: true
     },
+    // 圖片外框形狀
     shape: {
       type: String,
       default: ''
     },
+    // title 位置
     titlePosition: {
       type: String,
       default: ''
+    },
+    // 收藏按鈕是否觸發重整收藏列表
+    triggerGetFavorites: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
     btnFavorite
+  },
+  methods: {
+    getFavoriteProducts () {
+      if (this.triggerGetFavorites) {
+        this.$emit('getFavoriteProducts')
+      }
+    }
   }
 }
 </script>
