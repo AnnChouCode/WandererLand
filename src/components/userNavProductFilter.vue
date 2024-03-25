@@ -215,7 +215,10 @@ export default {
         const [key, values] = filters
         this.filterRules[key] = values
 
-        const path = Object.entries(this.filterRules).map(item => item.join('=')).join('&')
+        // 當前頁碼恢復為 1
+        this.filterRules.current_page = 1
+
+        const path = `${Object.entries(this.filterRules).map(item => item.join('=')).join('&')}`
         this.$router.push(`/productList?${path}`)
         return
       }
@@ -239,17 +242,9 @@ export default {
     this.mobileNav = new Offcanvas(this.$refs.mobileNav)
 
     // 確認頁面屬性
-    const path = window.location.href.split('?')[1]
-
-    if (!path) {
-      this.filterRules = {}
-      return
-    }
-
-    path.split('&').forEach(item => {
-      const temp = item.split('=')
-      this.filterRules[temp[0]] = temp[1]
-    })
+    this.filterRules = JSON.parse(JSON.stringify(this.$route.query))
+    // 如果只有頁面資料則刪除，避免清空篩選按鈕出現
+    delete this.filterRules.current_page
   }
 }
 </script>
