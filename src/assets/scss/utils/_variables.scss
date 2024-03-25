@@ -1332,7 +1332,8 @@ $pagination-font-size:              $font-size-base !default;
 // $pagination-color:                  var(--#{$prefix}link-color) !default;
 $pagination-color:                  $default !default;
 $pagination-bg:                     var(--#{$prefix}body-bg) !default;
-$pagination-border-radius:          var(--#{$prefix}border-radius) !default;
+// $pagination-border-radius:          var(--#{$prefix}border-radius) !default;
+$pagination-border-radius:          0 !default;
 $pagination-border-width:           var(--#{$prefix}border-width) !default;
 $pagination-margin-start:           calc(#{$pagination-border-width} * -1) !default; // stylelint-disable-line function-disallowed-list
 $pagination-border-color:           var(--#{$prefix}border-color) !default;
