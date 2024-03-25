@@ -23,7 +23,7 @@
       <div class="py-7 py-md-9" v-if="sortArticles.newestArticles[0]">
         <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
           <h2 class="fs-2 fs-md-1">最新消息</h2>
-          <router-link to="/artists"
+          <router-link to="/articlelist"
             class="text-default border-bottom border-default fw-bold fs-info fs-md-6">瀏覽更多</router-link>
         </div>
         <div class="row g-3 g-lg-6 home-article">
