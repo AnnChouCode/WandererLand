@@ -107,9 +107,7 @@
     <div class="py-7 py-md-9">
       <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
         <h2 class="fs-2 fs-md-1">相似作品</h2>
-        <router-link v-if="tempRelatedAllProducts"
-          :to="tempRelatedAllProducts.length ? `/productlist?artist=${artistInfo.title}` : `/productlist?group=${product.productInfo.group}`"
-          class="text-default border-bottom border-default fw-bold fs-info fs-md-6">瀏覽更多</router-link>
+          <btnSeeMore v-if="tempRelatedAllProducts" :linkTo="tempRelatedAllProducts.length ? `/productlist?artist=${artistInfo.title}` : `/productlist?group=${product.productInfo.group}`"></btnSeeMore>
       </div>
 
       <div class="row g-3 g-md-8">
@@ -129,6 +127,7 @@ import { mapActions, mapState } from 'pinia'
 
 // Import Components
 import productCard from '@/components/productCard.vue'
+import btnSeeMore from '@/components/btnSeeMore.vue'
 
 const { VITE_API, VITE_PATH } = import.meta.env
 
@@ -258,7 +257,8 @@ export default {
     ...mapState(cartStore, ['cartsList'])
   },
   components: {
-    productCard
+    productCard,
+    btnSeeMore
   }
 }
 </script>

@@ -23,8 +23,7 @@
       <div class="py-7 py-md-9" v-if="sortArticles.newestArticles[0]">
         <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
           <h2 class="fs-2 fs-md-1">最新消息</h2>
-          <router-link to="/articlelist"
-            class="text-default border-bottom border-default fw-bold fs-info fs-md-6">瀏覽更多</router-link>
+            <btnSeeMore linkTo="/articlelist"></btnSeeMore>
         </div>
         <div class="row g-3 g-lg-6 home-article">
           <!-- article 1 -->
@@ -230,8 +229,10 @@
 import articleStore from '@/stores/userArticleStore.js'
 import { mapActions, mapState } from 'pinia'
 
+// Import Components
 import swiperProductComponent from '@/components/swiperProductComponent.vue'
 import couponComponent from '@/components/couponComponent.vue'
+import btnSeeMore from '@/components/btnSeeMore.vue'
 
 export default {
   data () {
@@ -270,7 +271,8 @@ export default {
   },
   components: {
     swiperProductComponent,
-    couponComponent
+    couponComponent,
+    btnSeeMore
   },
   computed: { ...mapState(articleStore, ['sortArticles', 'articlesList']) },
   mounted () {

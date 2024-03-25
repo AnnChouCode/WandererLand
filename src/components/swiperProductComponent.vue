@@ -2,8 +2,7 @@
   <div class="py-7 py-md-9">
     <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
       <h2 class="fs-2 fs-md-1">{{ DataInfo[dataCategory].title }}</h2>
-      <router-link v-if="DataInfo[dataCategory].path !== ''" :to="DataInfo[dataCategory].path"
-        class="text-default border-bottom border-default fw-bold fs-info fs-md-6">瀏覽更多</router-link>
+      <btnSeeMore v-if="DataInfo[dataCategory].path !== ''" :linkTo="DataInfo[dataCategory].path"></btnSeeMore>
     </div>
 
     <div class="position-relative">
@@ -48,6 +47,7 @@ import 'swiper/css/navigation'
 // Import Components
 import btnSwiperNavigation from '@/components/btnSwiperNavigation.vue'
 import productCard from '@/components/productCard.vue'
+import btnSeeMore from '@/components/btnSeeMore.vue'
 
 export default {
   props: ['dataCategory'],
@@ -144,7 +144,8 @@ export default {
     Swiper,
     SwiperSlide,
     btnSwiperNavigation,
-    productCard
+    productCard,
+    btnSeeMore
   }
 }
 </script>
