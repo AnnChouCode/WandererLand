@@ -13,8 +13,7 @@
   <v-form ref="form" v-slot="{ errors }" class="d-flex flex-column align-items-end" @submit="payOrder">
     <div class="mb-4 mb-md-7 form-floating w-100">
       <v-field id="payment" name="付款方式" class="form-select border-info rounded-0"
-        :class="{ 'is-invalid': errors['付款方式'] }" placeholder="請選擇付款方式" rules="required" v-model="payment"
-        as="select">
+        :class="{ 'is-invalid': errors['付款方式'] }" placeholder="請選擇付款方式" rules="required" v-model="payment" as="select">
         <option value="">付款方式</option>
         <option value="credit_card">信用卡付款</option>
         <option value="ATM">ATM 付款</option>
@@ -24,7 +23,7 @@
     </div>
     <button class="py-2 py-md-3 px-6 px-md-9 btn btn-default fw-bold rounded-0 w-100 w-md-auto" type="submit">
       結帳付款
-        </button>
+    </button>
   </v-form>
 </template>
 

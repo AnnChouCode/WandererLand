@@ -59,13 +59,13 @@
         </tbody>
       </table>
       <!-- 頁碼 -->
-      <paginationComponent :pagination="pagination" @get-List="getCurrentArticles"></paginationComponent>
+      <PaginationComponent :pagination="pagination" @get-List="getCurrentArticles"></PaginationComponent>
     </div>
   </div>
 </template>
 
 <script>
-import paginationComponent from '@/components/paginationComponent.vue'
+import PaginationComponent from '@/components/pagination/PaginationComponent.vue'
 
 const { VITE_API, VITE_PATH } = import.meta.env
 
@@ -303,7 +303,7 @@ export default {
     }
   },
   components: {
-    paginationComponent
+    PaginationComponent
   },
   mounted () {
     // 獲取當頁資料

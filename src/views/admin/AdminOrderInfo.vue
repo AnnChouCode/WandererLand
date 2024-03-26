@@ -180,14 +180,17 @@
     </div>
   </div>
 
-  <toastComponent :adminOrderState="toastState" :adminOrderAction="doAction"></toastComponent>
+  <ToastComponent :adminOrderState="toastState" :adminOrderAction="doAction"></ToastComponent>
 </template>
 
 <script>
 import statusStore from '@/stores/statusStore'
 import { useAdminOrderStore } from '@/stores/adminOrderStore'
 import { mapActions, mapStores } from 'pinia'
-import toastComponent from '@/components/toastComponent.vue'
+
+// import components
+import ToastComponent from '@/components/toastMsg/ToastComponent.vue'
+
 import { useLoading } from 'vue-loading-overlay'
 
 const $loading = useLoading()
@@ -304,7 +307,7 @@ export default {
     ...mapStores(useAdminOrderStore)
   },
   components: {
-    toastComponent
+    ToastComponent
   },
   mounted () {
     const id = this.$route.params.id

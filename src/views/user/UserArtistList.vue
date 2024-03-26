@@ -1,13 +1,14 @@
 <template>
-  <userNavArtistFilter :allArtists="allArtists" :groupList="groupList" @filterShow="filterShow"></userNavArtistFilter>
+  <UserNavArtistFilter :allArtists="allArtists" :groupList="groupList" @filterShow="filterShow"></UserNavArtistFilter>
   <div class="container user-product-page-container flex-grow-1">
     <h2 class="mb-7 mb-md-8 h1 lh-sm title-letter-spacing text-center h1">藝術家</h2>
     <div class="row g-3 g-md-8">
       <div class="col-6 col-md-4" v-for="item in tempArtistList" :key="item.id">
-        <productCard :item="item" :linkTo="`/artistInfo/${item.id}`" :showPrice="false" :showFavorite="false" :shape="'rounded-circle'" :titlePosition="'text-center'"></productCard>
+        <ProductCard :item="item" :linkTo="`/artistInfo/${item.id}`" :showPrice="false" :showFavorite="false"
+          :shape="'rounded-circle'" :titlePosition="'text-center'"></ProductCard>
       </div>
     </div>
-    <paginationComponent :pagination="pagination" @getList="getList"></paginationComponent>
+    <PaginationComponent :pagination="pagination" @getList="getList"></PaginationComponent>
   </div>
 </template>
 
@@ -16,9 +17,9 @@ import userProductStore from '@/stores/userProductStore.js'
 import { mapActions, mapState } from 'pinia'
 
 // import components
-import userNavArtistFilter from '@/components/userNavArtistFilter.vue'
-import productCard from '@/components/productCard.vue'
-import paginationComponent from '@/components/paginationComponent.vue'
+import UserNavArtistFilter from '@/components/navbar/UserNavArtistFilter.vue'
+import ProductCard from '@/components/ProductCard.vue'
+import PaginationComponent from '@/components/pagination/PaginationComponent.vue'
 
 export default {
   data () {
@@ -139,9 +140,9 @@ export default {
     ...mapState(userProductStore, ['allArtists', 'sortNewest', 'groupList'])
   },
   components: {
-    userNavArtistFilter,
-    productCard,
-    paginationComponent
+    UserNavArtistFilter,
+    ProductCard,
+    PaginationComponent
   }
 }
 </script>

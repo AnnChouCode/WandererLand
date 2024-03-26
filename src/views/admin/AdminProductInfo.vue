@@ -66,16 +66,15 @@
         <v-form v-slot="{ errors }" class="d-flex flex-column gap-5" @submit="updateProductInfo">
           <div>
             <label for="title" class="form-label fw-bold has-required">商品名稱</label>
-            <v-field type="text" class="form-control" placeholder="請輸入商品名稱" v-model.trim="tempProductInfo.title" id="title"
-              name="名稱" :class="{ 'is-invalid': errors['名稱'] }" rules="required"></v-field>
+            <v-field type="text" class="form-control" placeholder="請輸入商品名稱" v-model.trim="tempProductInfo.title"
+              id="title" name="名稱" :class="{ 'is-invalid': errors['名稱'] }" rules="required"></v-field>
             <error-message name="名稱" class="invalid-feedback"></error-message>
           </div>
           <div class="row g-5 g-md-1">
             <div class="col-md-6">
               <label for="artist" class="form-label fw-bold has-required">藝術家</label>
-              <v-field id="artist" name="藝術家" type="text" class="form-control"
-                :class="{ 'is-invalid': errors['藝術家'] }" placeholder="請輸入藝術家名稱" rules="required"
-                v-model.trim="tempProductInfo.artist"></v-field>
+              <v-field id="artist" name="藝術家" type="text" class="form-control" :class="{ 'is-invalid': errors['藝術家'] }"
+                placeholder="請輸入藝術家名稱" rules="required" v-model.trim="tempProductInfo.artist"></v-field>
               <error-message name="藝術家" class="invalid-feedback"></error-message>
             </div>
             <div class="col-md-6">
@@ -128,9 +127,8 @@
             </div>
             <div class="col-md-6">
               <label for="price" class="form-label fw-bold has-required">售價</label>
-              <v-field type="number" id="price" name="售價" class="form-control"
-                :class="{ 'is-invalid': errors['售價'] }" placeholder="請輸入商品售價" rules="required" min="0"
-                v-model.number.trim="tempProductInfo.price"></v-field>
+              <v-field type="number" id="price" name="售價" class="form-control" :class="{ 'is-invalid': errors['售價'] }"
+                placeholder="請輸入商品售價" rules="required" min="0" v-model.number.trim="tempProductInfo.price"></v-field>
               <error-message name="售價" class="invalid-feedback"></error-message>
             </div>
           </div>
@@ -156,13 +154,15 @@
     </div>
   </div>
 
-  <uploadImageModal ref="uploadImageModal" @submitImgUrl="getImgUrl" :is-Cover="isCover"></uploadImageModal>
+  <UploadImageModal ref="uploadImageModal" @submitImgUrl="getImgUrl" :is-Cover="isCover"></UploadImageModal>
 </template>
 
 <script>
 import { useAdminProductsStore } from '@/stores/adminProductStore.js'
 import { mapStores } from 'pinia'
-import uploadImageModal from '@/components/uploadImageModal.vue'
+
+// import components
+import UploadImageModal from '@/components/modal/UploadImageModal.vue'
 
 const productsStore = useAdminProductsStore()
 const { VITE_API, VITE_PATH } = import.meta.env
@@ -290,7 +290,7 @@ export default {
     ...mapStores(useAdminProductsStore)
   },
   components: {
-    uploadImageModal
+    UploadImageModal
   },
   mounted () {
     // 判斷頁面為新增產品或編輯產品

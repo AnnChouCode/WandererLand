@@ -44,16 +44,17 @@
         </tbody>
       </table>
       <!-- 頁碼 -->
-      <paginationComponent :pagination="pagination" @get-List="getCouponList"></paginationComponent>
+      <PaginationComponent :pagination="pagination" @get-List="getCouponList"></PaginationComponent>
     </div>
   </div>
-  <adminCouponModal :isNew="isNew" :couponInfo="tempCoupon" ref="adminCouponModal" @updateCoupon="updateCoupon">
-  </adminCouponModal>
+  <AdminCouponModal :isNew="isNew" :couponInfo="tempCoupon" ref="adminCouponModal" @updateCoupon="updateCoupon">
+  </AdminCouponModal>
 </template>
 
 <script>
-import paginationComponent from '@/components/paginationComponent.vue'
-import adminCouponModal from '@/components/adminCouponModal.vue'
+// import components
+import PaginationComponent from '@/components/pagination/PaginationComponent.vue'
+import AdminCouponModal from '@/components/modal/AdminCouponModal.vue'
 
 const { VITE_API, VITE_PATH } = import.meta.env
 
@@ -191,8 +192,8 @@ export default {
     }
   },
   components: {
-    paginationComponent,
-    adminCouponModal
+    PaginationComponent,
+    AdminCouponModal
   },
   mounted () {
     // 獲取所有資料

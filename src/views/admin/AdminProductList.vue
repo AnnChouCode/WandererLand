@@ -21,8 +21,8 @@
         <tbody>
           <tr v-for="product in productsList" :key="product.id">
             <td>
-              <div class="bg-img-center bg-img-contain bg-img-norepeat ratio-1x1" style="min-width:50px;max-width: 100px;"
-                :style="{ backgroundImage: `url(${product.imageUrl})` }"></div>
+              <div class="bg-img-center bg-img-contain bg-img-norepeat ratio-1x1"
+                style="min-width:50px;max-width: 100px;" :style="{ backgroundImage: `url(${product.imageUrl})` }"></div>
             </td>
             <td>
               {{ product.title }}
@@ -62,13 +62,13 @@
         </tbody>
       </table>
       <!-- 頁碼 -->
-      <paginationComponent :pagination="pagination" @get-List="getProductList"></paginationComponent>
+      <PaginationComponent :pagination="pagination" @get-List="getProductList"></PaginationComponent>
     </div>
   </div>
 </template>
 
 <script>
-import paginationComponent from '@/components/paginationComponent.vue'
+import PaginationComponent from '@/components/pagination/PaginationComponent.vue'
 
 const { VITE_API, VITE_PATH } = import.meta.env
 
@@ -176,7 +176,7 @@ export default {
     })
   },
   components: {
-    paginationComponent
+    PaginationComponent
   }
 }
 </script>

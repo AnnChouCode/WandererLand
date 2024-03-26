@@ -21,7 +21,8 @@
         <tbody>
           <tr v-for="order in currentOrderList" :key="order.id">
             <td>{{ order.id }}</td>
-            <td class="d-none d-md-table-cell text-center">{{ new Date(order.create_at * 1000).toLocaleDateString() }}</td>
+            <td class="d-none d-md-table-cell text-center">{{ new Date(order.create_at * 1000).toLocaleDateString() }}
+            </td>
             <td class="d-none d-lg-table-cell text-center">{{ order.user.name }}</td>
             <td>
               <span v-if="!order.is_paid" class="text-warningh ">未付款</span>
@@ -43,15 +44,18 @@
         </tbody>
       </table>
       <!-- 頁碼 -->
-      <paginationComponent :pagination="pagination" @get-List="getCurrentOrderList"></paginationComponent>
+      <PaginationComponent :pagination="pagination" @get-List="getCurrentOrderList"></PaginationComponent>
     </div>
   </div>
 </template>
 
 <script>
-import paginationComponent from '@/components/paginationComponent.vue'
 import { useAdminOrderStore } from '@/stores/adminOrderStore.js'
 import { mapStores } from 'pinia'
+
+// import components
+import PaginationComponent from '@/components/pagination/PaginationComponent.vue'
+
 const ordersStore = useAdminOrderStore()
 const { VITE_API, VITE_PATH } = import.meta.env
 
@@ -137,7 +141,7 @@ export default {
     ...mapStores(useAdminOrderStore)
   },
   components: {
-    paginationComponent
+    PaginationComponent
   },
   mounted () {
     // 獲取所有資料

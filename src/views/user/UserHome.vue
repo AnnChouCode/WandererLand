@@ -2,7 +2,8 @@
   <!-- banner -->
   <div class="position-relative banner" v-if="sortArticles.topArticle[0]">
     <img :src="sortArticles.topArticle[0].imageUrl" :alt="sortArticles.topArticle[0].title"
-      class="position-fixed z-n1 h-100 w-100 overflow-hidden object-fit-cover" data-aos="zoom-out" data-aos-duration="3000">
+      class="position-fixed z-n1 h-100 w-100 overflow-hidden object-fit-cover" data-aos="zoom-out"
+      data-aos-duration="3000">
     <div class="position-absolute z-1 top-0 bg-default opacity-50 w-100 h-100"></div>
     <div class="position-absolute z-2 top-50 start-50 translate-middle text-center banner-title w-80 w-sm-50">
       <h2 class="pb-5 pb-md-7 text-white title-shadow fs-2 fs-md-1 title-letter-spacing title-letter-word-wrap">{{
@@ -23,7 +24,7 @@
       <div class="py-7 py-md-9" v-if="sortArticles.newestArticles[0]">
         <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
           <h2 class="fs-2 fs-md-1">最新消息</h2>
-            <btnSeeMore linkTo="/articlelist"></btnSeeMore>
+          <btnSeeMore linkTo="/articlelist"></btnSeeMore>
         </div>
         <div class="row g-3 g-lg-6 home-article">
           <!-- article 1 -->
@@ -143,7 +144,7 @@
   </div>
 
   <!-- 優惠券 -->
-  <couponComponent></couponComponent>
+  <couponComponent />
 
   <div class="bg-white">
     <div class="container">
@@ -230,9 +231,9 @@ import articleStore from '@/stores/userArticleStore.js'
 import { mapActions, mapState } from 'pinia'
 
 // Import Components
-import swiperProductComponent from '@/components/swiperProductComponent.vue'
-import couponComponent from '@/components/couponComponent.vue'
-import btnSeeMore from '@/components/btnSeeMore.vue'
+import SwiperProductComponent from '@/components/swiper/SwiperProductComponent.vue'
+import CouponComponent from '@/components/CouponComponent.vue'
+import BtnSeeMore from '@/components/button/BtnSeeMore.vue'
 
 export default {
   data () {
@@ -270,9 +271,9 @@ export default {
     }
   },
   components: {
-    swiperProductComponent,
-    couponComponent,
-    btnSeeMore
+    SwiperProductComponent,
+    CouponComponent,
+    BtnSeeMore
   },
   computed: { ...mapState(articleStore, ['sortArticles', 'articlesList']) },
   mounted () {
@@ -321,10 +322,10 @@ export default {
         rgba(255, 255, 255, 0) 0%,
         rgba(94, 94, 94, 0) 63%,
         rgba(0, 0, 0, 0.6) 100%);
-        transition: background 0.3s ease;
+    transition: background 0.3s ease;
 
     &:hover {
-      background:rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.4);
     }
   }
 }

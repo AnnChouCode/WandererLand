@@ -19,8 +19,8 @@
               </div>
             </SwiperSlide>
             <!-- 左右 navigation -->
-            <btnSwiperNavigation position="top" direction="next"></btnSwiperNavigation>
-            <btnSwiperNavigation position="top" direction="prev"></btnSwiperNavigation>
+            <BtnSwiperNavigation position="top" direction="next"></BtnSwiperNavigation>
+            <BtnSwiperNavigation position="top" direction="prev"></BtnSwiperNavigation>
           </Swiper>
         </div>
 
@@ -64,7 +64,7 @@
             </router-link>
             <div class="d-flex justify-content-between align-items-center">
               <p class="fs-info fs-md-6 text-info">NT$ {{ product.price.toLocaleString() }}</p>
-              <btnFavorite></btnFavorite>
+              <BtnFavorite />
             </div>
           </div>
         </div>
@@ -84,8 +84,8 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
 // Import Components
-import btnFavorite from '@/components/btnFavorite.vue'
-import btnSwiperNavigation from '@/components/btnSwiperNavigation.vue'
+import BtnFavorite from '@/components/button/BtnFavorite.vue'
+import BtnSwiperNavigation from '@/components/button/BtnSwiperNavigation.vue'
 
 const { VITE_API, VITE_PATH } = import.meta.env
 
@@ -142,8 +142,8 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
-    btnFavorite,
-    btnSwiperNavigation
+    BtnFavorite,
+    BtnSwiperNavigation
   }
 }
 </script>

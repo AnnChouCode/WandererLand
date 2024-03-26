@@ -56,13 +56,14 @@
         </tbody>
       </table>
       <!-- 頁碼 -->
-      <paginationComponent :pagination="pagination" @get-List="getArtistList"></paginationComponent>
+      <PaginationComponent :pagination="pagination" @get-List="getArtistList"></PaginationComponent>
     </div>
   </div>
 </template>
 
 <script>
-import paginationComponent from '@/components/paginationComponent.vue'
+// import components
+import PaginationComponent from '@/components/pagination/PaginationComponent.vue'
 
 const { VITE_API, VITE_PATH } = import.meta.env
 
@@ -170,7 +171,7 @@ export default {
     })
   },
   components: {
-    paginationComponent
+    PaginationComponent
   }
 }
 </script>

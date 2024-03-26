@@ -1,20 +1,22 @@
 <template>
   <div class="d-flex flex-column dvh-100">
-    <userNavBar></userNavBar>
+    <UserNavBar />
     <RouterView />
-    <userFooter :isLoggedin="isLoggedin"></userFooter>
-    <toastComponent class="position-fixed z-3 end-0" style="bottom:45px;"></toastComponent>
-    <btnBackToTop  class="position-fixed z-3 bottom-0 end-0"></btnBackToTop>
+    <UserFooter :isLoggedin="isLoggedin"></UserFooter>
+    <ToastComponent class="position-fixed z-3 end-0" style="bottom:45px;"></ToastComponent>
+    <BtnBackToTop class="position-fixed z-3 bottom-0 end-0"></BtnBackToTop>
   </div>
 </template>
 
 <script>
-import userNavBar from '@/components/userNavBar.vue'
-import userFooter from '@/components/userFooter.vue'
-import toastComponent from '@/components/toastComponent.vue'
-import btnBackToTop from '@/components/btnBackToTop.vue'
 import cartStore from '@/stores/userCartStore.js'
 import { mapActions } from 'pinia'
+
+// import components
+import UserNavBar from '@/components/navbar/UserNavBar.vue'
+import UserFooter from '@/components/footer/UserFooter.vue'
+import ToastComponent from '@/components/toastMsg/ToastComponent.vue'
+import BtnBackToTop from '@/components/button/BtnBackToTop.vue'
 
 export default {
   data () {
@@ -41,10 +43,10 @@ export default {
     this.getCartsList()
   },
   components: {
-    toastComponent,
-    userNavBar,
-    userFooter,
-    btnBackToTop
+    ToastComponent,
+    UserNavBar,
+    UserFooter,
+    BtnBackToTop
   }
 }
 </script>

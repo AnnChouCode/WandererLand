@@ -9,9 +9,10 @@
               <div
                 class="position-lg-absolute row px-2 py-2 py-lg-0 px-lg-auto flex-nowrap flex-lg-column overflow-auto scrollbar-y-hide w-lg-100 h-lg-100"
                 v-if="product.imagesStock">
-                <a href="#" class="col-3 col-lg-12 py-0 py-lg-2 overflow-hidden" v-for="(img, idx) in product.imagesStock"
-                  :key="'img' + idx" @click.prevent="changeImage(idx)">
-                  <img :src="img" alt="product" class="object-fit-contain w-100 h-100" :class="img === product.currentImage ? 'border border-2 border-info' : ''">
+                <a href="#" class="col-3 col-lg-12 py-0 py-lg-2 overflow-hidden"
+                  v-for="(img, idx) in product.imagesStock" :key="'img' + idx" @click.prevent="changeImage(idx)">
+                  <img :src="img" alt="product" class="object-fit-contain w-100 h-100"
+                    :class="img === product.currentImage ? 'border border-2 border-info' : ''">
                 </a>
               </div>
             </div>
@@ -107,12 +108,15 @@
     <div class="py-7 py-md-9">
       <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
         <h2 class="fs-2 fs-md-1">相似作品</h2>
-          <btnSeeMore v-if="tempRelatedAllProducts" :linkTo="tempRelatedAllProducts.length ? `/productlist?artist=${artistInfo.title}` : `/productlist?group=${product.productInfo.group}`"></btnSeeMore>
+        <BtnSeeMore v-if="tempRelatedAllProducts"
+          :linkTo="tempRelatedAllProducts.length ? `/productlist?artist=${artistInfo.title}` : `/productlist?group=${product.productInfo.group}`">
+        </BtnSeeMore>
       </div>
 
       <div class="row g-3 g-md-8">
         <div class="col-6 col-md-4" v-for="item in relatedProducts" :key="item.id">
-          <productCard :item="item" :linkTo="`/productInfo/${item.id}`" :showPrice="true" :showFavorite="true"></productCard>
+          <ProductCard :item="item" :linkTo="`/productInfo/${item.id}`" :showPrice="true" :showFavorite="true">
+          </ProductCard>
         </div>
       </div>
     </div>
@@ -126,8 +130,8 @@ import cartStore from '@/stores/userCartStore.js'
 import { mapActions, mapState } from 'pinia'
 
 // Import Components
-import productCard from '@/components/productCard.vue'
-import btnSeeMore from '@/components/btnSeeMore.vue'
+import ProductCard from '@/components/ProductCard.vue'
+import BtnSeeMore from '@/components/button/BtnSeeMore.vue'
 
 const { VITE_API, VITE_PATH } = import.meta.env
 
@@ -257,8 +261,8 @@ export default {
     ...mapState(cartStore, ['cartsList'])
   },
   components: {
-    productCard,
-    btnSeeMore
+    ProductCard,
+    BtnSeeMore
   }
 }
 </script>

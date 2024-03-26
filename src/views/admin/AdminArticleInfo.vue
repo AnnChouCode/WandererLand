@@ -220,14 +220,16 @@
     </div>
   </div>
 
-  <uploadImageModal ref="uploadImageModal" @submitImgUrl="getImgUrl" :is-Cover="isCover"></uploadImageModal>
+  <UploadImageModal ref="uploadImageModal" @submitImgUrl="getImgUrl" :is-Cover="isCover"></UploadImageModal>
 </template>
 
 <script>
 import { useAdminProductsStore } from '@/stores/adminProductStore.js'
 import { mapStores } from 'pinia'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import uploadImageModal from '@/components/uploadImageModal.vue'
+
+// import components
+import UploadImageModal from '@/components/modal/UploadImageModal.vue'
 
 const productsStore = useAdminProductsStore()
 const { VITE_API, VITE_PATH } = import.meta.env
@@ -435,7 +437,7 @@ export default {
     ...mapStores(useAdminProductsStore)
   },
   components: {
-    uploadImageModal
+    UploadImageModal
   },
   async mounted () {
     try {

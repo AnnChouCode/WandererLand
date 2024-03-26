@@ -7,13 +7,14 @@
       <div class="col-12 col-md-6 mx-auto">
         <ol class="position-relative d-flex justify-content-between mb-6 mb-md-8 mx-auto pay-list">
           <li class="d-flex flex-column align-items-center">
-            <p class="d-flex justify-content-center align-items-center mb-2 fs-5 border border-default rounded-circle pay-step bg-default text-white">
+            <p
+              class="d-flex justify-content-center align-items-center mb-2 fs-5 border border-default rounded-circle pay-step bg-default text-white">
               1</p>
             <p class="fs-info fw-bold">訂單資料</p>
           </li>
           <li class="d-flex flex-column align-items-center">
             <p class="d-flex justify-content-center align-items-center mb-2 fs-5 border border-default rounded-circle pay-step"
-              :class="pageType === 'payorder'|| pageType === 'orderhistory' ? 'bg-default text-white' : 'bg-white text-default'">
+              :class="pageType === 'payorder' || pageType === 'orderhistory' ? 'bg-default text-white' : 'bg-white text-default'">
               2</p>
             <p class="fs-info fw-bold">結帳付款</p>
           </li>

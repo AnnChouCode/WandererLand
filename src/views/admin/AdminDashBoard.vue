@@ -34,7 +34,7 @@
         <option value="12">12 個月</option>
       </select>
       <div class="w-100 p-3 border rounded-2 bg-white" v-if="Object.values(chartData).length">
-        <barChart :chartOptions="chartOptions" :chartData="chartData"></barChart>
+        <BarChart :chartOptions="chartOptions" :chartData="chartData"></BarChart>
       </div>
     </div>
   </div>
@@ -45,8 +45,8 @@ import { useAdminOrderStore } from '@/stores/adminOrderStore'
 import { useAdminProductsStore } from '@/stores/adminProductStore'
 import { mapStores } from 'pinia'
 
-// 引入 barChart 子元件
-import barChart from '@/components/barChart.vue'
+// import components
+import BarChart from '@/components/chart/BarChart.vue'
 
 const orderStore = useAdminOrderStore()
 const productStore = useAdminProductsStore()
@@ -176,8 +176,7 @@ export default {
     this.getAllProductList()
   },
   components: {
-    barChart
-    // barChart2
+    BarChart
   }
 }
 </script>

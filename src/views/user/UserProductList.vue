@@ -1,15 +1,15 @@
 <template>
-  <userNavProductFilter :allArtists="allArtists" :groupList="groupList" :productSizeList="productSizeList"
-    @filterShow="filterShow"></userNavProductFilter>
+  <UserNavProductFilter :allArtists="allArtists" :groupList="groupList" :productSizeList="productSizeList"
+    @filterShow="filterShow"></UserNavProductFilter>
   <div class="container user-product-page-container flex-grow-1">
     <h2 class="mb-7 mb-md-8 h1 lh-sm title-letter-spacing text-center h1">作品</h2>
     <div class="row g-3 g-md-8 mb-5">
       <div class="col-6 col-md-4" v-for="item in tempProductsList" :key="item.id">
-        <productCard :item="item" :linkTo="`/productInfo/${item.id}`" :showPrice="true" :showFavorite="true">
-        </productCard>
+        <ProductCard :item="item" :linkTo="`/productInfo/${item.id}`" :showPrice="true" :showFavorite="true">
+        </ProductCard>
       </div>
     </div>
-    <paginationComponent :pagination="pagination" @getList="getList"></paginationComponent>
+    <PaginationComponent :pagination="pagination" @getList="getList"></PaginationComponent>
   </div>
 </template>
 
@@ -18,9 +18,9 @@ import userProductStore from '@/stores/userProductStore.js'
 import { mapActions, mapState } from 'pinia'
 
 // Import Components
-import userNavProductFilter from '@/components/userNavProductFilter.vue'
-import productCard from '@/components/productCard.vue'
-import paginationComponent from '@/components/paginationComponent.vue'
+import UserNavProductFilter from '@/components/navbar/UserNavProductFilter.vue'
+import ProductCard from '@/components/ProductCard.vue'
+import PaginationComponent from '@/components/pagination/PaginationComponent.vue'
 
 export default {
   data () {
@@ -143,9 +143,9 @@ export default {
     ...mapState(userProductStore, ['allArtists', 'sortNewest', 'groupList', 'productSizeList'])
   },
   components: {
-    userNavProductFilter,
-    productCard,
-    paginationComponent
+    UserNavProductFilter,
+    ProductCard,
+    PaginationComponent
   }
 }
 </script>
