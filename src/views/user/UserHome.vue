@@ -297,11 +297,18 @@ export default {
 
 /* 首頁文章 */
 .home-article {
+  img {
+    transition: transform 0.3s;
+  }
 
   // hover 效果
   &-img:hover{
     .home-article-mask:after{
       border:1px solid white;
+    }
+
+    img {
+      transform: scale(1.5) translate(-15%, 0%);
     }
   }
 
@@ -340,7 +347,7 @@ export default {
         rgba(0, 0, 0, 0.6) 100%);
     transition: background 0.3s ease;
 
-    &:after{
+    &::after{
       content:'';
       position: absolute;
       width: 98%;
@@ -348,7 +355,7 @@ export default {
       top:50%;
       left:50%;
       transform: translate(-50%, -50%);
-      transition: border 0.3s
+      transition: border 0.3s;
     }
   }
 }
