@@ -297,6 +297,21 @@ export default {
 
 /* 首頁文章 */
 .home-article {
+
+  // hover 效果
+  &-img:hover{
+    .home-article-mask:after{
+      border:1px solid white;
+    }
+  }
+
+  &:has(.home-article-img:hover) .home-article-img:not(:hover){
+    .home-article-mask{
+      background: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  // RWD
   >.home-article-img:first-child>a>div:first-child {
     height: 208px;
 
@@ -317,6 +332,7 @@ export default {
     }
   }
 
+  // 遮罩
   &-mask {
     background: linear-gradient(to bottom,
         rgba(255, 255, 255, 0) 0%,
@@ -324,8 +340,15 @@ export default {
         rgba(0, 0, 0, 0.6) 100%);
     transition: background 0.3s ease;
 
-    &:hover {
-      background: rgba(0, 0, 0, 0.4);
+    &:after{
+      content:'';
+      position: absolute;
+      width: 98%;
+      height: 98%;
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -50%);
+      transition: border 0.3s
     }
   }
 }
