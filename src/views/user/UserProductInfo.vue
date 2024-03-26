@@ -55,6 +55,7 @@
             </div>
           </div>
           <hr class="my-6 text-default">
+
           <div class="accordion accordion-flush" id="accordionPanelsProductInfo">
             <div class="accordion-item bg-transparent border-default">
               <h2 class="accordion-header" id="panelsStayOpen-headingQty">
@@ -74,10 +75,11 @@
             </div>
           </div>
           <hr class="my-6 text-default">
+
           <div class="accordion accordion-flush" id="accordionPanelsProductInfo">
             <div class="accordion-item bg-transparent">
               <h2 class="accordion-header" id="panelsStayOpen-headingAbout">
-                <button class="accordion-button text-info fw-bold bg-transparent p-0" type="button"
+                <button class="accordion-button collapsed text-info fw-bold bg-transparent p-0" type="button"
                   data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseAbout" aria-expanded="true"
                   aria-controls="panelsStayOpen-collapseAbout" style="box-shadow: none;">
                   關於 {{ artistInfo.title }}
