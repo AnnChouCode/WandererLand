@@ -18,19 +18,19 @@
           </li>
         </ul>
         <h1 class="position-absolute top-50 start-50 translate-middle">
-          <a href="#/home" class="d-block h5 fs-md-20 fw-bold text-default">WANDERER LAND</a>
+          <a href="#/home" class="d-block h-100 h5 fs-md-20 fw-bold text-default">WANDERER LAND</a>
         </h1>
-        <ul class="d-flex gap-4 gap-md-5 align-items-center list-unstyled">
-          <li class="d-none d-lg-block py-4">
+        <ul class="d-flex align-items-center list-unstyled">
+          <li class="d-none d-lg-block">
             <ProductSearch />
           </li>
-          <li class="py-4">
+          <li class="py-4 px-2">
             <router-link to="/favoritelist" class="position-relative text-default">
               <i class="bi" :class="favoriteList.length ? 'bi-heart-fill' : 'bi-heart'"></i>
             </router-link>
           </li>
-          <li class="py-4"  @mouseenter="showCartList"
-              @mouseleave="hideCartList">
+          <li class="py-4 ps-2"  @mouseenter="showCartList"
+              @mouseleave="hideCartList" style="padding-right: 8px;margin-right:-8px;">
             <router-link to="/cart" class="position-relative text-default">
               <i class="bi bi-handbag"></i>
               <div v-if="cartsList.final_total" class="position-absolute badge bg-default rounded-circle text-white"
