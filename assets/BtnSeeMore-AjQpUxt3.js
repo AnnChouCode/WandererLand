@@ -1,1 +1,0 @@
-import{_ as e,r,o as n,i as s,f as a,g as c}from"./index-bOPoBINP.js";const f={props:{linkTo:String}};function _(i,l,o,d,p,u){const t=r("router-link");return n(),s(t,{class:"text-default border-bottom border-default fw-bold fs-info fs-md-6",to:o.linkTo},{default:a(()=>[c("瀏覽更多")]),_:1},8,["to"])}const k=e(f,[["render",_]]);export{k as B};
