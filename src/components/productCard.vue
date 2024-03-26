@@ -1,22 +1,19 @@
 <template>
-    <router-link :to="linkTo">
-        <div class="position-relative d-flex justify-content-center align-items-center ratio-1x1 overflow-hidden product-img"
-            :class="shape">
-            <img :src="item.imageUrl" :alt="item.title" class="object-fit-contain w-100 h-100 product-img-up">
-            <img :src="item.imagesUrl[0]" alt="item.title"
-                class="position-absolute z-n1 object-fit-contain w-100 h-100 product-img-down">
-        </div>
-    </router-link>
-    <div class="py-3 px-0 px-md-4">
-        <router-link :to="linkTo">
-            <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default" v-if="showTitle" :class="titlePosition">{{ item.title
-                }}</h3>
-        </router-link>
-        <div class="d-flex justify-content-between align-items-center">
-            <p class="fs-info fs-md-6 text-info" v-if="showPrice">NT$ {{ item.price.toLocaleString() }}</p>
-            <BtnFavorite v-if="showFavorite" :productId="item.id" @click="getFavoriteProducts"></BtnFavorite>
-        </div>
+  <router-link :to="linkTo" class="product-content">
+    <div class="position-relative d-flex justify-content-center align-items-center mb-3 ratio-1x1 overflow-hidden"
+      :class="shape">
+      <img :src="item.imageUrl" :alt="item.title" class="object-fit-contain w-100 h-100 product-img-up">
+      <img :src="item.imagesUrl[0]" alt="item.title"
+        class="position-absolute z-n1 object-fit-contain w-100 h-100 product-img-down">
     </div>
+    <h3 class="mb-2 px-0 px-md-4 fs-info fs-md-5 fw-bold text-default" v-if="showTitle" :class="titlePosition">{{
+    item.title
+  }}</h3>
+  </router-link>
+  <div class="d-flex justify-content-between align-items-center">
+    <p class="px-0 px-md-4 fs-info fs-md-6 text-info" v-if="showPrice">NT$ {{ item.price.toLocaleString() }}</p>
+    <BtnFavorite v-if="showFavorite" :productId="item.id" @click="getFavoriteProducts"></BtnFavorite>
+  </div>
 </template>
 
 <script>
@@ -72,3 +69,28 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+/* product image hover 效果 */
+.product {
+  &-img-up {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  &-img-down {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+  }
+
+  &-content:hover {
+    .product-img-up {
+      opacity: 0;
+    }
+
+    .product-img-down {
+      transform: scale(1.1);
+    }
+  }
+}
+</style>
