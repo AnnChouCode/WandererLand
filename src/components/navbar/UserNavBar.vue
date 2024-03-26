@@ -22,7 +22,7 @@
         </h1>
         <ul class="d-flex gap-4 gap-md-5 align-items-center list-unstyled">
           <li class="d-none d-lg-block py-4">
-            <productSearch></productSearch>
+            <ProductSearch />
           </li>
           <li class="py-4">
             <router-link to="/favoritelist" class="position-relative text-default">
@@ -87,7 +87,7 @@
     <div class="offcanvas-body">
       <ul class="d-flex flex-column gap-3 gap-sm-5 list-unstyled">
         <li>
-          <productSearch></productSearch>
+          <ProductSearch />
         </li>
         <li>
           <router-link to="/productlist" class="d-block py-4 text-default navlink-underline">作品</router-link>
@@ -109,7 +109,7 @@ import favoriteStore from '@/stores/favoriteStore.js'
 import { mapState } from 'pinia'
 
 // Import Components
-import productSearch from '@/components/productSearch.vue'
+import ProductSearch from '@/components/search/ProductSearch.vue'
 
 import { Offcanvas } from 'bootstrap'
 
@@ -156,7 +156,7 @@ export default {
     ...mapState(favoriteStore, ['favoriteList'])
   },
   components: {
-    productSearch
+    ProductSearch
   }
 }
 </script>

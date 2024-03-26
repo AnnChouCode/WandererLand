@@ -14,14 +14,14 @@
         </router-link>
         <div class="d-flex justify-content-between align-items-center">
             <p class="fs-info fs-md-6 text-info" v-if="showPrice">NT$ {{ item.price.toLocaleString() }}</p>
-            <btnFavorite v-if="showFavorite" :productId="item.id" @click="getFavoriteProducts"></btnFavorite>
+            <BtnFavorite v-if="showFavorite" :productId="item.id" @click="getFavoriteProducts"></BtnFavorite>
         </div>
     </div>
 </template>
 
 <script>
 // Import Components
-import btnFavorite from '@/components/btnFavorite.vue'
+import BtnFavorite from '@/components/button/BtnFavorite.vue'
 
 export default {
   props: {
@@ -61,7 +61,7 @@ export default {
     }
   },
   components: {
-    btnFavorite
+    BtnFavorite
   },
   methods: {
     getFavoriteProducts () {

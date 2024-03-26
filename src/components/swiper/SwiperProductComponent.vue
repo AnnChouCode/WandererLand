@@ -2,7 +2,7 @@
   <div class="py-7 py-md-9">
     <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
       <h2 class="fs-2 fs-md-1">{{ DataInfo[dataCategory].title }}</h2>
-      <btnSeeMore v-if="DataInfo[dataCategory].path !== ''" :linkTo="DataInfo[dataCategory].path"></btnSeeMore>
+      <BtnSeeMore v-if="DataInfo[dataCategory].path !== ''" :linkTo="DataInfo[dataCategory].path"></BtnSeeMore>
     </div>
 
     <div class="position-relative">
@@ -21,11 +21,11 @@
         prevEl: '.swiper-button-prev'
       }" :modules="modules" class="product-swiper">
         <SwiperSlide v-for="item in  currentDatas" :key="item.id">
-          <productCard :item="item" :linkTo="`/${DataInfo[dataCategory].infoPath}/${item.id}`" :showPrice="!isArtistBlock" :showFavorite="!isArtistBlock" :shape="isArtistBlock ? 'rounded-circle' : ''" :titlePosition="isArtistBlock ? 'text-center' : ''"></productCard>
+          <ProductCard :item="item" :linkTo="`/${DataInfo[dataCategory].infoPath}/${item.id}`" :showPrice="!isArtistBlock" :showFavorite="!isArtistBlock" :shape="isArtistBlock ? 'rounded-circle' : ''" :titlePosition="isArtistBlock ? 'text-center' : ''"></ProductCard>
         </SwiperSlide>
         <!-- 左右 navigation -->
-        <btnSwiperNavigation position="bottom" direction="next"></btnSwiperNavigation>
-        <btnSwiperNavigation position="bottom" direction="prev"></btnSwiperNavigation>
+        <BtnSwiperNavigation position="bottom" direction="next"></BtnSwiperNavigation>
+        <BtnSwiperNavigation position="bottom" direction="prev"></BtnSwiperNavigation>
       </Swiper>
     </div>
   </div>
@@ -45,9 +45,9 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
 // Import Components
-import btnSwiperNavigation from '@/components/btnSwiperNavigation.vue'
-import productCard from '@/components/productCard.vue'
-import btnSeeMore from '@/components/btnSeeMore.vue'
+import BtnSwiperNavigation from '@/components/button/BtnSwiperNavigation.vue'
+import ProductCard from '@/components/ProductCard.vue'
+import BtnSeeMore from '@/components/button/BtnSeeMore.vue'
 
 export default {
   props: ['dataCategory'],
@@ -143,9 +143,9 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
-    btnSwiperNavigation,
-    productCard,
-    btnSeeMore
+    BtnSwiperNavigation,
+    ProductCard,
+    BtnSeeMore
   }
 }
 </script>
