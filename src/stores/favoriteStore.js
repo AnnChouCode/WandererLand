@@ -33,8 +33,6 @@ export default defineStore('favoriteStore', {
       if (favoriteList) {
         this.favoriteList = favoriteList.split(',')
       }
-
-      return this.favoriteList
     },
 
     // 最近看過
