@@ -68,7 +68,8 @@
                   class="py-2 btn btn-default text-center rounded-0 w-100 fw-bold">前往購物車</router-link>
               </div>
               <div v-else>
-                <p lass="py-3 text-center">目前購物車內沒有內容</p>
+                <p class="py-3 text-center">目前購物車內沒有內容</p>
+                <router-link to="/productlist" class="py-2 btn btn-default text-center rounded-0 w-100 fw-bold">瀏覽作品</router-link>
               </div>
             </div>
           </li>
