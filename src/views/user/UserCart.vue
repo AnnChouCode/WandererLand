@@ -1,7 +1,7 @@
 <template>
-  <div class="container user-page-container flex-grow-1">
+  <div class="container user-page-container flex-grow-1" style="padding-bottom:0;">
     <h2 class="mb-7 mb-md-8 h1 lh-sm title-letter-spacing text-center h1">購物車</h2>
-    <p v-if="!cartsList.final_total" class="text-center">目前購物車內沒有內容</p>
+    <p v-if="!cartsList.final_total" class="text-center fs-4">目前購物車內沒有內容</p>
     <div class="position-relative" v-else>
       <button class="position-absolute top-0 start-0 btn btn-primary rounded-0 fs-info text-info" type="button"
         @click="clearCartsList" :disabled="!cartsList.final_total">清空購物車</button>
@@ -100,8 +100,12 @@
         </div>
       </div>
     </div>
+
+    <!-- 猜你喜歡 -->
+    <swiperProductComponent dataCategory="recently"></swiperProductComponent>
   </div>
 
+  <!-- ad modal -->
   <div class="modal show" tabindex="-1" ref="couponModal">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="position-relative container modal-content rounded-0">
@@ -136,6 +140,9 @@
 <script>
 import cartStore from '@/stores/userCartStore.js'
 import { mapActions, mapState } from 'pinia'
+
+// Import Components
+import SwiperProductComponent from '@/components/swiper/SwiperProductComponent.vue'
 
 import Modal from 'bootstrap/js/dist/modal'
 
@@ -243,7 +250,10 @@ export default {
       buttonsStyling: false
     })
   },
-  computed: { ...mapState(cartStore, ['cartsList']) }
+  computed: { ...mapState(cartStore, ['cartsList']) },
+  components: {
+    SwiperProductComponent
+  }
 }
 </script>
 
