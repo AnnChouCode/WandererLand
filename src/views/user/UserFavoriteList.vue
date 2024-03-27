@@ -23,11 +23,6 @@ import ProductCard from '@/components/ProductCard.vue'
 import SwiperProductComponent from '@/components/swiper/SwiperProductComponent.vue'
 
 export default {
-  data () {
-    return {
-      // favoriteProducts: []
-    }
-  },
   provide () {
     return {
       triggerGetFavorites: true
