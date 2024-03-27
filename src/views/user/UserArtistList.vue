@@ -2,13 +2,14 @@
   <UserNavArtistFilter :allArtists="allArtists" :groupList="groupList" @filterShow="filterShow"></UserNavArtistFilter>
   <div class="container user-product-page-container flex-grow-1">
     <h2 class="mb-7 mb-md-8 h1 lh-sm title-letter-spacing text-center h1">藝術家</h2>
-    <div class="row g-3 g-md-8">
+    <p v-if="!tempArtistList.length" class="text-center fs-4">沒有對應的藝術家，<span class="d-block d-md-inline">請「清空篩選」重新選取</span></p>
+    <div class="row g-3 g-md-8" v-else>
       <div class="col-6 col-md-4" v-for="item in tempArtistList" :key="item.id">
         <ProductCard :item="item" :linkTo="`/artistInfo/${item.id}`" :showPrice="false" :showFavorite="false"
           :shape="'rounded-circle'" :titlePosition="'text-center'"></ProductCard>
       </div>
     </div>
-    <PaginationComponent :pagination="pagination" @getList="getList"></PaginationComponent>
+    <PaginationComponent v-if="tempArtistList.length" :pagination="pagination" @getList="getList"></PaginationComponent>
   </div>
 </template>
 

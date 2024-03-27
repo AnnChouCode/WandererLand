@@ -3,13 +3,14 @@
     @filterShow="filterShow"></UserNavProductFilter>
   <div class="container user-product-page-container flex-grow-1">
     <h2 class="mb-7 mb-md-8 h1 lh-sm title-letter-spacing text-center h1">作品</h2>
-    <div class="row g-3 g-md-8 mb-5">
+    <p v-if="!tempProductsList.length" class="text-center fs-4">沒有對應的作品，<span class="d-block d-md-inline">請「清空篩選」重新選取</span></p>
+    <div class="row g-3 g-md-8 mb-5" v-else>
       <div class="col-6 col-md-4" v-for="item in tempProductsList" :key="item.id">
         <ProductCard :item="item" :linkTo="`/productInfo/${item.id}`" :showPrice="true" :showFavorite="true">
         </ProductCard>
       </div>
     </div>
-    <PaginationComponent :pagination="pagination" @getList="getList"></PaginationComponent>
+    <PaginationComponent v-if="tempProductsList.length" :pagination="pagination" @getList="getList"></PaginationComponent>
   </div>
 </template>
 
