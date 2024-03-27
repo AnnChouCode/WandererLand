@@ -1,0 +1,1 @@
+import{_ as t,r as n,o as s,i as r,f as a,g as c}from"./index-dItq-4U-.js";const _={props:{linkTo:String}};function f(i,l,e,p,d,m){const o=n("router-link");return s(),r(o,{class:"text-default fw-bold fs-info fs-md-6 btn-see-more",to:e.linkTo},{default:a(()=>[c("瀏覽更多")]),_:1},8,["to"])}const k=t(_,[["render",f],["__scopeId","data-v-cabb254f"]]);export{k as B};
