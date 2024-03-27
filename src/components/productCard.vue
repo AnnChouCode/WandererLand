@@ -10,9 +10,9 @@
     item.title
   }}</h3>
   </router-link>
-  <div class="d-flex justify-content-between align-items-center">
-    <p class="px-0 px-md-4 fs-info fs-md-6 text-info" v-if="showPrice">NT$ {{ item.price.toLocaleString() }}</p>
-    <BtnFavorite v-if="showFavorite" :productId="item.id" @click="getFavoriteProducts"></BtnFavorite>
+  <div class="d-flex justify-content-between align-items-center px-0 px-md-4 ">
+    <p class="fs-info fs-md-6 text-info" v-if="showPrice">NT$ {{ item.price.toLocaleString() }}</p>
+    <BtnFavorite v-if="showFavorite" :productId="item.id"></BtnFavorite>
   </div>
 </template>
 
@@ -50,23 +50,12 @@ export default {
     titlePosition: {
       type: String,
       default: ''
-    },
-    // 收藏按鈕是否觸發重整收藏列表
-    triggerGetFavorites: {
-      type: Boolean,
-      default: false
     }
   },
   components: {
     BtnFavorite
   },
-  methods: {
-    getFavoriteProducts () {
-      if (this.triggerGetFavorites) {
-        this.$emit('getFavoriteProducts')
-      }
-    }
-  }
+  inject: ['triggerGetFavorites']
 }
 </script>
 

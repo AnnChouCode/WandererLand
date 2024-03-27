@@ -1,10 +1,18 @@
 import { defineStore } from 'pinia'
 import statusStore from '@/stores/statusStore.js'
 
+import axios from 'axios'
+
+const { VITE_API, VITE_PATH } = import.meta.env
+
 export default defineStore('favoriteStore', {
   state: () => ({
+    // 收藏 id
     favoriteList: [],
-    recentlyProducts: []
+    // 最近看過
+    recentlyProducts: [],
+    // 完整收藏資料
+    favoriteProducts: []
   }),
   actions: {
     handleFavorite (id) {
@@ -51,6 +59,20 @@ export default defineStore('favoriteStore', {
       }
 
       localStorage.setItem('recentlyList', JSON.stringify(this.recentlyProducts))
+    },
+
+    // 取得完整收藏列表
+    getFavoriteProducts () {
+      this.favoriteProducts = []
+
+      this.favoriteList.forEach(item => {
+        const url = `${VITE_API}/api/${VITE_PATH}/product/${item}`
+
+        axios
+          .get(url)
+          .then(res => this.favoriteProducts.push(res.data.product))
+          .catch(err => console.log(err.response.data.message))
+      })
     }
   }
 })

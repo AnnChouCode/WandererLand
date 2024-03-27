@@ -146,7 +146,8 @@ export default {
     BtnSwiperNavigation,
     ProductCard,
     BtnSeeMore
-  }
+  },
+  inject: ['triggerGetFavorites']
 }
 </script>
 

@@ -13,10 +13,14 @@ export default {
   props: ['productId'],
   methods: {
     // 取得使用者收藏清單
-    ...mapActions(favoriteStore, ['getFavoriteList', 'handleFavorite']),
+    ...mapActions(favoriteStore, ['getFavoriteList', 'handleFavorite', 'getFavoriteProducts']),
 
     toggleFavorite () {
       this.handleFavorite(this.productId)
+
+      if (this.triggerGetFavorites) {
+        this.getFavoriteProducts()
+      }
     }
   },
   mounted () {
@@ -24,6 +28,12 @@ export default {
   },
   computed: {
     ...mapState(favoriteStore, ['favoriteList'])
+  },
+  inject: {
+    triggerGetFavorites: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>
