@@ -1,10 +1,10 @@
 <template>
-  <div class="container user-page-container flex-grow-1">
+  <div class="container user-page-container flex-grow-1" style="padding-bottom:0;">
     <h2 class="mb-7 mb-md-8 h1 lh-sm title-letter-spacing text-center h1">收藏</h2>
     <div v-if="favoriteProducts.length" class="row g-3 g-md-8">
       <div class="col-6 col-md-4" v-for="item in favoriteProducts" :key="item.id">
-        <productCard :item="item" :linkTo="`/productInfo/${item.id}`" :showPrice="true" :showFavorite="true"
-          :triggerGetFavorites="true" @getFavoriteProducts="getFavoriteProducts"></productCard>
+        <productCard :item="item" :linkTo="`/productInfo/${item.id}`" :showPrice="true" :showFavorite="true" :triggerGetFavorites="true" @getFavoriteProducts="getFavoriteProducts">
+        </productCard>
       </div>
     </div>
     <p v-else class="text-center fs-4">目前沒有收藏</p>
@@ -46,8 +46,8 @@ export default {
   components: {
     ProductCard
   },
-  async mounted () {
-    await this.getFavoriteList()
+  mounted () {
+    this.getFavoriteList()
     this.getFavoriteProducts()
   },
   computed: {
