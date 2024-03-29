@@ -1,9 +1,17 @@
 <template>
   <div class="container user-page-container flex-grow-1" style="padding-bottom:0px;">
     <h2 class="mb-7 mb-md-8 h1 lh-sm title-letter-spacing text-center h1">收藏</h2>
+
     <div v-if="favoriteProducts.length" class="row g-3 g-md-8">
       <div class="col-6 col-md-4" v-for="item in favoriteProducts" :key="item.id">
         <productCard :item="item" :linkTo="`/productInfo/${item.id}`" :showPrice="true" :showFavorite="true">
+          <slot>
+            <button type="button" class="position-relative mt-3 py-2 py-md-3 btn btn-default rounded-0 fw-bold w-100"
+              @click="addToCart(item.id, 1)" :disabled="!item.availableQty">
+              <span v-if="item.availableQty">加入購物車</span>
+              <span v-else>已絕版</span>
+            </button>
+          </slot>
         </productCard>
       </div>
     </div>
@@ -16,6 +24,7 @@
 
 <script>
 import favoriteStore from '@/stores/favoriteStore.js'
+import cartStore from '@/stores/userCartStore'
 import { mapActions, mapState } from 'pinia'
 
 // Import Components
@@ -30,18 +39,27 @@ export default {
   },
   methods: {
     // 取得使用者收藏清單
-    ...mapActions(favoriteStore, ['getFavoriteList', 'getFavoriteProducts'])
+    ...mapActions(favoriteStore, ['getFavoriteList', 'getFavoriteProducts']),
+    // 加入購物車
+    ...mapActions(cartStore, ['addToCart', 'getCartsList'])
   },
   components: {
     ProductCard,
     SwiperProductComponent
   },
-  mounted () {
+  async mounted () {
+    await this.getCartsList()
     this.getFavoriteList()
     this.getFavoriteProducts()
   },
   computed: {
-    ...mapState(favoriteStore, ['favoriteProducts'])
+    ...mapState(favoriteStore, ['favoriteProducts']),
+    ...mapState(cartStore, ['cartsList'])
+  },
+  watch: {
+    cartsList () {
+      this.getFavoriteProducts()
+    }
   }
 }
 </script>
