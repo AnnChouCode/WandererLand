@@ -5,7 +5,7 @@
     <div class="position-relative" v-else>
       <button class="position-absolute top-0 start-0 btn btn-primary rounded-0 fs-info text-info" type="button"
         @click="clearCartsList" :disabled="!cartsList.final_total">清空購物車</button>
-      <table class="table mb-4 mb-md-5">
+      <table class="table table-sm mb-4 mb-md-5">
         <thead>
           <tr class="fs-info fs-md-6">
             <th scope="col" style="padding-left:0;"></th>
@@ -28,9 +28,9 @@
               <div class="d-flex gap-3 gap-md-5">
                 <div style="max-width:107px;" class="ratio-1x1">
                   <img :src="item.product.imageUrl" :alt="item.product.title" class="w-100 h-100 object-fit-contain"
-                    style="min-width:20px;">
+                    style="min-width:40px;">
                 </div>
-                <div style="max-width: 286px;min-width: 90px;" class="d-flex flex-column">
+                <div style="max-width: 286px;min-width: 80px;" class="d-flex flex-column">
                   <div class="flex-grow-1">
                     <h3 class="mb-1 fw-bold fs-info fs-md-6">{{ item.product.title }}</h3>
                     <p class="d-none d-md-block fs-info text-info fw-light">{{ item.product.artist }}</p>
@@ -57,7 +57,7 @@
                 </template>
               </select>
             </td>
-            <td class="fs-info fs-md-6">
+            <td class="fs-info fs-md-6"  style="min-width:100px;">
               NT$ {{ item.final_total.toLocaleString() }}
             </td>
           </tr>
