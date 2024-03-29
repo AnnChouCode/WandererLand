@@ -32,7 +32,7 @@
               <h3 class="mb-2 h6 text-info fw-bold">{{ product.productInfo.artist }}</h3>
               <h2 class="h5 fw-bold">{{ product.productInfo.title }}</h2>
             </div>
-            <btnFavorite :productId="product.productInfo.id"></btnFavorite>
+            <BtnFavorite :productId="product.productInfo.id"></BtnFavorite>
           </div>
           <p class="lh-base lh-md-lg fs-info text-info">{{ product.productInfo.content }}
           </p>
@@ -132,6 +132,7 @@ import cartStore from '@/stores/userCartStore.js'
 import { mapActions, mapState } from 'pinia'
 
 // Import Components
+import BtnFavorite from '@/components/button/BtnFavorite.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import BtnSeeMore from '@/components/button/BtnSeeMore.vue'
 
@@ -264,7 +265,8 @@ export default {
   },
   components: {
     ProductCard,
-    BtnSeeMore
+    BtnSeeMore,
+    BtnFavorite
   }
 }
 </script>
