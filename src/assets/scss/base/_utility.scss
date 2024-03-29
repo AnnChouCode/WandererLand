@@ -101,19 +101,19 @@ $utilities: map-merge(
     content: '';
     display: block;
     position: absolute;
-    bottom: -2px;
+    bottom: 0px;
     left: 0;
     width: 100%;
     border-bottom: 3px solid transparent;
   }
 
   &:hover::after {
-    border-bottom-color: #787878;
+    border-bottom-color: $info;
   }
 }
 
 .navlink-underline-active::after {
-  border-bottom-color: #333333;
+  border-bottom-color: $default;
 }
 
 // 比例
@@ -145,6 +145,10 @@ $utilities: map-merge(
 
 .link-hover-bg:hover {
   background-color:$light;
+}
+
+.link-hover-text-info:hover{
+  color:$info;
 }
 
 // 文字
