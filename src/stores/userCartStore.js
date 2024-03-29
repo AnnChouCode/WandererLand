@@ -60,9 +60,10 @@ export default defineStore('cartStore', {
 
       // 資料處理
       const url = `${VITE_API}/api/${VITE_PATH}/cart`
-      axios.get(url)
+      return axios.get(url)
         .then(res => {
           this.cartsList = res.data.data
+          return true
         })
         .catch(err => {
           swal.fire(
