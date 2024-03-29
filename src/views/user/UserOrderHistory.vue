@@ -22,7 +22,8 @@
       <p v-else class="text-danger">未付款</p>
     </div>
   </div>
-  <p class="fs-info text-info">※ 您的訂單將在付款後開始訂製，付款後，從開始製作到寄出商品為 14 個工作天。</p>
+  <p class="mb-6 mb-md-8 fs-info text-info">※ 您的訂單將在付款後開始訂製，付款後，從開始製作到寄出商品為 14 個工作天。</p>
+  <router-link to="/home" class="py-2 btn btn-default text-center rounded-0 w-100 fw-bold">返回首頁</router-link>
 </template>
 
 <script>
