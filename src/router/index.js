@@ -1,4 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { useLoading } from 'vue-loading-overlay'
+const $loading = useLoading()
 
 const routes = [
   {
@@ -286,6 +288,13 @@ const router = createRouter({
 
 // router 進入前執行
 router.beforeEach((to, from, next) => {
+  // 開啟 loading
+  const loader = $loading.show()
+  // 關閉 loading
+  window.setTimeout(() => {
+    loader.hide()
+  }, 500)
+
   // linkActive 換樣式
   const linkActive = (() => {
     if (to.meta.navbarType === 'backend') {
