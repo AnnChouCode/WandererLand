@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import statusStore from '@/stores/statusStore.js'
+import cartStore from '@/stores/userCartStore.js'
 
 import axios from 'axios'
 
@@ -62,17 +63,31 @@ export default defineStore('favoriteStore', {
     },
 
     // 取得完整收藏列表
-    getFavoriteProducts () {
-      this.favoriteProducts = []
+    async getFavoriteProducts () {
+      try {
+        // 獲取購物車產品內容
+        const { cartsList } = cartStore()
 
-      this.favoriteList.forEach(item => {
-        const url = `${VITE_API}/api/${VITE_PATH}/product/${item}`
+        // 整理收藏清單，計算可購買數量
+        const favoriteProducts = await Promise.all(this.favoriteList.map(async item => {
+          const url = `${VITE_API}/api/${VITE_PATH}/product/${item}`
+          const res = await axios.get(url)
+          return res.data.product
+        }))
 
-        axios
-          .get(url)
-          .then(res => this.favoriteProducts.push(res.data.product))
-          .catch(err => console.log(err.response.data.message))
-      })
+        const tempList = favoriteProducts.map(favoriteItem => {
+          const cartItem = cartsList.carts.find(cartItem => cartItem.product_id === favoriteItem.id)
+
+          return {
+            ...favoriteItem,
+            availableQty: cartItem ? favoriteItem.quantity - cartItem.qty : favoriteItem.quantity
+          }
+        })
+
+        this.favoriteProducts = tempList
+      } catch (error) {
+        console.log('Error getFavoriteProducts:', error)
+      }
     }
   }
 })
