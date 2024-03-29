@@ -4,6 +4,9 @@ import cartStore from '@/stores/userCartStore.js'
 
 import axios from 'axios'
 
+import { useLoading } from 'vue-loading-overlay'
+const $loading = useLoading()
+
 const { VITE_API, VITE_PATH } = import.meta.env
 
 export default defineStore('favoriteStore', {
@@ -65,6 +68,9 @@ export default defineStore('favoriteStore', {
     // 取得完整收藏列表
     async getFavoriteProducts () {
       try {
+        // 開啟 loading
+        const loader = $loading.show()
+
         // 獲取購物車產品內容
         const { cartsList } = cartStore()
 
@@ -85,6 +91,8 @@ export default defineStore('favoriteStore', {
         })
 
         this.favoriteProducts = tempList
+        // 關閉 loading
+        loader.hide()
       } catch (error) {
         console.log('Error getFavoriteProducts:', error)
       }
