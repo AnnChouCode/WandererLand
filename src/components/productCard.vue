@@ -10,10 +10,11 @@
     item.title
   }}</h3>
   </router-link>
-  <div class="d-flex justify-content-between align-items-center px-0 px-md-4 ">
+  <div class="d-flex justify-content-between align-items-center px-0 px-md-4">
     <p class="fs-info fs-md-6 text-info" v-if="showPrice">NT$ {{ item.price.toLocaleString() }}</p>
     <BtnFavorite v-if="showFavorite" :productId="item.id"></BtnFavorite>
   </div>
+  <slot></slot>
 </template>
 
 <script>
