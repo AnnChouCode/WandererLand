@@ -3,22 +3,23 @@
     <div class="mb-4 mb-md-7 form-floating w-100">
       <v-field id="email" name="Email" type="email" class="form-control border-info rounded-0"
         :class="{ 'is-invalid': errors['Email'] }" placeholder="請輸入 Email" rules="email|required"
-        v-model="form.user.email"></v-field>
+        v-model.trim="form.user.email"></v-field>
       <error-message name="Email" class="invalid-feedback"></error-message>
       <label for="Email" class="form-label has-required">Email</label>
     </div>
 
     <div class="mb-4 mb-md-7 form-floating w-100">
       <v-field id="name" name="姓名" type="text" class="form-control border-info rounded-0"
-        :class="{ 'is-invalid': errors['姓名'] }" placeholder="請輸入姓名" rules="required" v-model="form.user.name"></v-field>
+        :class="{ 'is-invalid': errors['姓名'] }" placeholder="請輸入姓名" rules="required" v-model.trim="form.user.name"></v-field>
       <error-message name="姓名" class="invalid-feedback"></error-message>
       <label for="name" class="form-label has-required">收件人姓名</label>
     </div>
 
     <div class="mb-4 mb-md-7 form-floating w-100">
       <v-field id="tel" name="電話" type="tel" class="form-control border-info rounded-0"
-        :class="{ 'is-invalid': errors['電話'] }" placeholder="請輸入電話" rules="required|min:8|max:10"
-        v-model="form.user.tel"></v-field>
+        :class="{ 'is-invalid': errors['電話'] }" placeholder="請輸入國內電話"
+        :rules="{ required: true, regex: /^(09)[0-9]{8}$/ }"
+        v-model.trim="form.user.tel"></v-field>
       <error-message name="電話" class="invalid-feedback"></error-message>
       <label for="tel" class="form-label has-required">收件人電話</label>
     </div>
@@ -26,14 +27,14 @@
     <div class="mb-4 mb-md-7 form-floating w-100">
       <v-field id="address" name="地址" type="text" class="form-control border-info rounded-0"
         :class="{ 'is-invalid': errors['地址'] }" placeholder="請輸入地址" rules="required"
-        v-model="form.user.address"></v-field>
+        v-model.trim="form.user.address"></v-field>
       <error-message name="地址" class="invalid-feedback"></error-message>
       <label for="address" class="form-label has-required">收件人地址</label>
     </div>
 
     <div class="mb-4 mb-md-7 form-floating w-100">
       <v-field id="message" name="message" class="form-control border-info rounded-0" cols="30" rows="10"
-        v-model="form.message" as="textarea" placeholder="請輸入您的留言" style="height:273px"></v-field>
+        v-model.trim="form.message" as="textarea" placeholder="請輸入您的留言" style="height:273px"></v-field>
       <label for="message" class="form-label">留言</label>
     </div>
     <button class="py-2 py-md-3 px-6 px-md-9 btn btn-default fw-bold rounded-0 w-100 w-md-auto" type="submit">
