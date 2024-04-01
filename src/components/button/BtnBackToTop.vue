@@ -1,6 +1,6 @@
 <template>
     <button type="button" class="btn" @click="backToTop">
-        <i class="fs-1 bi bi-arrow-up-circle-fill text-info"></i>
+        <i class="fs-1 bi bi-arrow-up-circle-fill text-default link-hover-text-info"></i>
     </button>
 </template>
 
