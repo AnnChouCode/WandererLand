@@ -18,7 +18,7 @@
           </li>
         </ul>
         <h1 class="position-absolute top-50 start-50 translate-middle">
-          <a href="#/home" class="d-block h-100 h5 fs-md-20 fw-bold text-default">WANDERER LAND</a>
+          <a href="#/home" class="d-block h-100 h5 fs-md-20 fw-bold text-default link-hover-scale-grow">WANDERER LAND</a>
         </h1>
         <ul class="d-flex align-items-center list-unstyled">
           <li class="d-none d-lg-block">
