@@ -50,7 +50,7 @@ Node.js 版本建議為：18.17.1 以上
 - sass (^1.69.7)
 - vite (^5.0.10)
 - vite-plugin-eslint (^1.8.1)
-- swiper (^8.0.0)
+- swiper (^10.3.1)
 - vee-validate (^4.12.5)
 - vue-loading-overlay (6.0)
 - vue-sweetalert2 (^5.0.5)
