@@ -13,9 +13,10 @@ export default defineStore('articleStore', {
     getArticlesList () {
       // 資料處理
       const url = `${VITE_API}/api/${VITE_PATH}/articles`
-      axios.get(url)
+      return axios.get(url)
         .then(res => {
           this.articlesList = res.data.articles
+          return true
         })
         .catch(err => {
           console.log(err.response.data.message)

@@ -130,8 +130,8 @@ export default {
       this.filterShow(filters)
     }
   },
-  mounted () {
-    this.getArticlesList()
+  async mounted () {
+    await this.getArticlesList()
 
     const filters = {
       category: this.$route.query.category,
