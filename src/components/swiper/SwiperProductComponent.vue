@@ -37,7 +37,7 @@ import { mapActions, mapState } from 'pinia'
 
 // import Swiper js
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Autoplay, Pagination, Navigation } from 'swiper'
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 
 // Import Swiper styles
 import 'swiper/css'

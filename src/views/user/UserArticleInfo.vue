@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12 col-md-8 mx-auto">
         <!-- 圖 -->
-        <div class="position-relative mb-5 mb-md-8">
+        <div class="position-relative mb-5 mb-md-8" v-if="article.imagesUrl">
           <Swiper :slidesPerView="1" :spaceBetween="24" :pagination="{
     clickable: true,
   }" :autoplay="{
@@ -13,14 +13,14 @@
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev'
   }" :modules="modules" class="article-swiper">
-            <SwiperSlide v-for="( img, idx ) in  article.imagesUrl " :key="idx">
+            <SwiperSlide v-for="( img, idx ) in article.imagesUrl " :key="idx">
               <div class="position-relative overflow-hidden">
                 <img :src="img" alt="news" class="object-fit-contain w-100 h-100">
               </div>
             </SwiperSlide>
             <!-- 左右 navigation -->
-            <BtnSwiperNavigation position="top" direction="next"></BtnSwiperNavigation>
-            <BtnSwiperNavigation position="top" direction="prev"></BtnSwiperNavigation>
+            <BtnSwiperNavigation v-if="article.imagesUrl.length > 1" position="top" direction="next"></BtnSwiperNavigation>
+            <BtnSwiperNavigation v-if="article.imagesUrl.length > 1" position="top" direction="prev"></BtnSwiperNavigation>
           </Swiper>
         </div>
 
@@ -76,7 +76,7 @@
 <script>
 // import Swiper js
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Autoplay, Pagination, Navigation } from 'swiper'
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 
 // Import Swiper styles
 import 'swiper/css'

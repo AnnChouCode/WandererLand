@@ -22,7 +22,7 @@
     "chart.js": "^4.4.2",
     "dotenv": "^16.3.1",
     "pinia": "^2.1.7",
-    "swiper": "^8.0.0",
+    "swiper": "^10.3.1",
     "vee-validate": "^4.12.5",
     "vue": "^3.4.15",
     "vue-axios": "^3.5.2",
