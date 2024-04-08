@@ -33,8 +33,17 @@
         <option value="6">6 個月</option>
         <option value="12">12 個月</option>
       </select>
-      <div class="w-100 p-3 border rounded-2 bg-white" v-if="Object.values(chartData).length">
-        <BarChart :chartOptions="chartOptions" :chartData="chartData"></BarChart>
+      <div class="row g-3">
+        <div class="col col-md-6">
+          <div class="w-100 p-3 pb-7 border rounded-2 bg-white" v-if="Object.values(turnOverData).length">
+            <LineChart :chartData="turnOverData"></LineChart>
+          </div>
+        </div>
+        <div class="col col-md-6">
+          <div class="w-100 p-3 pb-7 border rounded-2 bg-white" v-if="Object.values(groupSales).length">
+            <HorizontalBarChart :chartData="groupSales"></HorizontalBarChart>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -46,7 +55,8 @@ import { useAdminProductsStore } from '@/stores/adminProductStore'
 import { mapStores } from 'pinia'
 
 // import components
-import BarChart from '@/components/chart/BarChart.vue'
+import LineChart from '@/components/chart/LineChart.vue'
+import HorizontalBarChart from '@/components/chart/HorizontalBarChart.vue'
 
 const orderStore = useAdminOrderStore()
 const productStore = useAdminProductsStore()
@@ -66,13 +76,10 @@ export default {
       needReplenishedProduct: [],
       // 圖表月份長度
       chartMonthZone: 3,
-      // 圖表資料
-      chartData: {},
-      // 圖表設定
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
+      // 營業額圖表數據
+      turnOverData: {},
+      // 分類銷售額圖表數據
+      groupSales: {}
     }
   },
   computed: {
@@ -81,18 +88,18 @@ export default {
   },
   watch: {
     chartMonthZone () {
-      this.handleChartData(this.chartMonthZone)
+      this.getMonthZone(this.chartMonthZone)
     }
   },
   methods: {
-    // 圖表數據
-    handleChartData (monthZone = 3) {
+    // 計算時間區間
+    getMonthZone (monthZone = 3) {
       // 獲取月份表
       const currentDate = new Date() // 現在的日期
       const currentMonth = currentDate.getMonth() + 1 // 獲取當前月份
       const currentYear = currentDate.getFullYear() // 獲取當前年份
 
-      // 前三個月的月份
+      // 前 n 個月的月份
       const previousMonths = []
       for (let i = 0; i < monthZone; i++) {
         let previousMonth = currentMonth - i
@@ -106,6 +113,12 @@ export default {
         previousMonths.unshift(`${previousYear.toString().slice(2, 4)} ${previousMonth}月`)
       }
 
+      this.getTurnOverData(previousMonths)
+      this.getGroupSales(previousMonths)
+    },
+
+    // 營業額圖表數據
+    getTurnOverData (previousMonths) {
       const turnoverMap = {}
 
       orderStore.allOrderList.forEach(order => {
@@ -126,13 +139,47 @@ export default {
         return turnoverMap[month] || 0
       })
 
-      this.chartData = {
+      this.turnOverData = {
         labels: previousMonths,
         datasets: [
           {
             label: '總銷售額',
             backgroundColor: '#333333',
             data: turnoverResult
+          }
+        ]
+      }
+    },
+
+    // 分類銷售額圖表數據
+    getGroupSales (previousMonths) {
+      const salesMap = {}
+      productStore.groupList.forEach(group => {
+        salesMap[group] = 0
+      })
+
+      orderStore.allOrderList.forEach(order => {
+        const formatDate = new Date(order.create_at * 1000).toLocaleString()
+        const date = formatDate.split('/').splice(0, 2)
+        const matchDate = `${date[0].slice(2, 4)} ${date[1]}月`
+
+        previousMonths.forEach(month => {
+          if (month === matchDate) {
+            Object.values(order.products).forEach(product => {
+              const group = product.product.group
+              salesMap[group] += product.total
+            })
+          }
+        })
+      })
+
+      this.groupSales = {
+        labels: Object.keys(salesMap),
+        datasets: [
+          {
+            label: '分類銷售額',
+            backgroundColor: '#333333',
+            data: Object.values(salesMap)
           }
         ]
       }
@@ -158,7 +205,7 @@ export default {
       this.allOrderList = orderStore.allOrderList
 
       this.handleOrderData()
-      this.handleChartData()
+      this.getMonthZone()
     },
 
     // 獲得所有產品
@@ -176,7 +223,8 @@ export default {
     this.getAllProductList()
   },
   components: {
-    BarChart
+    LineChart,
+    HorizontalBarChart
   }
 }
 </script>
