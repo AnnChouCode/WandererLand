@@ -12,15 +12,12 @@
   </router-link>
   <div class="d-flex justify-content-between align-items-center px-0 px-md-4">
     <p class="fs-info fs-md-6 text-info" v-if="showPrice">NT$ {{ item.price.toLocaleString() }}</p>
-    <BtnFavorite v-if="showFavorite" :productId="item.id"></BtnFavorite>
+    <slot name="favorite"></slot>
   </div>
   <slot></slot>
 </template>
 
 <script>
-// Import Components
-import BtnFavorite from '@/components/button/BtnFavorite.vue'
-
 export default {
   props: {
     // 傳入資料
@@ -52,9 +49,6 @@ export default {
       type: String,
       default: ''
     }
-  },
-  components: {
-    BtnFavorite
   },
   inject: ['triggerGetFavorites']
 }

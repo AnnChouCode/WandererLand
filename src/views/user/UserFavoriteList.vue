@@ -12,6 +12,9 @@
               <span v-else>已絕版</span>
             </button>
           </slot>
+          <template #favorite>
+              <BtnFavorite :productId="item.id"></BtnFavorite>
+            </template>
         </productCard>
       </div>
     </div>
@@ -28,6 +31,7 @@ import cartStore from '@/stores/userCartStore'
 import { mapActions, mapState } from 'pinia'
 
 // Import Components
+import BtnFavorite from '@/components/button/BtnFavorite.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import SwiperProductComponent from '@/components/swiper/SwiperProductComponent.vue'
 
@@ -45,7 +49,8 @@ export default {
   },
   components: {
     ProductCard,
-    SwiperProductComponent
+    SwiperProductComponent,
+    BtnFavorite
   },
   async mounted () {
     await this.getCartsList()

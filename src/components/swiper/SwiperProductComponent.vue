@@ -21,7 +21,11 @@
         prevEl: '.swiper-button-prev'
       }" :modules="modules" class="product-swiper">
         <SwiperSlide v-for="item in  currentDatas" :key="item.id">
-          <ProductCard :item="item" :linkTo="`/${DataInfo[dataCategory].infoPath}/${item.id}`" :showPrice="!isArtistBlock" :showFavorite="!isArtistBlock" :shape="isArtistBlock ? 'rounded-circle' : ''" :titlePosition="isArtistBlock ? 'text-center' : ''"></ProductCard>
+          <ProductCard :item="item" :linkTo="`/${DataInfo[dataCategory].infoPath}/${item.id}`" :showPrice="!isArtistBlock"  :shape="isArtistBlock ? 'rounded-circle' : ''" :titlePosition="isArtistBlock ? 'text-center' : ''">
+            <template #favorite>
+              <BtnFavorite :productId="item.id"></BtnFavorite>
+            </template>
+          </ProductCard>
         </SwiperSlide>
         <!-- 左右 navigation -->
         <BtnSwiperNavigation position="bottom" direction="next"></BtnSwiperNavigation>
@@ -45,6 +49,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
 // Import Components
+import BtnFavorite from '@/components/button/BtnFavorite.vue'
 import BtnSwiperNavigation from '@/components/button/BtnSwiperNavigation.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import BtnSeeMore from '@/components/button/BtnSeeMore.vue'
@@ -145,7 +150,8 @@ export default {
     SwiperSlide,
     BtnSwiperNavigation,
     ProductCard,
-    BtnSeeMore
+    BtnSeeMore,
+    BtnFavorite
   },
   inject: ['triggerGetFavorites']
 }
