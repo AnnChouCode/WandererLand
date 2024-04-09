@@ -31,7 +31,6 @@
             <div>
               <h2 class="h5 fw-bold">{{ artist.artistInfo.title }}</h2>
             </div>
-            <btnFavorite></btnFavorite>
           </div>
           <p class="lh-base lh-md-lg fs-info text-info">{{ artist.artistInfo.content }}
           </p>
@@ -46,7 +45,13 @@
 
       <div class="row g-3 g-md-8">
         <div class="col-6 col-md-4" v-for="item in relatedProducts" :key="item.id">
-          <ProductCard :item="item" :linkTo="`/productInfo/${item.id}`" :showPrice="true" :showFavorite="true">
+          <ProductCard :item="item" :linkTo="`/productInfo/${item.id}`">
+            <template #price>
+              <p class="fs-info fs-md-6 text-info">NT$ {{ item.price.toLocaleString() }}</p>
+            </template>
+            <template #favorite>
+              <BtnFavorite :productId="item.id"></BtnFavorite>
+            </template>
           </ProductCard>
         </div>
       </div>
@@ -59,6 +64,7 @@ import userProductStore from '@/stores/userProductStore.js'
 import { mapActions, mapState } from 'pinia'
 
 // Import Components
+import BtnFavorite from '@/components/button/BtnFavorite.vue'
 import ProductCard from '@/components/ProductCard.vue'
 
 const { VITE_API, VITE_PATH } = import.meta.env
@@ -133,7 +139,8 @@ export default {
     ...mapState(userProductStore, ['sortNewest'])
   },
   components: {
-    ProductCard
+    ProductCard,
+    BtnFavorite
   }
 }
 </script>
