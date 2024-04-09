@@ -20,9 +20,13 @@
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       }" :modules="modules" class="product-swiper">
-        <SwiperSlide v-for="item in  currentDatas" :key="item.id">
-          <ProductCard :item="item" :linkTo="`/${DataInfo[dataCategory].infoPath}/${item.id}`" :showPrice="!isArtistBlock"  :shape="isArtistBlock ? 'rounded-circle' : ''" :titlePosition="isArtistBlock ? 'text-center' : ''">
-            <template #favorite>
+        <SwiperSlide v-for="item in currentDatas" :key="item.id">
+          <ProductCard :item="item" :linkTo="`/${DataInfo[dataCategory].infoPath}/${item.id}`" :shape="isArtistBlock ? 'rounded-circle' : ''"
+            :titlePosition="isArtistBlock ? 'text-center' : ''">
+            <template #price v-if="!isArtistBlock">
+              <p class="fs-info fs-md-6 text-info">NT$ {{ item.price.toLocaleString() }}</p>
+            </template>
+            <template #favorite v-if="!isArtistBlock">
               <BtnFavorite :productId="item.id"></BtnFavorite>
             </template>
           </ProductCard>

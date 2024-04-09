@@ -6,15 +6,15 @@
       <img :src="item.imagesUrl[0]" alt="item.title"
         class="position-absolute z-n1 object-fit-contain w-100 h-100 product-img-down">
     </div>
-    <h3 class="mb-2 px-0 px-md-4 fs-info fs-md-5 fw-bold text-default" v-if="showTitle" :class="titlePosition">{{
+    <h3 class="mb-2 px-0 px-md-4 fs-info fs-md-5 fw-bold text-default" :class="titlePosition">{{
     item.title
   }}</h3>
   </router-link>
   <div class="d-flex justify-content-between align-items-center px-0 px-md-4">
-    <p class="fs-info fs-md-6 text-info" v-if="showPrice">NT$ {{ item.price.toLocaleString() }}</p>
+    <slot name="price"></slot>
     <slot name="favorite"></slot>
   </div>
-  <slot></slot>
+  <slot name="addToCart"></slot>
 </template>
 
 <script>
@@ -24,21 +24,6 @@ export default {
     item: Object,
     // 點擊後連結
     linkTo: String,
-    // 是否顯示標題
-    showTitle: {
-      type: Boolean,
-      default: true
-    },
-    // 是否顯示價格
-    showPrice: {
-      type: Boolean,
-      default: true
-    },
-    // 是否顯示收藏按鈕
-    showFavorite: {
-      type: Boolean,
-      default: true
-    },
     // 圖片外框形狀
     shape: {
       type: String,

@@ -98,9 +98,9 @@
           @click="addToCart(product.productInfo.id, qty)"
           :disabled="product.productInfo.quantity - quantityInCart === 0">
           <span v-if="product.productInfo.quantity - quantityInCart !== 0">加入購物車．NT$ {{
-    product.productInfo.price.toLocaleString() }}</span>
+            product.productInfo.price.toLocaleString() }}</span>
           <span v-else>已絕版．NT$ {{
-    product.productInfo.price.toLocaleString() }}</span>
+            product.productInfo.price.toLocaleString() }}</span>
         </button>
       </div>
     </div>
@@ -117,7 +117,13 @@
 
       <div class="row g-3 g-md-8">
         <div class="col-6 col-md-4" v-for="item in relatedProducts" :key="item.id">
-          <ProductCard :item="item" :linkTo="`/productInfo/${item.id}`" :showPrice="true" :showFavorite="true">
+          <ProductCard :item="item" :linkTo="`/productInfo/${item.id}`">
+            <template #price>
+              <p class="fs-info fs-md-6 text-info">NT$ {{ item.price.toLocaleString() }}</p>
+            </template>
+            <template #favorite>
+              <BtnFavorite :productId="item.id"></BtnFavorite>
+            </template>
           </ProductCard>
         </div>
       </div>

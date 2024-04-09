@@ -6,7 +6,10 @@
     <p v-if="!tempProductsList.length" class="text-center fs-4">沒有對應的作品，<span class="d-block d-md-inline">請「清空篩選」重新選取</span></p>
     <div class="row g-3 g-md-8 mb-5" v-else>
       <div class="col-6 col-md-4" v-for="item in tempProductsList" :key="item.id">
-        <ProductCard :item="item" :linkTo="`/productInfo/${item.id}`" :showPrice="true">
+        <ProductCard :item="item" :linkTo="`/productInfo/${item.id}`">
+          <template #price>
+            <p class="fs-info fs-md-6 text-info">NT$ {{ item.price.toLocaleString() }}</p>
+          </template>
           <template #favorite>
               <BtnFavorite :productId="item.id"></BtnFavorite>
             </template>

@@ -4,17 +4,20 @@
 
     <div v-if="favoriteProducts.length" class="row g-3 g-md-8">
       <div class="col-6 col-md-4" v-for="item in favoriteProducts" :key="item.id">
-        <productCard :item="item" :linkTo="`/productInfo/${item.id}`" :showPrice="true" :showFavorite="true">
-          <slot>
+        <productCard :item="item" :linkTo="`/productInfo/${item.id}`">
+          <template #price>
+            <p class="fs-info fs-md-6 text-info">NT$ {{ item.price.toLocaleString() }}</p>
+          </template>
+          <template #addToCart>
             <button type="button" class="position-relative mt-3 py-2 py-md-3 btn btn-default rounded-0 fw-bold w-100"
               @click="addToCart(item.id, 1)" :disabled="!item.availableQty">
               <span v-if="item.availableQty">加入購物車</span>
               <span v-else>已絕版</span>
             </button>
-          </slot>
+          </template>
           <template #favorite>
-              <BtnFavorite :productId="item.id"></BtnFavorite>
-            </template>
+            <BtnFavorite :productId="item.id"></BtnFavorite>
+          </template>
         </productCard>
       </div>
     </div>
