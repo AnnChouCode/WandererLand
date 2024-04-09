@@ -3,7 +3,7 @@
     <div class="position-relative d-flex justify-content-center align-items-center mb-3 ratio-1x1 overflow-hidden"
       :class="shape">
       <img :src="item.imageUrl" :alt="item.title" class="object-fit-contain w-100 h-100 product-img-up">
-      <img :src="item.imagesUrl[0]" alt="item.title"
+      <img :src="item.imagesUrl[0]" :alt="item.title"
         class="position-absolute z-n1 object-fit-contain w-100 h-100 product-img-down">
     </div>
     <h3 class="mb-2 px-0 px-md-4 fs-info fs-md-5 fw-bold text-default" :class="titlePosition">{{
