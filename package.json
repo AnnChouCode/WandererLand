@@ -10,7 +10,6 @@
     "deploy": "vite build && gh-pages -d dist"
   },
   "dependencies": {
-    "@chenfengyuan/vue-carousel": "^2.0.0",
     "@ckeditor/ckeditor5-build-classic": "^41.1.0",
     "@ckeditor/ckeditor5-vue": "^5.1.0",
     "@vee-validate/i18n": "^4.12.5",
