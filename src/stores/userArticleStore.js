@@ -16,7 +16,6 @@ export default defineStore('articleStore', {
       return axios.get(url)
         .then(res => {
           this.articlesList = res.data.articles
-          return true
         })
         .catch(err => {
           console.log(err.response.data.message)

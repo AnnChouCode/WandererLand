@@ -30,8 +30,6 @@ export default defineStore('allProductsStore', {
           const allDatas = res.data.products
           this.allProducts = allDatas.filter(item => item.category === 'products')
           this.allArtists = allDatas.filter(item => item.category === 'artists').sort((a, b) => a.title.localeCompare(b.title))
-
-          return allDatas
         })
         .catch(err => {
           swal.fire(

@@ -16,13 +16,10 @@ export const useAdminProductsStore = defineStore('adminProducts', {
     getAllProducts () {
       const url = `${VITE_API}/api/${VITE_PATH}/admin/products/all`
 
-      // 返回 promise
       return axios.get(url)
         .then(res => {
           this.allProducts = res.data.products
           this.getGroupList()
-
-          return res // 要傳回的資料
         })
         .catch(err => {
           swal.fire(

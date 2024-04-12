@@ -28,13 +28,10 @@ export const useAdminOrderStore = defineStore('adminOrders', {
 
       const loader = $loading.show()
 
-      // 返回 promise
       return axios.get(url)
         .then(res => {
           const { orders } = res.data
           this.allOrderList = this.allOrderList.concat(orders)
-
-          return res // 要傳回的資料
         })
         .catch(err => {
           swal.fire(
@@ -50,14 +47,11 @@ export const useAdminOrderStore = defineStore('adminOrders', {
     getCurrentOrderList (page = 1) {
       const url = `${VITE_API}/api/${VITE_PATH}/admin/orders?page=${page}`
 
-      // 返回 promise
       return axios.get(url)
         .then(res => {
           const { orders, pagination } = res.data
           this.currentOrderList = orders
           this.pagination = pagination
-
-          return res // 要傳回的資料
         })
         .catch(err => {
           swal.fire(
