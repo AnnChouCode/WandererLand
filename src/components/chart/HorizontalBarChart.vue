@@ -28,9 +28,6 @@ export default {
         indexAxis: 'y'
       }
     }
-  },
-  mounted () {
-    console.log(this.chartData)
   }
 }
 </script>
