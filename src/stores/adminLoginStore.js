@@ -27,7 +27,7 @@ export const useAdminLoginStore = defineStore('adminLogin', {
       axios
         .post(url)
         .then(function (res) {
-          console.log('已驗證登入')
+          console.log('Welcome to Wander Land Dashboard')
         })
         .catch((err) => {
           swal
