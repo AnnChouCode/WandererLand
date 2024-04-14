@@ -10,7 +10,8 @@
 
     <div class="mb-4 mb-md-7 form-floating w-100">
       <v-field id="name" name="姓名" type="text" class="form-control border-info rounded-0"
-        :class="{ 'is-invalid': errors['姓名'] }" placeholder="請輸入姓名" rules="required" v-model.trim="form.user.name"></v-field>
+        :class="{ 'is-invalid': errors['姓名'] }" placeholder="請輸入姓名" rules="required"
+        v-model.trim="form.user.name"></v-field>
       <error-message name="姓名" class="invalid-feedback"></error-message>
       <label for="name" class="form-label has-required">收件人姓名</label>
     </div>
@@ -18,8 +19,7 @@
     <div class="mb-4 mb-md-7 form-floating w-100">
       <v-field id="tel" name="電話" type="tel" class="form-control border-info rounded-0"
         :class="{ 'is-invalid': errors['電話'] }" placeholder="請輸入國內電話"
-        :rules="{ required: true, regex: /^(09)[0-9]{8}$/ }"
-        v-model.trim="form.user.tel"></v-field>
+        :rules="{ required: true, regex: /^(09)[0-9]{8}$/ }" v-model.trim="form.user.tel"></v-field>
       <error-message name="電話" class="invalid-feedback"></error-message>
       <label for="tel" class="form-label has-required">收件人電話</label>
     </div>
@@ -37,7 +37,8 @@
         v-model.trim="form.message" as="textarea" placeholder="請輸入您的留言" style="height:273px"></v-field>
       <label for="message" class="form-label">留言</label>
     </div>
-    <button class="py-2 py-md-3 px-6 px-md-9 btn btn-default fw-bold rounded-0 w-100 w-md-auto" type="submit">
+    <button class="py-2 py-md-3 px-6 px-md-9 btn btn-default fw-bold rounded-0 w-100 w-md-auto"
+      :class="{ 'cursor-notallowed': isFormEmpty }" type="submit">
       訂單確認
     </button>
   </v-form>
@@ -121,6 +122,12 @@ export default {
       buttonsStyling: false
     })
   },
-  computed: { ...mapState(cartStore, ['cartsList']) }
+  computed: {
+    ...mapState(cartStore, ['cartsList']),
+    isFormEmpty () {
+      const { email, tel, address } = this.form.user
+      return !email || !tel || !address
+    }
+  }
 }
 </script>

@@ -7,7 +7,7 @@
     <div class="position-absolute z-1 top-0 bg-default opacity-50 w-100 h-100"></div>
     <div class="position-absolute z-2 top-50 start-50 translate-middle text-center banner-title w-80 w-sm-50">
       <h2 class="pb-5 pb-md-7 text-white title-shadow fs-2 fs-md-1 title-letter-spacing title-letter-word-wrap">{{
-    sortArticles.topArticle[0].title }}</h2>
+        sortArticles.topArticle[0].title }}</h2>
       <router-link :to="`/articleinfo/${sortArticles.topArticle[0].id}`"
         class="py-2 py-md-3 px-6 px-md-9 btn btn-light rounded-0 fw-bold">前往頁面</router-link>
     </div>
@@ -42,7 +42,7 @@
               </div>
               <div class="d-block d-xl-none py-3">
                 <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{
-    sortArticles.newestArticles[0].title }}</h3>
+                  sortArticles.newestArticles[0].title }}</h3>
                 <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[0].description
                   }}
                 </p>
@@ -66,7 +66,7 @@
               </div>
               <div class="d-block d-xl-none py-3">
                 <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{
-    sortArticles.newestArticles[1].title }}</h3>
+                  sortArticles.newestArticles[1].title }}</h3>
                 <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[1].description
                   }}
                 </p>
@@ -88,7 +88,7 @@
               </div>
               <div class="d-block d-xl-none py-3">
                 <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{
-    sortArticles.newestArticles[2].title }}</h3>
+                  sortArticles.newestArticles[2].title }}</h3>
                 <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[2].description
                   }}
                 </p>
@@ -109,7 +109,7 @@
               </div>
               <div class="d-block d-xl-none py-3">
                 <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{
-    sortArticles.newestArticles[3].title }}</h3>
+                  sortArticles.newestArticles[3].title }}</h3>
                 <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[3].description
                   }}
                 </p>
@@ -131,7 +131,7 @@
               </div>
               <div class="d-block d-xl-none py-3">
                 <h3 class="mb-2 fs-info fs-md-5 fw-bold text-default single-ellipsis">{{
-    sortArticles.newestArticles[4].title }}</h3>
+                  sortArticles.newestArticles[4].title }}</h3>
                 <p class="fs-info fs-md-6 doubleline-ellipsis text-info">{{ sortArticles.newestArticles[4].description
                   }}
                 </p>
@@ -144,15 +144,16 @@
   </div>
 
   <!-- 優惠券 -->
-  <div class="position-relative d-flex justify-content-center align-items-center w-100 home-coupon overflow-hidden bg-primary">
+  <div
+    class="position-relative d-flex justify-content-center align-items-center w-100 home-coupon overflow-hidden bg-primary">
     <div class="position-absolute top-50 z-1 translate-middle-y text-center title-shadow">
       <h2 class="mb-2 fs-4 fs-md-1 text-white title-letter-spacing">使用優惠券</h2>
       <p class="mb-7 fs-info fs-md-6 text-white">為你的第一筆訂單，獲取 97 折折扣</p>
       <button type="button" class="py-2 py-md-3 px-6 px-md-9 btn btn-light fw-bold rounded-0"
         @click="copyCouponCode('present97')">點擊複製優惠碼</button>
     </div>
-    <img src="../../../public/images/present.jpg" alt="coupon"
-      class="object-fit-cover w-100 h-100" data-aos="zoom-out" data-aos-duration="3000">
+    <img src="../../../public/images/present.jpg" alt="coupon" class="object-fit-cover w-100 h-100" data-aos="zoom-out"
+      data-aos-duration="3000">
   </div>
 
   <div class="bg-white">
@@ -223,7 +224,8 @@
                 <error-message name="訊息" class="invalid-feedback"></error-message>
                 <label for="body">留言</label>
               </div>
-              <button type="submit" class="py-2 py-md-3 px-6 px-md-9 btn btn-default fw-bold rounded-0 w-100 w-md-auto">
+              <button type="submit" class="py-2 py-md-3 px-6 px-md-9 btn btn-default fw-bold rounded-0 w-100 w-md-auto"
+                :class="{ 'cursor-notallowed': isFormEmpty }">
                 送出訊息
               </button>
 
@@ -274,18 +276,21 @@ export default {
     ...mapActions(cartStore, ['copyCouponCode']),
 
     sendEmail () {
-      const isCompletedForm = Object.values(this.message).every(value => value !== '')
-      if (isCompletedForm) {
-        window.open(`mailto:wandererland@gmail.com?cc=${this.message.email}&subject=${this.message.subject}&body=${this.message.body}`, '_blank')
-        this.$refs.cooperationForm.resetForm()
-      }
+      window.open(`mailto:wandererland@gmail.com?cc=${this.message.email}&subject=${this.message.subject}&body=${this.message.body}`, '_blank')
+      this.$refs.cooperationForm.resetForm()
     }
   },
   components: {
     SwiperProductComponent,
     BtnSeeMore
   },
-  computed: { ...mapState(articleStore, ['sortArticles', 'articlesList']) },
+  computed: {
+    ...mapState(articleStore, ['sortArticles', 'articlesList']),
+    isFormEmpty () {
+      const { subject, body } = this.message
+      return !subject || !body || !this.tempMessage.type
+    }
+  },
   mounted () {
     this.getArticlesList()
   }
@@ -312,9 +317,9 @@ export default {
   }
 
   // hover 效果
-  &-img:hover{
-    .home-article-mask:after{
-      border:1px solid white;
+  &-img:hover {
+    .home-article-mask:after {
+      border: 1px solid white;
     }
 
     img {
@@ -322,8 +327,8 @@ export default {
     }
   }
 
-  &:has(.home-article-img:hover) .home-article-img:not(:hover){
-    .home-article-mask{
+  &:has(.home-article-img:hover) .home-article-img:not(:hover) {
+    .home-article-mask {
       background: rgba(0, 0, 0, 0.4);
     }
   }
@@ -357,13 +362,13 @@ export default {
         rgba(0, 0, 0, 0.6) 100%);
     transition: background 0.3s ease;
 
-    &::after{
-      content:'';
+    &::after {
+      content: '';
       position: absolute;
       width: 98%;
       height: 98%;
-      top:50%;
-      left:50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
       transition: border 0.3s;
     }
