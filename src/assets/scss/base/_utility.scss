@@ -215,3 +215,7 @@ $utilities: map-merge(
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.cursor-notallowed{
+  cursor: not-allowed !important;
+}
