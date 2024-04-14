@@ -37,7 +37,7 @@
           <p class="lh-base lh-md-lg fs-info text-info">{{ product.productInfo.content }}
           </p>
           <hr class="my-6 text-default">
-          <div class="accordion accordion-flush" id="accordionPanelsProductInfo">
+          <div class="accordion accordion-flush" id="accordionPanels-collapseSize">
             <div class="accordion-item bg-transparent border-default">
               <h2 class="accordion-header" id="panelsStayOpen-headingSize">
                 <button class="accordion-button text-info fw-bold bg-transparent p-0" type="button"
@@ -47,7 +47,7 @@
                 </button>
               </h2>
               <div id="panelsStayOpen-collapseSize" class="accordion-collapse collapse show"
-                aria-labelledby="panelsStayOpen-headingSize">
+                aria-labelledby="panelsStayOpen-headingSize" data-bs-parent="#accordionPanels-collapseSize">
                 <div class="accordion-body p-0 pt-4 lh-base lh-md-lg h6 text-info">
                   {{ product.productInfo.size }}
                 </div>
@@ -56,7 +56,7 @@
           </div>
           <hr class="my-6 text-default">
 
-          <div class="accordion accordion-flush" id="accordionPanelsProductInfo">
+          <div class="accordion accordion-flush" id="accordionPanels-collapseQTY">
             <div class="accordion-item bg-transparent border-default">
               <h2 class="accordion-header" id="panelsStayOpen-headingQty">
                 <button class="accordion-button text-info fw-bold bg-transparent p-0" type="button"
@@ -66,7 +66,7 @@
                 </button>
               </h2>
               <div id="panelsStayOpen-collapseQty" class="accordion-collapse collapse show"
-                aria-labelledby="panelsStayOpen-headingQty">
+                aria-labelledby="panelsStayOpen-headingQty" data-bs-parent="#accordionPanels-collapseQTY">
                 <div class="accordion-body p-0 pt-4 lh-base lh-md-lg h6 text-info">
                   <p>剩餘版數 {{ product.productInfo.quantity ? product.productInfo.quantity - quantityInCart : '無限' }}</p>
                   <p>總版數 {{ product.productInfo.quantity ? product.productInfo.quantity : '無限' }}</p>
@@ -76,7 +76,7 @@
           </div>
           <hr class="my-6 text-default">
 
-          <div class="accordion accordion-flush" id="accordionPanelsProductInfo">
+          <div class="accordion accordion-flush" id="accordionPanels-collapseQTY">
             <div class="accordion-item bg-transparent">
               <h2 class="accordion-header" id="panelsStayOpen-headingAbout">
                 <button class="accordion-button collapsed text-info fw-bold bg-transparent p-0" type="button"
@@ -86,7 +86,7 @@
                 </button>
               </h2>
               <div id="panelsStayOpen-collapseAbout" class="accordion-collapse collapse"
-                aria-labelledby="panelsStayOpen-headingOne">
+                aria-labelledby="panelsStayOpen-headingOne" data-bs-parent="#accordionPanels-collapseQTY">
                 <div class="accordion-body p-0 pt-4 lh-base lh-md-lg fs-info text-info">
                   {{ artistInfo.content }}
                 </div>
