@@ -79,10 +79,10 @@
   </div>
 
   <!-- mobile Nav -->
-  <div class="offcanvas offcanvas-start bg-primary" tabindex="-1" aria-labelledby="offcanvasNavLabel"
+  <div class="offcanvas offcanvas-start bg-primary" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel"
     ref="mobileNav">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title">WANDERER LAND</h5>
+      <h5 class="offcanvas-title" id="offcanvasNavLabel">WANDERER LAND</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
