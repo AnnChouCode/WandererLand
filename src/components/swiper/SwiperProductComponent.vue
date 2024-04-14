@@ -6,9 +6,12 @@
     </div>
 
     <div class="position-relative">
-      <Swiper :slidesPerView="2" :spaceBetween="12" :pagination="{
+      <Swiper :slidesPerView="2" :spaceBetween="12"
+      :pagination="{
         clickable: true,
-      }" :breakpoints="{
+      }"
+      :loop="true"
+      :breakpoints="{
         768: {
           slidesPerView: 3,
           spaceBetween: 48,
