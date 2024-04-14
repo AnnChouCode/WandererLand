@@ -37,17 +37,18 @@
           <p class="lh-base lh-md-lg fs-info text-info">{{ product.productInfo.content }}
           </p>
           <hr class="my-6 text-info opacity-100">
-          <div class="accordion accordion-flush">
+          <div class="accordion accordion-flush" id="accordion">
             <div class="accordion-item bg-transparent border-info pb-6">
               <h2 class="accordion-header" id="panelsStayOpen-headingSize">
-                <button class="accordion-button text-info fw-bold bg-transparent p-0" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSize" aria-expanded="true"
-                  aria-controls="panelsStayOpen-collapseSize" style="box-shadow: none;">
+                <button class="accordion-button text-info fw-bold bg-transparent p-0"
+                :class="{collapsed:isAccordionSizeShow}"
+                type="button" aria-expanded="true"
+                  aria-controls="panelsStayOpen-collapseSize" style="box-shadow: none;" @click="toggleAccordion('Size')">
                   作品規格
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseSize" class="accordion-collapse collapse show"
-                aria-labelledby="panelsStayOpen-headingSize">
+              <div class="accordion-collapse collapse show" ref="accordionSize" aria-labelledby="panelsStayOpen-headingSize"
+                data-bs-parent="#accordion">
                 <div class="accordion-body p-0 pt-4 lh-base lh-md-lg h6 text-info">
                   {{ product.productInfo.size }}
                 </div>
@@ -55,13 +56,13 @@
             </div>
             <div class="accordion-item bg-transparent border-info py-6">
               <h2 class="accordion-header" id="panelsStayOpen-headingQty">
-                <button class="accordion-button text-info fw-bold bg-transparent p-0" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseQty" aria-expanded="true"
-                  aria-controls="panelsStayOpen-collapseQty" style="box-shadow: none;">
+                <button class="accordion-button text-info fw-bold bg-transparent p-0" :class="{collapsed:isAccordionQtyShow}" type="button"
+                  aria-expanded="true"
+                  aria-controls="panelsStayOpen-collapseQty" style="box-shadow: none;" @click="toggleAccordion('Qty')">
                   作品版數
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseQty" class="accordion-collapse collapse show"
+              <div id="panelsStayOpen-collapseQty" class="accordion-collapse collapse show" ref="accordionQty"
                 aria-labelledby="panelsStayOpen-headingQty">
                 <div class="accordion-body p-0 pt-4 lh-base lh-md-lg h6 text-info">
                   <p>剩餘版數 {{ product.productInfo.quantity ? product.productInfo.quantity - quantityInCart : '無限' }}</p>
@@ -71,14 +72,14 @@
             </div>
             <div class="accordion-item bg-transparent pt-6">
               <h2 class="accordion-header" id="panelsStayOpen-headingAbout">
-                <button class="accordion-button collapsed text-info fw-bold bg-transparent p-0" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseAbout" aria-expanded="true"
-                  aria-controls="panelsStayOpen-collapseAbout" style="box-shadow: none;">
+                <button class="accordion-button text-info fw-bold bg-transparent p-0" :class="{collapsed:isAccordionAboutShow}" type="button"
+ aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseAbout" style="box-shadow: none;" @click="toggleAccordion('About')">
                   關於 {{ artistInfo.title }}
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseAbout" class="accordion-collapse collapse"
-                aria-labelledby="panelsStayOpen-headingOne">
+              <div id="panelsStayOpen-collapseAbout" class="accordion-collapse collapse" ref="accordionAbout"
+                aria-labelledby="panelsStayOpen-headingAbout">
                 <div class="accordion-body p-0 pt-4 lh-base lh-md-lg fs-info text-info">
                   {{ artistInfo.content }}
                 </div>
@@ -124,6 +125,8 @@
 </template>
 
 <script>
+import Collapse from 'bootstrap/js/dist/collapse'
+
 import userProductStore from '@/stores/userProductStore.js'
 import favoriteStore from '@/stores/favoriteStore'
 import cartStore from '@/stores/userCartStore.js'
@@ -152,7 +155,12 @@ export default {
       // 藝術家資訊
       artistInfo: {},
       // 當前產品存在購物車的數量
-      quantityInCart: ''
+      quantityInCart: '',
+      // 產品風琴
+      accordion: null,
+      isAccordionSizeShow: true,
+      isAccordionQtyShow: true,
+      isAccordionAboutShow: false
     }
   },
   watch: {
@@ -173,6 +181,15 @@ export default {
 
     // 儲存最近瀏覽資料
     ...mapActions(favoriteStore, ['recentlyViewed']),
+
+    toggleAccordion (type) {
+      const refName = `accordion${type}`
+      const buttonTarget = `isAccordion${type}Show`
+      this[buttonTarget] = !this[buttonTarget]
+
+      this.accordion = new Collapse(this.$refs[refName], { toggle: true })
+      this.accordion.toggle()
+    },
 
     // 切換顯示大圖
     changeImage (idx) {
