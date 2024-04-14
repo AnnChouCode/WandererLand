@@ -182,6 +182,7 @@ export default {
     // 儲存最近瀏覽資料
     ...mapActions(favoriteStore, ['recentlyViewed']),
 
+    // 控制產品資訊風琴
     toggleAccordion (type) {
       const refName = `accordion${type}`
       const buttonTarget = `isAccordion${type}Show`
