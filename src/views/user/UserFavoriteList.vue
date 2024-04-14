@@ -21,7 +21,10 @@
         </productCard>
       </div>
     </div>
-    <p v-else class="text-center fs-4">目前沒有收藏</p>
+    <div v-else class="text-center">
+      <p class="mb-4 fs-4">目前沒有收藏</p>
+      <router-link to="/productlist" class="py-2 py-md-3 px-6 px-md-9 btn btn-default rounded-0 fw-bold">瀏覽作品</router-link>
+    </div>
 
     <!-- 猜你喜歡 -->
     <swiperProductComponent dataCategory="recently"></swiperProductComponent>

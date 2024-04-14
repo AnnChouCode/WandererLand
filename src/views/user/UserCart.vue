@@ -1,7 +1,10 @@
 <template>
   <div class="container user-page-container flex-grow-1" style="padding-bottom:0;">
     <h2 class="mb-7 mb-md-8 h1 lh-sm title-letter-spacing text-center h1">購物車</h2>
-    <p v-if="!cartsList.final_total" class="text-center fs-4">目前購物車內沒有內容</p>
+    <div v-if="!cartsList.final_total" class="text-center">
+      <p class="mb-4 fs-4">目前購物車內沒有內容</p>
+      <router-link to="/productlist" class="py-2 py-md-3 px-6 px-md-9 btn btn-default rounded-0 fw-bold">瀏覽作品</router-link>
+    </div>
     <div class="position-relative" v-else>
       <button class="position-absolute top-0 start-0 btn btn-primary rounded-0 fs-info text-info" type="button"
         @click="clearCartsList" :disabled="!cartsList.final_total">清空購物車</button>
