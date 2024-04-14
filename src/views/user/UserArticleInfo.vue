@@ -4,9 +4,12 @@
       <div class="col-12 col-md-8 mx-auto">
         <!-- 圖 -->
         <div class="position-relative mb-5 mb-md-8" v-if="article.imagesUrl">
-          <Swiper :slidesPerView="1" :spaceBetween="24" :pagination="{
+          <Swiper :slidesPerView="1" :spaceBetween="24"
+          :pagination="{
     clickable: true,
-  }" :autoplay="{
+  }"
+  :loop="true"
+  :autoplay="{
     delay: 3000,
     disableOnInteraction: false,
   }" :navigation="{
