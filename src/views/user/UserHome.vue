@@ -12,15 +12,19 @@
         class="py-2 py-md-3 px-6 px-md-9 btn btn-light rounded-0 fw-bold">前往頁面</router-link>
     </div>
   </div>
+
   <div class="bg-white">
     <div class="container">
       <!-- 探索新作品 -->
       <swiperProductComponent dataCategory="products"></swiperProductComponent>
-
       <!-- 認識新藝術家 -->
       <swiperProductComponent dataCategory="artists"></swiperProductComponent>
+    </div>
+  </div>
 
-      <!-- 最新消息 -->
+  <!-- 最新消息 -->
+  <div class="bg-white">
+    <div class="container">
       <div class="py-7 py-md-9" v-if="sortArticles.newestArticles[0]">
         <div class="d-flex justify-content-between align-items-center mb-7 mb-md-8 ">
           <h2 class="fs-2 fs-md-1">最新消息</h2>
@@ -152,7 +156,7 @@
       <button type="button" class="py-2 py-md-3 px-6 px-md-9 btn btn-light fw-bold rounded-0"
         @click="copyCouponCode('present97')">點擊複製優惠碼</button>
     </div>
-    <img src="../../../public/images/present.jpg" alt="coupon" class="object-fit-cover w-100 h-100" data-aos="zoom-out"
+    <img src="../../../public/images/present.webp" alt="coupon" class="object-fit-cover w-100 h-100" data-aos="zoom-out"
       data-aos-duration="3000">
   </div>
 

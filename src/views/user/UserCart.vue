@@ -114,7 +114,7 @@
       <div class="position-relative container modal-content rounded-0">
         <div class="row flex-column flex-md-row">
           <div class="d-none d-md-block col col-md-6 px-0">
-            <img src="../../../public/images/present.jpg" alt="coupon" class="object-fit-cover w-100 h-100">
+            <img src="../../../public/images/present.webp" alt="coupon" class="object-fit-cover w-100 h-100">
           </div>
           <div class="col col-md-6 d-flex flex-column p-4">
             <button type="button" class="align-self-end btn-close" aria-label="Close" @click="hideCouponModal"></button>
