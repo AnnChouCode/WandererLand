@@ -3,8 +3,8 @@
     <div class="d-flex justify-content-between align-items-center container py-6 py-md-7">
       <div class="col-8">
         <div class="d-flex gap-3 mb-3">
-          <a href="https://www.linkedin.com/in/annchou/" target="_blank"><i class="bi bi-linkedin fs-4 text-default"></i></a>
-          <a href="https://github.com/AnnChouCode/WandererLand" target="_blank"><i class="bi bi-github fs-4 text-default"></i></a>
+          <a href="https://www.linkedin.com/in/annchou/" target="_blank" aria-label="前往 LinkedIn"><i class="bi bi-linkedin fs-4 text-default"></i></a>
+          <a href="https://github.com/AnnChouCode/WandererLand" target="_blank" aria-label="前往 GitHub"><i class="bi bi-github fs-4 text-default"></i></a>
         </div>
         <p class=" fs-info fs-md-6">本網站僅供個人作品使用，<span class="d-block d-sm-inline">不提供商業用途</span></p>
       </div>

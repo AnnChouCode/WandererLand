@@ -1,5 +1,5 @@
 <template>
-    <router-link class="text-default fw-bold fs-info fs-md-6 btn-see-more" :to="linkTo">瀏覽更多</router-link>
+    <router-link class="text-default fw-bold fs-info fs-md-6 btn-see-more" :to="linkTo" aria-label="瀏覽更多">瀏覽更多</router-link>
 </template>
 
 <script>

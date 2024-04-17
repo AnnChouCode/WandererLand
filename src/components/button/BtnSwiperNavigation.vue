@@ -1,5 +1,5 @@
 <template>
-    <div :class="containerClass">
+    <div :class="containerClass" aria-label="切換資訊">
         <div :class="swiperButton"></div>
         <div class="navigation-bg"></div>
     </div>

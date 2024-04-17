@@ -25,13 +25,13 @@
             <ProductSearch />
           </li>
           <li class="py-4 px-2">
-            <router-link to="/favoritelist" class="text-default link-hover-text-info">
+            <router-link to="/favoritelist" class="text-default link-hover-text-info" aria-label="查看收藏清單">
               <i class="bi" :class="favoriteList.length ? 'bi-heart-fill' : 'bi-heart'"></i>
             </router-link>
           </li>
           <li class="py-4 ps-2"  @mouseenter="showCartList"
               @mouseleave="hideCartList" style="padding-right: 8px;margin-right:-8px;">
-            <router-link to="/cart" class="position-relative text-default link-hover-text-info">
+            <router-link to="/cart" class="position-relative text-default link-hover-text-info" aria-label="查看購物車">
               <i class="bi bi-handbag"></i>
               <div v-if="cartsList.final_total" class="position-absolute badge bg-default rounded-circle text-white"
                 style="top: 8px;right: -10px;font-size:8px;">{{ cartsList.carts.length }}</div>

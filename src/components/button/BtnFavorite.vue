@@ -1,5 +1,5 @@
 <template>
-    <button type="button" class="position-relative btn-favorite btn p-0" @click="toggleFavorite()">
+    <button type="button" class="position-relative btn-favorite btn p-0" @click="toggleFavorite()" aria-label="加入或刪除收藏">
         <i class="position-absolute bi" :class="favoriteList.includes(productId) ? 'bi-heart-fill': 'bi-heart'"></i>
         <i class="bi bi-heart-fill text-info"></i>
     </button>
